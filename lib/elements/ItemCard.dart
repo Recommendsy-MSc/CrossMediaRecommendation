@@ -13,19 +13,27 @@ class PageState extends State<ItemCard>{
   @override
   Widget build(BuildContext context) {
     return Container(
-      // margin: edgeInsetsAll20,
+      height: 400,
+      width: MediaQuery.of(context).size.width * 0.62,
+      // height: 400,
       decoration: BoxDecoration(
-        borderRadius: borderRadius30,
-        color: accentColor.withOpacity(0.1),
-
+        // border: testBorder,
+        image: DecorationImage(
+          image: NetworkImage(
+            'https://image.tmdb.org/t/p/w1280/cyecB7godJ6kNHGONFjUyVN9OX5.jpg',
+          ),
+          fit: BoxFit.fill
+        )
       ),
-      height: 250,
-      width: 444,
-      child: Image.network(
-        'https://image.tmdb.org/t/p/w1280/cyecB7godJ6kNHGONFjUyVN9OX5.jpg',
-        // width: MediaQuery.of(context).size.width,
-        fit: BoxFit.cover,
-      )
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Iron Man",
+            style: Theme.of(context).textTheme.headline2,
+          )
+        ],
+      ),
     );
   }
 }

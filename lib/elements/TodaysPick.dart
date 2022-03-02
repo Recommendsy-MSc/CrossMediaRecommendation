@@ -28,7 +28,7 @@ class PageState extends State<TodaysPick>{
                       'https://image.tmdb.org/t/p/w1280/cyecB7godJ6kNHGONFjUyVN9OX5.jpg',
 
                   ),
-                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.9), BlendMode.dstATop)
+                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.9), BlendMode.dstATop),
                 )
               ),
               height: 250,
