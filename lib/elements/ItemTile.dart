@@ -1,3 +1,4 @@
+import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +18,10 @@ class PageState extends State<ItemTile>{
     return Stack(
       children: [
         Container(
-          padding: edgeInsetsAll8,
           decoration: BoxDecoration(
-            borderRadius: borderRadius12,
-            color: white.withOpacity(0.9)
+            // borderRadius: borderRadius12,
+            // color: white.withOpacity(0.9),
+            // border: testBorder,
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,50 +32,37 @@ class PageState extends State<ItemTile>{
                   borderRadius: borderRadius12,
                   child: Image.network(
                     "https://image.tmdb.org/t/p/w185/78lPtwv72eTNqFW9COBYI0dWDJa.jpg",
-                    width: widget.parentWidth - 16
+                    width: widget.parentWidth,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  // border: testBorder,
-                ),
-                child: Row(
+              Flexible(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    CustomSpacer(height: 8),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                          decoration: BoxDecoration(
-                            borderRadius: borderRadius4,
-                            border: testBorder
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                                size: 16,
-                              ),
-                              Text(
-                                " 4 ",
-                                style: Theme.of(context).textTheme.headline5,
-                              ),
-                            ],
-                          ),
+                        Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                          size: 16,
                         ),
-                        SizedBox(height: 4,),
-                        Container(
-                          padding: EdgeInsets.symmetric(vertical: 4),
-                          child: Text(
-                            widget.index.toString()
-                          ),
+                        Text(
+                          " 4 ",
+                          style: Theme.of(context).textTheme.headline5,
                         ),
                       ],
                     ),
-
+                    SizedBox(height: 4,),
+                    Flexible(
+                      child: Text(
+                        widget.index.toString(),
+                        style: Theme.of(context).textTheme.headline4,
+                      ),
+                    ),
                   ],
                 ),
               )
@@ -84,7 +72,7 @@ class PageState extends State<ItemTile>{
         Align(
           alignment: Alignment.topRight,
           child: Container(
-            margin: edgeInsetsAll20,
+            margin: edgeInsetsAll12,
             padding: EdgeInsets.all(4),
             decoration: BoxDecoration(
               color: white,

@@ -15,10 +15,7 @@ class PageState extends State<TodaysPick>{
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        // color: white.withOpacity(0.2),
-        // borderRadius: borderRadius20
-      ),
+      // decoration: testDec,
       child: Row(
         children: [
           Container(
@@ -42,40 +39,78 @@ class PageState extends State<TodaysPick>{
               //   fit: BoxFit.cover,
               // )
           ),
+          CustomSpacer(width: 20,),
           Expanded(
               child: Container(
                 height: 250,
                 // decoration: testDec,
-                padding: edgeInsetsAll20,
+                // padding: edgeInsetsAll20,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Iron Man",
-                      style: Theme.of(context).textTheme.headline2,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            "Lord of The Rings - Fellowship of the Ring",
+                            style: Theme.of(context).textTheme.headline2,
+                          ),
+                        ),
+                        CustomSpacer(width: 8,),
+                        OutlinedButton(
+                          onPressed: null,
+                          style: OutlinedButton.styleFrom(
+                            backgroundColor: accentColor,
+                            shape: RoundedRectangleBorder(borderRadius: borderRadius8),
+                            padding: edgeInsetsAll20,
+                          ),
+                          child: Text(
+                            "+ Add to List",
+                            style: TextStyle(
+                                color: primaryTextColor
+                            ),
+                          )
+                        )
+                      ],
                     ),
                     Column(
                       children: [
                         Text(
                             "After /being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
-                          style: Theme.of(context).textTheme.headline4,
+                          style: Theme.of(context).textTheme.headline5,
                         ),
                         CustomSpacer(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(
-                              children: [
-                                KeywordDisplay(keyword: "Horror"),
-                                CustomSpacer(width: 10,),
-                                KeywordDisplay(keyword: "Thrill"),
-                                CustomSpacer(width: 10,),
-                                KeywordDisplay(keyword: "Suspense"),
-                                CustomSpacer(width: 10,),
-                                KeywordDisplay(keyword: "Horror"),
+                            Flexible(
+                              child: Wrap(
+                                // spacing: 20,
+                                children: [
+                                  Container(
+                                      child: KeywordDisplay(keyword: "Horror"),
+                                    margin: edgeInsetsAll4,
+                                  ),
+                                  // CustomSpacer(width: 10, height: 10,),
+                                  Container(
+                                    child: KeywordDisplay(keyword: "Horror"),
+                                    margin: edgeInsetsAll4,
+                                  ),
+                                  Container(
+                                    child: KeywordDisplay(keyword: "Horror"),
+                                    margin: edgeInsetsAll4,
+                                  ),
+                                  Container(
+                                    child: KeywordDisplay(keyword: "Horror"),
+                                    margin: edgeInsetsAll4,
+                                  ),
 
-                              ],
+
+                                ],
+                              ),
                             ),
                             Text(
                               "View Similar >>",

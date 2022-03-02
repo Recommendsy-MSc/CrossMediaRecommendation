@@ -17,10 +17,10 @@ class MyApp extends StatelessWidget{
       theme: ThemeData(
         textTheme: TextTheme(
           headline1: TextStyle(color: accentColor, fontSize: 26),
-          headline2: TextStyle(color: primaryTextColor, fontSize: 28),
+          headline2: TextStyle(color: primaryTextColor, fontSize: 26),
           headline5: TextStyle(color: primaryTextColor.withOpacity(0.7), fontSize: 14),
           headline3: TextStyle(color: primaryTextColor, fontSize: 22),
-          headline4: TextStyle(color: primaryTextColor, fontSize: 14),
+          headline4: TextStyle(color: primaryTextColor, fontSize: 18),
           headline6: TextStyle(color: primaryTextColor, fontSize: 12),
         ),
         inputDecorationTheme: InputDecorationTheme(

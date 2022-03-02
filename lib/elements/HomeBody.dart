@@ -17,7 +17,7 @@ class PageState extends State<HomeBody>{
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: edgeInsetsAll20,
+      padding: edgeInsetsAll32,
       // decoration: testDec,
       // height: MediaQuery.of(context).size.height,
       child: Column(

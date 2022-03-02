@@ -30,11 +30,12 @@ class PageState extends State<HomePage>{
           Container(
             width: MediaQuery.of(context).size.width * 0.82,
             color: primaryColor,
+            // decoration: testDec,
             child: Column(
               children: [
                 Container(
                   // decoration: testDec,
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  padding: EdgeInsets.only(top: 20, left: 32, right: 32, bottom: 0),
                   // decoration: testDec,
                   child: TopNav()
                 ),

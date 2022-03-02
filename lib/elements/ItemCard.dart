@@ -16,7 +16,8 @@ class PageState extends State<ItemCard>{
       // margin: edgeInsetsAll20,
       decoration: BoxDecoration(
         borderRadius: borderRadius30,
-        color: accentColor.withOpacity(0.1)
+        color: accentColor.withOpacity(0.1),
+
       ),
       height: 250,
       width: 444,
