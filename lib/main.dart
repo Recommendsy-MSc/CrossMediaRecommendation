@@ -16,10 +16,12 @@ class MyApp extends StatelessWidget{
       initialRoute: '/HomePage',
       theme: ThemeData(
         textTheme: TextTheme(
-          headline1: TextStyle(color: textColor, fontSize: 26),
-          headline6: TextStyle(color: accentColor.withOpacity(0.7), fontSize: 14),
-          headline3: TextStyle(color: accentColor, fontSize: 22),
-          headline5: TextStyle(color: accentColor, fontSize: 12),
+          headline1: TextStyle(color: accentColor, fontSize: 26),
+          headline2: TextStyle(color: primaryTextColor, fontSize: 28),
+          headline5: TextStyle(color: primaryTextColor.withOpacity(0.7), fontSize: 14),
+          headline3: TextStyle(color: primaryTextColor, fontSize: 22),
+          headline4: TextStyle(color: primaryTextColor, fontSize: 14),
+          headline6: TextStyle(color: primaryTextColor, fontSize: 12),
         ),
         inputDecorationTheme: InputDecorationTheme(
           focusColor: accentColor,

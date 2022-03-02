@@ -19,9 +19,10 @@ class PageState extends State<ItemCard>{
         color: accentColor.withOpacity(0.1)
       ),
       height: 250,
-      child: Image.asset(
-        'assets/img/freeguy.jpg',
-        width: MediaQuery.of(context).size.width,
+      width: 444,
+      child: Image.network(
+        'https://image.tmdb.org/t/p/w1280/cyecB7godJ6kNHGONFjUyVN9OX5.jpg',
+        // width: MediaQuery.of(context).size.width,
         fit: BoxFit.cover,
       )
     );

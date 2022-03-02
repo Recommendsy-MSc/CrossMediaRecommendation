@@ -17,13 +17,16 @@ Radius radius20 = Radius.circular(20);
 Radius radius30 = Radius.circular(30);
 
 EdgeInsets edgeInsetsAll20 = EdgeInsets.all(20);
+EdgeInsets edgeInsetsAll32 = EdgeInsets.all(32);
 EdgeInsets edgeInsetsAll8 = EdgeInsets.all(8);
 EdgeInsets edgeInsetsAll12 = EdgeInsets.all(12);
 
 
-Color primaryColor = Color(0xFFE3E4F5);
-Color accentColor = Color(0xFF191A1F);
+// Color primaryColor = Color(0xFFE3E4F5);
+Color primaryColor = Color(0xFF181D23);
+// Color accentColor = Color(0xFF191A1F);
 // Color accentColor = Color(0xFF6AD8B7);
+Color accentColor = Color(0xFFF86D4E);
+Color primaryTextColor = Color(0xFFF5F5F6);
 Color accentTextColor = Color(0xFFF5F5F5);
-Color textColor = Color(0xFF21C392);
 Color white = Colors.white;

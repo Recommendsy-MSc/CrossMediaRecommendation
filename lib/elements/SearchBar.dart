@@ -15,26 +15,25 @@ class PageState extends State<SearchBar>{
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.2,
-      // padding: edgeInsetsAll12,
-      // decoration: BoxDecoration(
-      //   borderRadius: borderRadius12,
-      //   border: Border.all(color: accentTextColor, width: 0.2)
-      // ),
-        child: TextFormField(
 
+        child: TextFormField(
+          style: TextStyle(color: primaryTextColor.withOpacity(0.8), fontSize: 14),
           decoration: InputDecoration(
+            isDense: true,
+            contentPadding: EdgeInsets.all(0),
             hintText: "Search",
-            hintStyle: Theme.of(context).textTheme.headline6,
+            hintStyle: TextStyle(color: primaryTextColor.withOpacity(0.4), fontSize: 14),
             prefixIcon: Icon(
               Icons.search,
-              color: accentColor.withOpacity(0.5),
+              color: primaryTextColor.withOpacity(0.5),
+              size: 18
             ),
             enabledBorder: OutlineInputBorder(
-                borderRadius: borderRadius12,
-                borderSide: BorderSide(color: accentColor.withOpacity(0.4))),
+                borderRadius: borderRadius20,
+                borderSide: BorderSide(color: primaryTextColor.withOpacity(0.4))),
             focusedBorder: OutlineInputBorder(
-                borderRadius: borderRadius12,
-                borderSide: BorderSide(color: accentColor)
+                borderRadius: borderRadius20,
+                borderSide: BorderSide(color: primaryTextColor.withOpacity(0.6))
             ),
 
           ),

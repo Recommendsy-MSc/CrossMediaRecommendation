@@ -1,5 +1,6 @@
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/MyList.dart';
+import 'package:cross_media_recommendation/elements/TodaysPick.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -25,7 +26,7 @@ class PageState extends State<HomeBody>{
           CustomSpacer(height: 10,),
           Container(
             // padding: EdgeInsets.symmetric(horizontal: 20),
-            child: ItemCard()
+            child: TodaysPick()
           ),
           CustomSpacer(height: 32,),
           MyList(),

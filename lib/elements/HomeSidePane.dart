@@ -1,3 +1,4 @@
+import 'package:cross_media_recommendation/elements/AppTitle.dart';
 import 'package:cross_media_recommendation/elements/UserBrief.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +18,13 @@ class PageState extends State<HomeSidePane>{
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            UserBrief(),
-            Container(
-              child: Icon(
-                Icons.menu
-              )
-            )
+            AppTitle(),
+            // UserBrief(),
+            // Container(
+            //   child: Icon(
+            //     Icons.menu
+            //   )
+            // )
           ],
         ),
       ],

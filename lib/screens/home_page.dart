@@ -14,13 +14,22 @@ class PageState extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        alignment: Alignment.topRight,
+      body: Row(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width,
+            padding: edgeInsetsAll32,
+            // margin: EdgeInsets.symmetric(vertical: 20),
+            width: MediaQuery.of(context).size.width * 0.18,
+            decoration: BoxDecoration(
+              // borderRadius: BorderRadius.only(topLeft: radius30,),
+              border: Border(right: BorderSide(color: primaryColor.withOpacity(0.6), width: 0.1)),
+              color: primaryColor,
+            ),
+            child: HomeSidePane(),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.82,
             color: primaryColor,
-            padding: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.25),
             child: Column(
               children: [
                 Container(
@@ -36,17 +45,6 @@ class PageState extends State<HomePage>{
                 )
               ],
             ),
-          ),
-          Container(
-            padding: edgeInsetsAll20,
-            margin: EdgeInsets.symmetric(vertical: 20),
-            width: MediaQuery.of(context).size.width * 0.25,
-            decoration: BoxDecoration(
-              // borderRadius: BorderRadius.only(topLeft: radius30,),
-              border: Border(left: BorderSide(color: accentColor.withOpacity(0.5), width: 0.4)),
-              color: primaryColor,
-            ),
-            child: HomeSidePane(),
           ),
         ],
       )

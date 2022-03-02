@@ -8,8 +8,6 @@ class AppTitle extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      // decoration: testDec,
-      // padding: edgeInsetsAll20,
       child: Text(
         "For You",
         style: Theme.of(context).textTheme.headline1,
