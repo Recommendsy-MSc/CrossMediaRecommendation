@@ -29,7 +29,7 @@ class PageState extends State<ItemTile>{
             children: [
               Align(
                 child: ClipRRect(
-                  borderRadius: borderRadius12,
+                  // borderRadius: borderRadius12,
                   child: Image.network(
                     "https://image.tmdb.org/t/p/w185/78lPtwv72eTNqFW9COBYI0dWDJa.jpg",
                     width: widget.parentWidth,

@@ -4,6 +4,8 @@ import 'package:cross_media_recommendation/elements/top_nav.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cross_media_recommendation/repositories/movie_repo.dart' as mr;
+import 'BodyMain.dart';
 
 class HomePage extends StatefulWidget{
   @override
@@ -11,6 +13,12 @@ class HomePage extends StatefulWidget{
 }
 
 class PageState extends State<HomePage>{
+
+  @override
+  void initState(){
+    super.initState();
+    mr.testMovie();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,17 +41,16 @@ class PageState extends State<HomePage>{
             // decoration: testDec,
             child: Column(
               children: [
-                // Container(
-                //   // decoration: testDec,
-                //   padding: EdgeInsets.only(top: 20, left: 32, right: 32, bottom: 0),
-                //   // decoration: testDec,
-                //   child: TopNav()
-                // ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: HomeBody(),
-                  ),
-                )
+                SingleChildScrollView(
+                  child: BodyMain(),
+                ),
+                Container(
+                  // decoration: testDec,
+                    padding: edgeInsetsAll20,
+                    // decoration: testDec,
+                    child: TopNav()
+                ),
+
               ],
             ),
           ),

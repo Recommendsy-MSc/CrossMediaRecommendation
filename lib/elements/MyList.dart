@@ -27,7 +27,7 @@ class PageState extends State<MyList>{
   Widget build(BuildContext context) {
     // print(MediaQuery.of(context).size.width * 0.7);
     // print(MediaQuery.of(context).size.width * 0.18);
-    count = ((MediaQuery.of(context).size.width * 0.75) / (MediaQuery.of(context).size.width * 0.13)).toInt();
+    count = 5;
     // print("Count: " + count.toString());
     return Container(
       // height: MediaQuery.of(context).size.height,

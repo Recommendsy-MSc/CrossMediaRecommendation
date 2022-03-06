@@ -3,6 +3,7 @@ import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:cross_media_recommendation/repositories/global_var_repo.dart';
 
 class ItemList extends StatefulWidget{
   ItemScrollController scrollController;

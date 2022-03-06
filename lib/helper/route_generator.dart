@@ -1,3 +1,4 @@
+import 'package:cross_media_recommendation/screens/TitlePage.dart';
 import 'package:cross_media_recommendation/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -6,9 +7,13 @@ class RouteGenerator {
     final args = settings.arguments;
     switch (settings.name) {
       case '/HomePage':
-        return MaterialPageRoute(builder: (context) => HomePage());
+        return MaterialPageRoute(settings: settings, builder: (context) => HomePage());
+      case '/TitlePage':
+        return MaterialPageRoute(settings: settings, builder: (context) => TitlePage());
+      // case '/':
+      //   return MaterialPageRoute(settings: settings, builder: (context) => HomePage());
       default:
-        return MaterialPageRoute(builder: (_) => Scaffold(body: SafeArea(child: Center(child: Text('Route Error')))));
+        return MaterialPageRoute(settings: settings, builder: (context) => HomePage());
     }
   }
 }

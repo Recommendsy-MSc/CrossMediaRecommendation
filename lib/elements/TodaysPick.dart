@@ -26,102 +26,65 @@ class PageState extends State<TodaysPick>{
                 image: DecorationImage(
                   image: NetworkImage(
                       'https://image.tmdb.org/t/p/w1280/cyecB7godJ6kNHGONFjUyVN9OX5.jpg',
-
                   ),
                   colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.9), BlendMode.dstATop),
                 )
               ),
-              height: 250,
-              width: 444,
+              // height: 250,
+              width: MediaQuery.of(context).size.width * 0.75
               // child: Image.network(
               //   'https://image.tmdb.org/t/p/w1280/cyecB7godJ6kNHGONFjUyVN9OX5.jpg',
               //   // width: MediaQuery.of(context).size.width,
               //   fit: BoxFit.cover,
               // )
           ),
-          CustomSpacer(width: 20,),
           Expanded(
               child: Container(
                 height: 250,
                 // decoration: testDec,
-                // padding: edgeInsetsAll20,
+                padding: edgeInsetsAll20,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            "Lord of The Rings - Fellowship of the Ring",
+                    Flexible(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Iron Man",
                             style: Theme.of(context).textTheme.headline2,
                           ),
-                        ),
-                        CustomSpacer(width: 8,),
-                        OutlinedButton(
-                          onPressed: null,
-                          style: OutlinedButton.styleFrom(
-                            backgroundColor: accentColor,
-                            shape: RoundedRectangleBorder(borderRadius: borderRadius8),
-                            padding: edgeInsetsAll20,
-                          ),
-                          child: Text(
-                            "+ Add to List",
-                            style: TextStyle(
-                                color: primaryTextColor
-                            ),
-                          )
-                        )
-                      ],
+                          // Container(
+                          //   padding: edgeInsetsAll12,
+                          //   decoration: BoxDecoration(
+                          //     borderRadius: borderRadius20,
+                          //     color: accentColor
+                          //   ),
+                          //   child: Text(
+                          //     "+ Add to My List",
+                          //     style: Theme.of(context).textTheme.headline5,
+                          //   )
+                          // )
+                        ],
+                      ),
                     ),
-                    Column(
-                      children: [
-                        Text(
-                            "After /being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
-                          style: Theme.of(context).textTheme.headline5,
-                        ),
-                        CustomSpacer(),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                              child: Wrap(
-                                // spacing: 20,
-                                children: [
-                                  Container(
-                                      child: KeywordDisplay(keyword: "Horror"),
-                                    margin: edgeInsetsAll4,
-                                  ),
-                                  // CustomSpacer(width: 10, height: 10,),
-                                  Container(
-                                    child: KeywordDisplay(keyword: "Horror"),
-                                    margin: edgeInsetsAll4,
-                                  ),
-                                  Container(
-                                    child: KeywordDisplay(keyword: "Horror"),
-                                    margin: edgeInsetsAll4,
-                                  ),
-                                  Container(
-                                    child: KeywordDisplay(keyword: "Horror"),
-                                    margin: edgeInsetsAll4,
-                                  ),
-
-
-                                ],
-                              ),
-                            ),
-                            Text(
-                              "View Similar >>",
-                              style: TextStyle(
-                                color: accentColor.withOpacity(0.8),
-                                fontSize: 14
-                              ),
-                            )
-                          ],
-                        )
-                      ],
+                    Text(
+                      "After /being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
+                    Flexible(
+                      child: Wrap(
+                        children: [
+                          KeywordDisplay(keyword: "Horror"),
+                          CustomSpacer(width: 10,),
+                          KeywordDisplay(keyword: "Thrill"),
+                          CustomSpacer(width: 10,),
+                          KeywordDisplay(keyword: "Suspense"),
+                          CustomSpacer(width: 10,),
+                          KeywordDisplay(keyword: "Horror"),
+                        ],
+                      ),
                     )
                   ],
                 ),
