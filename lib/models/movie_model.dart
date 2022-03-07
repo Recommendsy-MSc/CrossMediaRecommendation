@@ -20,7 +20,7 @@ class MovieModel extends TitleModel{
 
   MovieModel.fromJson(jsonMap) : super.fromJson(jsonMap){
     try{
-
+      backdrop_path = jsonMap['']
     }catch(e){
 
     }
