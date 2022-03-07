@@ -3,30 +3,27 @@ import 'package:cross_media_recommendation/models/keyword_model.dart';
 import 'package:cross_media_recommendation/models/production_company_model.dart';
 import 'package:cross_media_recommendation/models/title_model.dart';
 
-class MovieModel extends TitleModel{
-  String? backdrop_path;
-  List<CastModel>? cast_members;
-  String? imdb_id;
-  List<KeywordModel>? keywords;
-  String? language;
-  String? popularity;
-  String? poster_path;
-  List<ProductionCompanyModel>? production_companies;
-  String? release_date;
-  String? runtime;
-  List<String>? spoken_languages;
+class TvModel extends TitleModel{
+  List<CastModel>? cast_model;
   String? status;
   String? tagline;
+  bool? in_production;
+  List<KeywordModel>? keywords;
+  String? last_air_date;
+  String? no_episodes;
+  String? no_seasons;
+  String? original_language;
+  String? poster_path;
+  List<ProductionCompanyModel>? production_companies;
+  List<String>? spoken_languages;
+  String? type;
 
-  MovieModel.fromJson(jsonMap) : super.fromJson(jsonMap){
+  TvModel.fromJson(jsonMap) : super.fromJson(jsonMap){
     try{
-      // backdrop_path = jsonMap['']
-    }catch(e){
+
+    }
+    catch(e){
 
     }
   }
-
-
-
-
 }

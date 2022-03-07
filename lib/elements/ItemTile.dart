@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/models/basic_movie_model.dart';
+import 'package:cross_media_recommendation/models/basic_title_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

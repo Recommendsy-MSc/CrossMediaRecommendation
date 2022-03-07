@@ -2,6 +2,7 @@ class BasicTvModel{
   String? id;
   String? title;
   String? poster_path;
+  int type = 1;
 
   BasicTvModel.fromJson(jsonMap){
     try{
