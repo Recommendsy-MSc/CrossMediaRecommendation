@@ -20,7 +20,22 @@ class MovieModel extends TitleModel{
 
   MovieModel.fromJson(jsonMap) : super.fromJson(jsonMap){
     try{
-      // backdrop_path = jsonMap['']
+      backdrop_path = jsonMap['backdrop_path'] ?? '';
+      spoken_languages = jsonMap['spoken_languages'] != null ? List.from(jsonMap['spoken_languages']);
+      cast_members = jsonMap['cast_members'] != null ? List.from(jsonMap['cast_members']).map((element) => CastModel.fromJson(element)).toList() : [];
+      imdb_id = jsonMap['imdb_id'] ?? '';
+      keywords = jsonMap['keywords'] != null ? List.from(jsonMap['keywords']).map((element) => KeywordModel.fromJson(element)).toList() : [];
+      language = jsonMap['language'] ?? '';
+      popularity = jsonMap['popularity'] ?? '';
+      poster_path = jsonMap['poster_path'] ?? '';
+      production_companies = jsonMap['production_companies'] != null ? List.from(jsonMap['production_companies']).map((element) => ProductionCompanyModel.fromJson(element)).toList() : [];
+      release_date = jsonMap['release_date'] ?? '';
+      runtime = jsonMap['runtime'] ?? '';
+      status = jsonMap['status'] ?? '';
+      tagline = jsonMap['tagline'] ?? '';
+
+
+
     }catch(e){
 
     }
