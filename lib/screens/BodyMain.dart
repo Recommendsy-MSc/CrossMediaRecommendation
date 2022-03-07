@@ -17,6 +17,7 @@ class PageState extends StateMVC<BodyMain>{
   @override
   void initState(){
     super.initState();
+    print("init hb");
     bodyMainController = con;
     con!.switchPage(0);
   }

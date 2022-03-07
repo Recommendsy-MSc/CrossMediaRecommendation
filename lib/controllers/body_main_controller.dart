@@ -9,6 +9,7 @@ class BodyMainController extends ControllerMVC{
   Widget? bodyWidget;
 
   void switchPage(int index){
+    print("Switching");
     switch(index){
       case 0:
         bodyWidget = HomeBody();

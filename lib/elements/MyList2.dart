@@ -27,7 +27,7 @@ class PageState extends State<MyList2>{
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            child: HeadingElement(),
+            child: HeadingElement(title: "MyList2 in use",),
             padding: EdgeInsets.symmetric(horizontal: 16),
           ),
           CustomSpacer(height: 10,),

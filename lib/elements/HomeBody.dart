@@ -1,9 +1,12 @@
+import 'package:cross_media_recommendation/controllers/home_body_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/MyList.dart';
 import 'package:cross_media_recommendation/elements/MyList2.dart';
 import 'package:cross_media_recommendation/elements/TodaysPick.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:mvc_pattern/mvc_pattern.dart';
 
 import 'ItemCard.dart';
 
@@ -15,61 +18,38 @@ class HomeBody extends StatefulWidget{
 }
 
 
-class PageState extends State<HomeBody>{
+class PageState extends StateMVC<HomeBody>{
+  HomeBodyController? con;
+
+  PageState() : super(HomeBodyController()){
+    con = controller as HomeBodyController;
+  }
 
   @override
   void initState(){
     super.initState();
+    con!.loadHomeData();
   }
+
+
+
   @override
   Widget build(BuildContext context) {
-
-    return Stack(
-      // alignment: Alignment.bottomCenter,
-      // crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // CustomSpacer(height: 10,),
-        Container(
-          // padding: EdgeInsets.symmetric(horizontal: 20),
-          child: ItemCard()
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            margin: EdgeInsets.only(top: 350, left: 40, right: 40),
-            // height: 300,
-            // decoration: testDec,
-            padding: edgeInsetsAll12,
-            decoration: BoxDecoration(
-              color: primaryColor.withOpacity(0.9)
-            ),
-            child: Column(
+    return Container(
+        padding: EdgeInsets.only(top: 100, left: 20, right: 20, bottom: 20),
+        // decoration: testDec,
+        // height: MediaQuery.of(context).size.height,
+        child: con!.defaultListLoaded ? Column(
+          children: con!.defaultListData.map((element) {
+            return Column(
               children: [
-                CustomSpacer(height: 16,),
-                MyList2(),
-                CustomSpacer(height: 16,),
-                MyList2(),
-                CustomSpacer(height: 16,),
-                MyList2(),
-                CustomSpacer(height: 16,),
-                MyList2(),
-                CustomSpacer(height: 16,),
-                // CustomSpacer(height: 32,),
-                // MyList(),
-                // CustomSpacer(height: 32,),
-                // MyList(),
-                // CustomSpacer(height: 32,),
-                // MyList(),
-                // CustomSpacer(height: 32,),
-                // MyList(),
+                MyList(data: element,),
+                CustomSpacer(height: 30,),
               ],
-            ),
-          ),
-        )
-
-      ],
+            );
+          }).toList()
+        ) : CircularProgressIndicator()
     );
   }
-
 
 }

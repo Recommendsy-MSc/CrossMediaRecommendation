@@ -1,19 +1,28 @@
+import 'package:cross_media_recommendation/controllers/list_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/ItemList.dart';
 import 'package:cross_media_recommendation/elements/ListScrollButton.dart';
 import 'package:cross_media_recommendation/elements/heading_element.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class MyList extends StatefulWidget{
-  MyList({Key? key}) : super(key: key);
+  Map<String, dynamic> data;
+  MyList({Key? key, required this.data}) : super(key: key);
 
   @override
   PageState createState () => PageState();
 }
 
-class PageState extends State<MyList>{
+class PageState extends StateMVC<MyList>{
+  ListController? con;
+
+  PageState() : super(ListController()){
+    con = controller as ListController;
+  }
+
   ItemScrollController scrollController = ItemScrollController();
   ItemPositionsListener scrollPosition = ItemPositionsListener.create();
   int curIndex = 0;
@@ -22,9 +31,11 @@ class PageState extends State<MyList>{
   @override
   void initState(){
     super.initState();
+    con!.data = widget.data;
   }
   @override
   Widget build(BuildContext context) {
+    print("rendering list");
     // print(MediaQuery.of(context).size.width * 0.7);
     // print(MediaQuery.of(context).size.width * 0.18);
     count = 5;
@@ -40,13 +51,13 @@ class PageState extends State<MyList>{
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                HeadingElement(),
+                HeadingElement(title: widget.data['data']['genre_title'],),
                 ListScrollButton(nextPageCB: nextPage, prevPageCB: prevPage,),
               ],
             ),
           ),
           CustomSpacer(height: 10,),
-          ItemList(scrollController: scrollController,)
+          ItemList(scrollController: scrollController, listData: widget.data['data']['result'],)
         ],
       ),
     );

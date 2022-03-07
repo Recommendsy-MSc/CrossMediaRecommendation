@@ -1,14 +1,16 @@
 import 'package:cross_media_recommendation/elements/ItemTile.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
+import 'package:cross_media_recommendation/models/basic_movie_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:cross_media_recommendation/repositories/global_var_repo.dart';
 
 class ItemList extends StatefulWidget{
+  List<dynamic> listData;
   ItemScrollController scrollController;
 
-  ItemList({Key? key, required this.scrollController}) : super(key: key);
+  ItemList({Key? key, required this.scrollController, required this.listData}) : super(key: key);
   @override
   PageState createState () => PageState();
 }

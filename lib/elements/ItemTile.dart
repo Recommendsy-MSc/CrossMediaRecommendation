@@ -1,17 +1,25 @@
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
+import 'package:cross_media_recommendation/models/basic_movie_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ItemTile extends StatefulWidget{
   double parentWidth;
-  int index;
-  ItemTile({Key? key, required this.parentWidth, required this.index}) : super(key: key);
+  BasicMovieModel movieModel;
+  ItemTile({Key? key, required this.parentWidth, required this.movieModel}) : super(key: key);
   @override
   PageState createState() => PageState();
 }
 
 class PageState extends State<ItemTile>{
+
+  @override
+  void initState(){
+    super.initState();
+    print("GOT TILE DATA:");
+    print(widget.movieModel.toMap().toString());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +32,7 @@ class PageState extends State<ItemTile>{
             // border: testBorder,
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Align(

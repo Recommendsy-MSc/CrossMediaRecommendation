@@ -13,7 +13,7 @@ class RouteGenerator {
       // case '/':
       //   return MaterialPageRoute(settings: settings, builder: (context) => HomePage());
       default:
-        return MaterialPageRoute(settings: settings, builder: (context) => HomePage());
+        return MaterialPageRoute(settings: settings, builder: (context) => Text("Route Error"));
     }
   }
 }
