@@ -20,6 +20,9 @@ class TvModel extends TitleModel{
 
   TvModel.fromJson(jsonMap) : super.fromJson(jsonMap){
     try{
+      cast_model = jsonMap['cast_model'] != null ? List.from(jsonMap['cast_model']).map((element) => CastModel.fromJson(element)).toList() : [];
+      status = jsonMap['status'] ?? '';
+      tagline = jsonMap['tagline'] ?? '';
 
     }
     catch(e){
