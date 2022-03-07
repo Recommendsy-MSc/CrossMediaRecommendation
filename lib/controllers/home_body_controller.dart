@@ -27,7 +27,7 @@ class HomeBodyController extends ControllerMVC{
 
     setState(() {
       defaultListLoaded = true;
-      print("len: " + defaultListData.length.toString());
+      // print("len: " + defaultListData.length.toString());
     });
   }
 

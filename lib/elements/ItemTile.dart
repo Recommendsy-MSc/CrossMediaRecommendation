@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/models/basic_movie_model.dart';
@@ -17,8 +18,8 @@ class PageState extends State<ItemTile>{
   @override
   void initState(){
     super.initState();
-    print("GOT TILE DATA:");
-    print(widget.movieModel.toMap().toString());
+    // print("GOT TILE DATA:");
+    // print(widget.movieModel.toMap().toString());
   }
 
   @override

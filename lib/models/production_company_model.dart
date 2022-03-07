@@ -1,0 +1,22 @@
+class ProductionCompanyModel{
+  String? id;
+  String? name;
+
+  ProductionCompanyModel.fromJson(jsonMap){
+    try{
+      id = jsonMap['id'] != null ? jsonMap['id'].toString() : "-1";
+      name = jsonMap['name'] != null ? jsonMap['name'].toString() : "";
+    }catch(e){
+      print(e.toString());
+    }
+  }
+
+  Map toMap(){
+    var m = <String, dynamic>{};
+
+    m['id'] = int.parse(id!);
+    m['name'] = name!;
+
+    return m;
+  }
+}

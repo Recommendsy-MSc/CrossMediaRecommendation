@@ -3,4 +3,5 @@ class API{
   static String top_movies = movies + '/top_movies';
   static String genres = '/genres';
   static String tv_genres = '/genres_tv';
+  static String search = '/search';
 }

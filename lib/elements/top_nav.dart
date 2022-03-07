@@ -7,7 +7,8 @@ import 'package:flutter/widgets.dart';
 import 'ProfileIcon.dart';
 
 class TopNav extends StatefulWidget{
-  TopNav({Key? key}) : super(key: key);
+  Function onSubmitCallback;
+  TopNav({Key? key, required this.onSubmitCallback}) : super(key: key);
 
   @override
   PageState createState () => PageState();
@@ -23,7 +24,7 @@ class PageState extends State<TopNav>{
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SearchBar(),
+          SearchBar(onSubmitCallback: widget.onSubmitCallback,),
           ProfileIcon()
         ],
       ),

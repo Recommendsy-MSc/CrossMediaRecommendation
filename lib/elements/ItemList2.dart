@@ -89,7 +89,8 @@ class PageState extends State<ItemList2>{
 
   void nextPage(){
     if(curIndex < (count-countEach)){
-      scrollController.scrollTo(index: (curIndex + countEach), duration: Duration(milliseconds: 400), curve: Curves.easeOut);
+      // scrollController.jumpTo(index: (curIndex + countEach))
+      scrollController.scrollTo(index: (curIndex + countEach), duration: Duration(milliseconds: 600),);
       curIndex += countEach;
     }
 
@@ -97,7 +98,8 @@ class PageState extends State<ItemList2>{
 
   void prevPage(){
     if(curIndex > 0){
-      scrollController.scrollTo(index: (curIndex - countEach), duration: Duration(milliseconds: 400), curve: Curves.easeOut);
+      // scrollController.jumpTo(index: (curIndex - countEach));
+      scrollController.scrollTo(index: (curIndex - countEach), duration: Duration(milliseconds: 600), );
       curIndex -= countEach;
     }
 

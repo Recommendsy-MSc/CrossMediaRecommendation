@@ -51,7 +51,7 @@ class PageState extends StateMVC<MyList>{
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                HeadingElement(title: widget.data['data']['genre_title'],),
+                HeadingElement(title: widget.data['data']['list_header'],),
                 ListScrollButton(nextPageCB: nextPage, prevPageCB: prevPage,),
               ],
             ),

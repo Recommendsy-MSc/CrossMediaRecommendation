@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class SearchBar extends StatefulWidget{
-  SearchBar({Key? key}): super(key: key);
+  Function onSubmitCallback;
+  SearchBar({Key? key, required this.onSubmitCallback}): super(key: key);
 
   @override
   PageState createState () => PageState();
@@ -37,6 +38,9 @@ class PageState extends State<SearchBar>{
             ),
 
           ),
+          onFieldSubmitted: (value){
+            widget.onSubmitCallback(value);
+          },
         )
     );
   }

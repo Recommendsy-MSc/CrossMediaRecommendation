@@ -27,6 +27,7 @@ class PageState extends State<ItemList>{
         itemCount: count,
         padding: EdgeInsets.zero,
         itemBuilder: (context, index){
+          BasicMovieModel movieModel = BasicMovieModel.fromJson(widget.listData[index]);
           return Container(
             width: (MediaQuery.of(context).size.width * 0.62 - 64 - 64) / 5,
               margin: index == 0 ? EdgeInsets.only(right: 8, top: 8, bottom: 8) : index == count-1 ? EdgeInsets.only(left: 8, top:8, bottom: 8) : edgeInsetsAll8,
