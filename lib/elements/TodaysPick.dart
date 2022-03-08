@@ -1,5 +1,5 @@
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
-import 'package:cross_media_recommendation/elements/KeywordDisplay.dart';
+import 'package:cross_media_recommendation/elements/GenreDisplay.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -76,13 +76,7 @@ class PageState extends State<TodaysPick>{
                     Flexible(
                       child: Wrap(
                         children: [
-                          KeywordDisplay(keyword: "Horror"),
-                          CustomSpacer(width: 10,),
-                          KeywordDisplay(keyword: "Thrill"),
-                          CustomSpacer(width: 10,),
-                          KeywordDisplay(keyword: "Suspense"),
-                          CustomSpacer(width: 10,),
-                          KeywordDisplay(keyword: "Horror"),
+
                         ],
                       ),
                     )

@@ -1,26 +1,47 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cross_media_recommendation/controllers/title_detail_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
-import 'package:cross_media_recommendation/elements/KeywordDisplay.dart';
+import 'package:cross_media_recommendation/elements/GenreDisplay.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
+import 'package:cross_media_recommendation/models/title_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mvc_pattern/mvc_pattern.dart';
 
 class TitleDetails extends StatefulWidget{
+  TitleModel titleModel;
+
+  TitleDetails({Key? key, required this.titleModel}) : super(key: key);
   @override
   PageState createState() => PageState();
 }
 
-class PageState extends State<TitleDetails>{
+class PageState extends StateMVC<TitleDetails>{
+  TitleDetailController? con;
+  PageState() : super(TitleDetailController()){
+    con = controller as TitleDetailController;
+  }
+
+  @override
+  void initState(){
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Row(
         children: [
-          Container(
-            child: Image.network(
-              "https://image.tmdb.org/t/p/w342/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
-              width: 250,
-              height: 513*250/342,
-            ),
+          // Container(
+          //   child: Image.network(
+          //     tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
+          //     width: 250,
+          //     height: 513*250/342,
+          //   ),
+          // ),
+          CachedNetworkImage(
+            imageUrl: tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
+            width: 250,
+            height: 513*250/342,
           ),
           Expanded(
               child: Container(
@@ -39,7 +60,7 @@ class PageState extends State<TitleDetails>{
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Iron Man",
+                                widget.titleModel.title!,
                                 style: Theme.of(context).textTheme.headline2,
                               ),
                               CustomSpacer(height: 8,),
@@ -52,7 +73,7 @@ class PageState extends State<TitleDetails>{
                                   CustomSpacer(width: 8,),
 
                                   Text(
-                                    "12/17/2021",
+                                    widget.titleModel.release_date!,
                                     style: Theme.of(context).textTheme.headline5,
 
                                   ),
@@ -76,30 +97,28 @@ class PageState extends State<TitleDetails>{
                       ),
                     ),
                     Text(
-                      "A Disgrace to Criminals Everywhere.",
+                      widget.titleModel.tagline!,
                       style: Theme.of(context).textTheme.headline4,
 
                     ),
                     Text(
-                      "After /being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil. After /being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
+                      widget.titleModel.overview!,
                       style: Theme.of(context).textTheme.headline4,
                     ),
                     Text(
-                      "Cast: Tom Holland, Robert Downey Jr, Henry Cavil",
+                      con!.getStringFromList(widget.titleModel.cast_members!),
                       style: Theme.of(context).textTheme.headline4,
-
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Flexible(
                       child: Wrap(
-                        children: [
-                          KeywordDisplay(keyword: "Horror"),
-                          CustomSpacer(width: 10,),
-                          KeywordDisplay(keyword: "Thrill"),
-                          CustomSpacer(width: 10,),
-                          KeywordDisplay(keyword: "Suspense"),
-                          CustomSpacer(width: 10,),
-                          KeywordDisplay(keyword: "Horror"),
-                        ],
+                        children: widget.titleModel.genres!.map((e){
+                          return Container(
+                            margin: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                            child: GenreDisplay(genre: e.name!)
+                          );
+                        }).toList()
                       ),
                     )
                   ],

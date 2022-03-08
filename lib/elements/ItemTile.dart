@@ -2,13 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/models/basic_movie_model.dart';
+import 'package:cross_media_recommendation/models/basic_title_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ItemTile extends StatefulWidget{
   double parentWidth;
-  BasicMovieModel movieModel;
-  ItemTile({Key? key, required this.parentWidth, required this.movieModel}) : super(key: key);
+  BasicTitleModel titleModel;
+  ItemTile({Key? key, required this.parentWidth, required this.titleModel}) : super(key: key);
   @override
   PageState createState() => PageState();
 }
@@ -31,9 +32,10 @@ class PageState extends State<ItemTile>{
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CachedNetworkImage(
-              imageUrl: tmdb_image_url + poster_size_342 + widget.movieModel.poster_path!,
+              imageUrl: tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
               width: widget.parentWidth,
               fit: BoxFit.fill,
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
             Flexible(
               child: Column(
@@ -57,7 +59,7 @@ class PageState extends State<ItemTile>{
                   SizedBox(height: 4,),
                   Flexible(
                     child: Text(
-                      widget.movieModel.title!,
+                      widget.titleModel.title!,
                       style: Theme.of(context).textTheme.headline4,
                     ),
                   ),

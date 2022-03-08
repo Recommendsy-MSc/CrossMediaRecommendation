@@ -1,5 +1,6 @@
 import 'package:cross_media_recommendation/elements/HomeBody.dart';
 import 'package:cross_media_recommendation/elements/SearchResults.dart';
+import 'package:cross_media_recommendation/models/basic_title_model.dart';
 import 'package:cross_media_recommendation/screens/TitleDescription.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -10,8 +11,8 @@ class BodyMainController extends ControllerMVC{
   Widget? bodyWidget;
   Map<String, dynamic>? search_results;
 
-  void switchPage(int index, {data}){
-    print("Switching");
+  void switchPage(int index, {BasicTitleModel? data}){
+    print("Switching: ");
     switch(index){
       case 0:
         bodyWidget = HomeBody();
@@ -20,10 +21,11 @@ class BodyMainController extends ControllerMVC{
         bodyWidget = SearchResults(search_results_data: search_results!['data'],);
         break;
       case 2:
-        bodyWidget = TitleDescription(title_id: data as String,);
+        bodyWidget = TitleDescription(titleModel: data!,);
         break;
     }
-    setState(() { });
+    setState(() {
+    });
   }
 
 

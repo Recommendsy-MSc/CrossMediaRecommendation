@@ -4,6 +4,7 @@ const String tmdb_image_url = 'https://image.tmdb.org/t/p/';
 const String poster_size_185 = 'w185';
 const String poster_size_342 = 'w342';
 const String poster_size_500 = 'w500';
+const String poster_size_1280 = 'w1280';
 
 
 const List<String> mediaType = [

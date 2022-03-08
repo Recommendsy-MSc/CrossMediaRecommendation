@@ -1,3 +1,4 @@
+import 'package:cross_media_recommendation/controllers/body_main_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
@@ -8,7 +9,7 @@ import 'dart:html' as html;
 class SearchResults extends StatefulWidget{
   Map<String, dynamic> search_results_data;
 
-  SearchResults({Key? key, required this.search_results_data}) : super(key: key);
+  SearchResults({Key? key, required this.search_results_data,}) : super(key: key);
 
   @override
   PageState createState() => PageState();

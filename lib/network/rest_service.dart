@@ -14,8 +14,8 @@ class RestService{
     dio!.interceptors.add(AppInterceptors());
     // dio!.interceptors.add(InterceptorsWrapper(
     //   onError: (DioError er, ErrorInterceptorHandler h){
-    //     print("header");
-    //     print(er.response!) ;
+    //     print(er.requestOptions.uri) ;
+    //     print
     //     return h.next(er);
     //   }
     // ));
@@ -97,6 +97,8 @@ class AppInterceptors extends Interceptor {
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
     print('ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
+    print(err.requestOptions.uri);
+    print(err.requestOptions.queryParameters);
     super.onError(err, handler);
   }
 

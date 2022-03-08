@@ -4,4 +4,8 @@ class API{
   static String genres = '/genres';
   static String tv_genres = '/genres_tv';
   static String search = '/search';
+  static String tv = '/tv';
+  static String top_tv = tv + 'top_tv';
+  static String tv_recommendations = tv + '/recommendations';
+  static String movie_recommendations = movies + '/recommendations';
 }

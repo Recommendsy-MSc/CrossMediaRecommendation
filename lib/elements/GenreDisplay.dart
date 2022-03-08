@@ -2,10 +2,10 @@ import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class KeywordDisplay extends StatelessWidget{
-  String keyword;
+class GenreDisplay extends StatelessWidget{
+  String genre;
 
-  KeywordDisplay({Key? key, required this.keyword}) : super(key: key);
+  GenreDisplay({Key? key, required this.genre}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class KeywordDisplay extends StatelessWidget{
         color: primaryTextColor
       ),
       child: Text(
-        this.keyword,
+        this.genre,
         style: Theme.of(context).textTheme.headline6!.merge(TextStyle(color: primaryColor)),
       )
     );

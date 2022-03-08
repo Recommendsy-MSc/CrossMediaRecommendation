@@ -1,3 +1,4 @@
+import 'package:cross_media_recommendation/controllers/body_main_controller.dart';
 import 'package:cross_media_recommendation/controllers/home_body_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/MyList.dart';
@@ -11,7 +12,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import 'ItemCard.dart';
 
 class HomeBody extends StatefulWidget{
-  HomeBody({Key? key}) : super(key: key);
+  HomeBody({Key? key, }) : super(key: key);
 
   @override
   PageState createState () => PageState();

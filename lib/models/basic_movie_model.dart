@@ -1,25 +1,19 @@
-class BasicMovieModel{
-  String? id;
-  String? title;
-  String? poster_path;
+import 'package:cross_media_recommendation/models/basic_title_model.dart';
 
-  BasicMovieModel.fromJson(jsonMap){
-    try{
-      id = jsonMap['id'] != null ? jsonMap['id'].toString() : "-1";
-      title = jsonMap['title'] != null ? jsonMap['title'].toString() : "";
-      poster_path = jsonMap['poster_path'] ?? '';
-    }catch(e){
-      print(e.toString());
-      // CustomTrace(StackTrace.current, message: e.toString());
-    }
-  }
-
-  Map toMap(){
-    var m = Map<String, dynamic>();
-    m['id'] = int.parse(id!);
-    m['title'] = title!;
-    m['poster_path'] = poster_path!;
-
-    return m;
-  }
+class BasicMovieModel extends BasicTitleModel{
+  // String? id;
+  // String? title;
+  // String? poster_path;
+  // int title_type = 0;
+  //
+  BasicMovieModel.fromJson(jsonMap) : super.fromJson(jsonMap){}
+  //
+  // Map toMap(){
+  //   var m = Map<String, dynamic>();
+  //   m['id'] = int.parse(id!);
+  //   m['title'] = title!;
+  //   m['poster_path'] = poster_path!;
+  //
+  //   return m;
+  // }
 }

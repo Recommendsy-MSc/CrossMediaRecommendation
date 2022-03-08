@@ -1,16 +1,18 @@
+import 'package:cross_media_recommendation/controllers/body_main_controller.dart';
 import 'package:cross_media_recommendation/controllers/list_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/ItemList.dart';
 import 'package:cross_media_recommendation/elements/ListScrollButton.dart';
 import 'package:cross_media_recommendation/elements/heading_element.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
+import 'package:cross_media_recommendation/screens/BodyMain.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class MyList extends StatefulWidget{
   Map<String, dynamic> data;
-  MyList({Key? key, required this.data}) : super(key: key);
+  MyList({Key? key, required this.data, }) : super(key: key);
 
   @override
   PageState createState () => PageState();
@@ -27,15 +29,16 @@ class PageState extends StateMVC<MyList>{
   ItemPositionsListener scrollPosition = ItemPositionsListener.create();
   int curIndex = 0;
   int count = 0;
-  int max = 13;
+  int max = 0;
   @override
   void initState(){
     super.initState();
     con!.data = widget.data;
+    max = widget.data['data']['result'].length;
+    print(max);
   }
   @override
   Widget build(BuildContext context) {
-    print("rendering list");
     // print(MediaQuery.of(context).size.width * 0.7);
     // print(MediaQuery.of(context).size.width * 0.18);
     count = 5;
@@ -56,8 +59,8 @@ class PageState extends StateMVC<MyList>{
               ],
             ),
           ),
-          CustomSpacer(height: 10,),
-          ItemList(scrollController: scrollController, listData: widget.data['data']['result'],)
+          CustomSpacer(height: 20,),
+          ItemList(scrollController: scrollController, listData: widget.data['data']['result'], )
         ],
       ),
     );

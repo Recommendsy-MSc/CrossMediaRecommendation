@@ -1,14 +1,19 @@
+import 'package:cross_media_recommendation/controllers/body_main_controller.dart';
 import 'package:cross_media_recommendation/controllers/title_controller.dart';
+import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
+import 'package:cross_media_recommendation/elements/MyList.dart';
 import 'package:cross_media_recommendation/elements/TitleDetails.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
+import 'package:cross_media_recommendation/models/basic_title_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
-class TitleDescription extends StatefulWidget{
-  String? title_id;
 
-  TitleDescription({Key? key, required this.title_id}) : super(key: key);
+class TitleDescription extends StatefulWidget{
+  BasicTitleModel titleModel;
+
+  TitleDescription({Key? key, required this.titleModel}) : super(key: key);
   @override
   PageState createState() => PageState();
 }
@@ -22,15 +27,25 @@ class PageState extends StateMVC<TitleDescription>{
   @override
   void initState(){
     super.initState();
+    print("TITLE: " + widget.titleModel.title!);
+    con!.fetchTitleDetails(widget.titleModel);
+    con!.fetchRecommendations(widget.titleModel);
   }
+
+  @override
+  void didUpdateWidget(TitleDescription oldWidget){
+    super.didUpdateWidget(oldWidget);
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return con!.titleLoaded ? Column(
       children: [
         ConstrainedBox(
           constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.width * 0.82 * 720/1280,
-            maxHeight: MediaQuery.of(context).size.width * 0.82 * 720/1280,
+            minHeight: MediaQuery.of(context).size.width * 0.82 * 720/1280 - 100,
+            maxHeight: MediaQuery.of(context).size.width * 0.82 * 720/1280 - 100,
           ),
           child: Container(
             alignment: Alignment.center,
@@ -40,23 +55,28 @@ class PageState extends StateMVC<TitleDescription>{
             decoration: BoxDecoration(
                 image: DecorationImage(
                   image: NetworkImage(
-                    'https://image.tmdb.org/t/p/w1280/cyecB7godJ6kNHGONFjUyVN9OX5.jpg',
+                    tmdb_image_url + poster_size_1280 + con!.titleModel!.backdrop_path!,
                   ),
                   colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.12), BlendMode.dstATop),
                   // fit: BoxFit.fill,
                 ),
             ),
-            child: TitleDetails(),
+            child: TitleDetails(titleModel: con!.titleModel!,),
           ),
         ),
-        Container(
+        con!.loadedRecom ? Container(
           padding: edgeInsetsAll20,
           child: Column(
-            children: [
-              // MyList()
-            ],
+            children: con!.recom_data!.keys.map((element){
+              return Column(
+                children: [
+                  MyList(data: con!.recom_data![element],),
+                  CustomSpacer(height: 30,),
+                ],
+              );
+            }).toList(),
           ),
-        )
+        ) : Text("Loading")
       ],
     ) : Text("Loading");
   }
