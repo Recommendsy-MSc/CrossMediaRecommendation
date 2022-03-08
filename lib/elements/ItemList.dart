@@ -20,7 +20,8 @@ class PageState extends State<ItemList>{
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.width * 0.28,
+      // decoration: testDec,
+      height: MediaQuery.of(context).size.width * 0.3,
       child: ScrollablePositionedList.builder(
         itemScrollController: widget.scrollController,
         scrollDirection: Axis.horizontal,
@@ -29,9 +30,10 @@ class PageState extends State<ItemList>{
         itemBuilder: (context, index){
           BasicMovieModel movieModel = BasicMovieModel.fromJson(widget.listData[index]);
           return Container(
-            width: (MediaQuery.of(context).size.width * 0.62 - 64 - 64) / 5,
-              margin: index == 0 ? EdgeInsets.only(right: 8, top: 8, bottom: 8) : index == count-1 ? EdgeInsets.only(left: 8, top:8, bottom: 8) : edgeInsetsAll8,
-              child: ItemTile(parentWidth: (MediaQuery.of(context).size.width * 0.62 - 64 - 64) / 5, index: index)
+            // decoration: testDec,
+            width: (MediaQuery.of(context).size.width * 0.82 - 104) / 5,
+            margin: index == 0 ? EdgeInsets.only(right: 8) : index == count-1 ? EdgeInsets.only(left: 8,) : EdgeInsets.only(right: 8, left: 8),
+            child: ItemTile(movieModel: movieModel, parentWidth: (MediaQuery.of(context).size.width * 0.82 - 104) / 5,)
           );
         },
       ),

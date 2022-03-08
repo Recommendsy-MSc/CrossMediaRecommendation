@@ -19,11 +19,3 @@ Future<dynamic> getTopMovieForGenre({limit = 25, genre}) async {
 
   return data;
 }
-
-Future<dynamic> getMovieDetails(String id) async{
-  var data = RestService.request(
-    endpoint: API.movies + '/' + id
-  );
-
-  return data;
-}

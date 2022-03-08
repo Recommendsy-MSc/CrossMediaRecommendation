@@ -2,7 +2,6 @@ class BasicMovieModel{
   String? id;
   String? title;
   String? poster_path;
-  int type = 0;
 
   BasicMovieModel.fromJson(jsonMap){
     try{
