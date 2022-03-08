@@ -27,25 +27,26 @@ class PageState extends StateMVC<TitleDescription>{
   @override
   void initState(){
     super.initState();
-    print("TITLE: " + widget.titleModel.title!);
     con!.fetchTitleDetails(widget.titleModel);
     con!.fetchRecommendations(widget.titleModel);
   }
 
   @override
   void didUpdateWidget(TitleDescription oldWidget){
+    con!.fetchTitleDetails(widget.titleModel);
+    con!.fetchRecommendations(widget.titleModel);
     super.didUpdateWidget(oldWidget);
-
   }
 
   @override
   Widget build(BuildContext context) {
+    print("TITLE: " + widget.titleModel.title!);
     return con!.titleLoaded ? Column(
       children: [
         ConstrainedBox(
           constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.width * 0.82 * 720/1280 - 100,
-            maxHeight: MediaQuery.of(context).size.width * 0.82 * 720/1280 - 100,
+            minHeight: MediaQuery.of(context).size.width * 0.82 * 720/1280 - 80,
+            maxHeight: MediaQuery.of(context).size.width * 0.82 * 720/1280 - 80,
           ),
           child: Container(
             alignment: Alignment.center,
@@ -53,13 +54,13 @@ class PageState extends StateMVC<TitleDescription>{
             width: MediaQuery.of(context).size.width * 0.82,
             // height: MediaQuery.of(context).size.width * 0.82 * 720/1280,
             decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                    tmdb_image_url + poster_size_1280 + con!.titleModel!.backdrop_path!,
-                  ),
-                  colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.12), BlendMode.dstATop),
-                  // fit: BoxFit.fill,
+              image: DecorationImage(
+                image: NetworkImage(
+                  tmdb_image_url + poster_size_1280 + con!.titleModel!.backdrop_path!,
                 ),
+                colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.12), BlendMode.dstATop),
+                // fit: BoxFit.fill,
+              ),
             ),
             child: TitleDetails(titleModel: con!.titleModel!,),
           ),

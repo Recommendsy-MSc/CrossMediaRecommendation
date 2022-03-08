@@ -1,5 +1,6 @@
 import 'package:cross_media_recommendation/controllers/body_main_controller.dart';
 import 'package:cross_media_recommendation/elements/ItemTile.dart';
+import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/models/basic_title_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class PageState extends State<ItemList>{
   Widget build(BuildContext context) {
     return Container(
       // decoration: testDec,
-      height: MediaQuery.of(context).size.width * 0.3,
+      height: MediaQuery.of(context).size.width * 0.28,
       child: ScrollablePositionedList.builder(
         itemScrollController: widget.scrollController,
         scrollDirection: Axis.horizontal,
@@ -29,6 +30,7 @@ class PageState extends State<ItemList>{
         itemBuilder: (context, index){
           BasicTitleModel titleModel = BasicTitleModel.fromJson(widget.listData[index]);
           return Container(
+            // decoration: testDec,
             width: (MediaQuery.of(context).size.width * 0.82 - 104) / 5,
             margin: index == 0 ? EdgeInsets.only(right: 8) : index == widget.listData.length-1 ? EdgeInsets.only(left: 8,) : EdgeInsets.only(right: 8, left: 8),
             child: InkWell(

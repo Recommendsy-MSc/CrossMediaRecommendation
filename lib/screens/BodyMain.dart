@@ -26,18 +26,23 @@ class PageState extends StateMVC<BodyMain>{
   }
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SingleChildScrollView(
-          child: con!.bodyWidget,
-        ),
-        Container(
-          // decoration: testDec,
-            padding: edgeInsetsAll20,
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minHeight: MediaQuery.of(context).size.height,
+      ),
+      child: Stack(
+        children: [
+          SingleChildScrollView(
+            child: con!.bodyWidget,
+          ),
+          Container(
             // decoration: testDec,
-            child: TopNav(onSubmitCallback: con!.searchStringSubmitCallback)
-        ),
-      ],
+              padding: edgeInsetsAll20,
+              // decoration: testDec,
+              child: TopNav(onSubmitCallback: con!.searchStringSubmitCallback)
+          ),
+        ],
+      ),
     );
   }
 

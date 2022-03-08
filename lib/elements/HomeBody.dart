@@ -40,16 +40,28 @@ class PageState extends StateMVC<HomeBody>{
         padding: EdgeInsets.only(top: 100, left: 20, right: 20, bottom: 20),
         // decoration: testDec,
         // height: MediaQuery.of(context).size.height,
-        child: con!.defaultListLoaded ? Column(
-          children: con!.defaultListData.map((element) {
+        child: con!.defaultListLoaded ? ListView.builder(
+          shrinkWrap: true,
+            itemCount: con!.defaultListData.length,
+          itemBuilder: (context, index){
             return Column(
               children: [
-                MyList(data: element,),
+                MyList(data: con!.defaultListData[index],),
                 CustomSpacer(height: 30,),
               ],
             );
-          }).toList()
-        ) : CircularProgressIndicator()
+          },
+        ) : CircularProgressIndicator(),
+        // child: con!.defaultListLoaded ? Column(
+        //   children: con!.defaultListData.map((element) {
+        //     return Column(
+        //       children: [
+        //         MyList(data: element,),
+        //         CustomSpacer(height: 30,),
+        //       ],
+        //     );
+        //   }).toList()
+        // ) : CircularProgressIndicator()
     );
   }
 

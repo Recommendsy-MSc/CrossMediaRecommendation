@@ -37,33 +37,13 @@ class PageState extends State<ItemTile>{
               fit: BoxFit.fill,
               errorWidget: (context, url, error) => Icon(Icons.error),
             ),
+            SizedBox(height: 20,),
             Flexible(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // CustomSpacer(height: 8),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                        size: 16,
-                      ),
-                      Text(
-                        " 4 ",
-                        style: Theme.of(context).textTheme.headline5,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 4,),
-                  Flexible(
-                    child: Text(
-                      widget.titleModel.title!,
-                      style: Theme.of(context).textTheme.headline4,
-                    ),
-                  ),
-                ],
+              child: Text(
+                widget.titleModel.title!,
+                style: Theme.of(context).textTheme.headline5,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             )
           ],
