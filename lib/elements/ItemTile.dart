@@ -37,15 +37,15 @@ class PageState extends State<ItemTile>{
               fit: BoxFit.fill,
               errorWidget: (context, url, error) => Icon(Icons.error),
             ),
-            SizedBox(height: 20,),
-            Flexible(
-              child: Text(
-                widget.titleModel.title!,
-                style: Theme.of(context).textTheme.headline5,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
-            )
+            // SizedBox(height: 20,),
+            // Flexible(
+            //   child: Text(
+            //     widget.titleModel.title!,
+            //     style: Theme.of(context).textTheme.headline5,
+            //     maxLines: 2,
+            //     overflow: TextOverflow.ellipsis,
+            //   ),
+            // )
           ],
         ),
         Align(

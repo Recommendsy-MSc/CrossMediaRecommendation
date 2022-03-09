@@ -106,7 +106,7 @@ class PageState extends StateMVC<TitleDetails>{
                       style: Theme.of(context).textTheme.headline4,
                     ),
                     Text(
-                      con!.getStringFromList(widget.titleModel.cast_members!),
+                      "Cast: " + con!.getStringFromList(widget.titleModel.cast_members!),
                       style: Theme.of(context).textTheme.headline4,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
