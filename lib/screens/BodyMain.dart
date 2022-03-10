@@ -32,9 +32,7 @@ class PageState extends StateMVC<BodyMain>{
       ),
       child: Stack(
         children: [
-          SingleChildScrollView(
-            child: con!.bodyWidget,
-          ),
+          con!.bodyWidget!,
           Container(
             // decoration: testDec,
               padding: EdgeInsets.symmetric(horizontal: 20),

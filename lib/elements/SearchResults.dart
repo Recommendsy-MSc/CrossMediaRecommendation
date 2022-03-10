@@ -28,18 +28,32 @@ class PageState extends StateMVC<SearchResults>{
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(top: 100, left: 20, right: 20, bottom: 20),
-      child: Column(
-        children: widget.search_results_data.keys.map((element){
+      height: double.infinity,
+      child: ListView.builder(
+        itemCount: widget.search_results_data.keys.length,
+        itemBuilder: (context, index){
           return Column(
             children: [
               // element here is the key value for search_results_data. key value will
               // probably be 'movies', 'tv', etc.
-              MyList(data: widget.search_results_data[element],),
+              MyList(data: widget.search_results_data[widget.search_results_data.keys.elementAt(index)],),
               CustomSpacer(height: 30,),
             ],
           );
-        }).toList()
-      )
+        },
+      ),
+      // child: Column(
+      //   children: widget.search_results_data.keys.map((element){
+      //     return Column(
+      //       children: [
+      //         // element here is the key value for search_results_data. key value will
+      //         // probably be 'movies', 'tv', etc.
+      //         MyList(data: widget.search_results_data[element],),
+      //         CustomSpacer(height: 30,),
+      //       ],
+      //     );
+      //   }).toList()
+      // )
     );
   }
 }

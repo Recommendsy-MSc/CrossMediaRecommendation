@@ -14,6 +14,8 @@ const List<String> mediaType = [
   'Game'
 ];
 
+double bodyMainWidthRatio = 1;
+int listPageCount = 7;
 
 Border testBorder = Border.all(color: Colors.red);
 BoxDecoration testDec = BoxDecoration(

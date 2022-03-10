@@ -31,11 +31,14 @@ class PageState extends State<ItemTile>{
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CachedNetworkImage(
-              imageUrl: tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
-              width: widget.parentWidth,
-              fit: BoxFit.fill,
-              errorWidget: (context, url, error) => Icon(Icons.error),
+            ClipRRect(
+              borderRadius: borderRadius12,
+              child: CachedNetworkImage(
+                imageUrl: tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
+                width: widget.parentWidth,
+                fit: BoxFit.fill,
+                errorWidget: (context, url, error) => Icon(Icons.error),
+              ),
             ),
             // SizedBox(height: 20,),
             // Flexible(

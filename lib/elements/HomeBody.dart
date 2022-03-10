@@ -38,11 +38,13 @@ class PageState extends StateMVC<HomeBody>{
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.only(top: 100, left: 20, right: 20, bottom: 20),
+        height: double.infinity,
         // decoration: testDec,
         // height: MediaQuery.of(context).size.height,
         child: con!.defaultListLoaded ? ListView.builder(
-          shrinkWrap: true,
-            itemCount: con!.defaultListData.length,
+          // shrinkWrap: true,
+          physics: AlwaysScrollableScrollPhysics(),
+          itemCount: con!.defaultListData.length,
           itemBuilder: (context, index){
             return Column(
               children: [

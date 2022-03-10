@@ -28,13 +28,14 @@ class PageState extends State<TopNav>{
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SearchBar(onSubmitCallback: widget.onSubmitCallback,),
-          Container(
-            child: InkWell(
-              onTap: (){
-                MyFirebase.signInWithGoogle();
-              },
-              child: ur.loggedIn && !ur.isGuest? ProfileIcon() : ButtonComponent(title: 'Sign In', onClick: (){},)
-            ),
+          ur.loggedIn && !ur.isGuest? Container(
+            margin: EdgeInsets.symmetric(vertical: 16),
+              child: ProfileIcon()
+          ) : InkWell(
+            onTap: (){
+              MyFirebase.signInWithGoogle();
+            },
+            child: ButtonComponent(title: 'Sign In', onClick: (){},)
           )
         ],
       ),

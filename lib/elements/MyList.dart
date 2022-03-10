@@ -41,7 +41,6 @@ class PageState extends StateMVC<MyList>{
   Widget build(BuildContext context) {
     // print(MediaQuery.of(context).size.width * 0.7);
     // print(MediaQuery.of(context).size.width * 0.18);
-    count = 5;
     // print("Count: " + count.toString());
     return Container(
       // height: MediaQuery.of(context).size.height,
@@ -69,16 +68,16 @@ class PageState extends StateMVC<MyList>{
   void nextPage(){
 
     if(curIndex < (max-count)){
-      scrollController.scrollTo(index: (curIndex + count), duration: Duration(milliseconds: 400), curve: Curves.easeOut);
-      curIndex += count;
+      scrollController.scrollTo(index: (curIndex + listPageCount), duration: Duration(milliseconds: 400), curve: Curves.easeOut);
+      curIndex += listPageCount;
     }
 
   }
 
   void prevPage(){
     if(curIndex > 0){
-      scrollController.scrollTo(index: (curIndex - count), duration: Duration(milliseconds: 400), curve: Curves.easeOut);
-      curIndex -= count;
+      scrollController.scrollTo(index: (curIndex - listPageCount), duration: Duration(milliseconds: 400), curve: Curves.easeOut);
+      curIndex -= listPageCount;
     }
   }
 }

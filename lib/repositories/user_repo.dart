@@ -4,7 +4,7 @@ import 'package:cross_media_recommendation/network/rest_service.dart';
 
 UserModel? currentUser;
 bool loggedIn = false;
-bool isGuest = false;
+bool isGuest = true;
 
 Future<bool> doesUserExists(email) async{
   var resp = await  RestService.request(

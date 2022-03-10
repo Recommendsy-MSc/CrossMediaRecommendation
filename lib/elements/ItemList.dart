@@ -21,7 +21,7 @@ class PageState extends State<ItemList>{
   Widget build(BuildContext context) {
     return Container(
       // decoration: testDec,
-      height: MediaQuery.of(context).size.width * 0.28,
+      height: (MediaQuery.of(context).size.width * bodyMainWidthRatio - listPageCount*16-24)/listPageCount * 513/342,
       child: ScrollablePositionedList.builder(
         itemScrollController: widget.scrollController,
         scrollDirection: Axis.horizontal,
@@ -29,17 +29,22 @@ class PageState extends State<ItemList>{
         padding: EdgeInsets.zero,
         itemBuilder: (context, index){
           BasicTitleModel titleModel = BasicTitleModel.fromJson(widget.listData[index]);
-          return Container(
-            // decoration: testDec,
-            width: (MediaQuery.of(context).size.width * 0.82 - 104) / 5,
-            margin: index == 0 ? EdgeInsets.only(right: 8) : index == widget.listData.length-1 ? EdgeInsets.only(left: 8,) : EdgeInsets.only(right: 8, left: 8),
-            child: InkWell(
-              onTap: (){
-                print("ontap");
-                gr.bodyMainController!.switchPage(2, data: titleModel);
-              },
-              child: ItemTile(titleModel: titleModel, parentWidth: (MediaQuery.of(context).size.width * 0.82 - 104) / 5,)
-            )
+          return ClipRRect(
+            borderRadius: borderRadius12,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: borderRadius12
+              ),
+              width: (MediaQuery.of(context).size.width * bodyMainWidthRatio - listPageCount*16 - 24) / listPageCount,
+              margin: index == 0 ? EdgeInsets.only(right: 8) : index == widget.listData.length-1 ? EdgeInsets.only(left: 8,) : EdgeInsets.only(right: 8, left: 8),
+              child: InkWell(
+                onTap: (){
+                  print("ontap");
+                  gr.bodyMainController!.switchPage(2, data: titleModel);
+                },
+                child: ItemTile(titleModel: titleModel, parentWidth: (MediaQuery.of(context).size.width * bodyMainWidthRatio - listPageCount*16-24) / listPageCount,)
+              )
+            ),
           );
         },
       ),

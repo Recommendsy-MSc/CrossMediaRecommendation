@@ -1,4 +1,5 @@
 import 'package:cross_media_recommendation/app_config.dart';
+import 'package:cross_media_recommendation/helper/custom_scroll_behaviour.dart';
 import 'package:cross_media_recommendation/helper/firebase.dart';
 import 'package:cross_media_recommendation/helper/route_generator.dart';
 import 'package:cross_media_recommendation/network/rest_service.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      scrollBehavior: MyCustomScrollBehaviour(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.generateRoute,
       initialRoute: '/HomePage',
