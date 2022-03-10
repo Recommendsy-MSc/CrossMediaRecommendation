@@ -1,4 +1,5 @@
 import 'package:cross_media_recommendation/app_config.dart';
+import 'package:cross_media_recommendation/helper/firebase.dart';
 import 'package:cross_media_recommendation/helper/route_generator.dart';
 import 'package:cross_media_recommendation/network/rest_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,6 +9,7 @@ import 'package:cross_media_recommendation/helper/constants.dart';
 void main(){
   setUpConfiguration();
   RestService.init();
+  MyFirebase.initializeFirebase();
   runApp(MyApp());
 }
 

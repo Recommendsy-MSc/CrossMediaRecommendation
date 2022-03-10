@@ -8,4 +8,6 @@ class API{
   static String top_tv = tv + 'top_tv';
   static String tv_recommendations = tv + '/recommendations';
   static String movie_recommendations = movies + '/recommendations';
+  static String users = '/users';
+  static String users_exists = users + '/exists/';
 }

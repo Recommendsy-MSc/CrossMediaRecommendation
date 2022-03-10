@@ -37,7 +37,7 @@ class PageState extends StateMVC<BodyMain>{
           ),
           Container(
             // decoration: testDec,
-              padding: edgeInsetsAll20,
+              padding: EdgeInsets.symmetric(horizontal: 20),
               // decoration: testDec,
               child: TopNav(onSubmitCallback: con!.searchStringSubmitCallback)
           ),

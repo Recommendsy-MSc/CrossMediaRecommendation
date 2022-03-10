@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
 
 class ProfileIcon extends StatefulWidget{
   @override
@@ -15,14 +17,12 @@ class PageState extends State<ProfileIcon>{
         border: Border.all(color: accentColor),
         borderRadius: BorderRadius.circular(100)
       ),
-      padding: EdgeInsets.all(0.5),
+      padding: EdgeInsets.all(4),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(100),
-        child: Icon(
-          Icons.account_circle_rounded,
-          color: accentColor,
-          size: 48,
-        ),
+        child: CachedNetworkImage(
+          imageUrl: ur.currentUser!.image_url!,
+        )
       ),
     );
   }

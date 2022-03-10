@@ -3,10 +3,13 @@ import 'package:cross_media_recommendation/elements/HomeBody.dart';
 import 'package:cross_media_recommendation/elements/HomeSidePane.dart';
 import 'package:cross_media_recommendation/elements/top_nav.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
+import 'package:cross_media_recommendation/screens/LoginPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'BodyMain.dart';
+import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
+import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
 
 class HomePage extends StatefulWidget{
   @override
@@ -18,6 +21,7 @@ class PageState extends StateMVC<HomePage>{
 
   PageState() : super(HomePageController()){
     con = controller as HomePageController;
+    gr.homePageController = con;
   }
 
   @override
@@ -25,11 +29,12 @@ class PageState extends StateMVC<HomePage>{
     super.initState();
     // print("Home init");
     con!.initialDataFetch();
+
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(
+      body: ur.loggedIn || ur.isGuest ? Row(
         children: [
           Container(
             padding: edgeInsetsAll32,
@@ -66,7 +71,7 @@ class PageState extends StateMVC<HomePage>{
           //   ),
           // ),
         ],
-      )
+      ) : LoginPage(),
     );
   }
 }

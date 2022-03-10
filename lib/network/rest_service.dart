@@ -56,6 +56,7 @@ class RestService{
         var res = response.data;
         print(response.requestOptions.baseUrl + response.requestOptions.path);
         print(response.requestOptions.queryParameters);
+        print(response.requestOptions.data.toString());
         print(res);
         return res;
 
