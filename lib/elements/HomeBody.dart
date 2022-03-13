@@ -53,7 +53,7 @@ class PageState extends StateMVC<HomeBody>{
               ],
             );
           },
-        ) : CircularProgressIndicator(),
+        ) : Center(child: CircularProgressIndicator()),
         // child: con!.defaultListLoaded ? Column(
         //   children: con!.defaultListData.map((element) {
         //     return Column(

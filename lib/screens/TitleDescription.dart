@@ -42,6 +42,7 @@ class PageState extends StateMVC<TitleDescription>{
   Widget build(BuildContext context) {
     return con!.titleLoaded ? Container(
       height: double.infinity,
+      // decoration: testDec,
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -51,16 +52,14 @@ class PageState extends StateMVC<TitleDescription>{
                 // maxHeight: MediaQuery.of(context).size.width * bodyMainWidthRatio * 720/1280 - 80,
 
                 //for laptop
-                // maxHeight: MediaQuery.of(context).size.height * 0.9,
+                maxHeight: MediaQuery.of(context).size.height * 0.9,
 
                 //for ipad
-                maxHeight: MediaQuery.of(context).size.width * 720/1280
+                // maxHeight: MediaQuery.of(context).size.width * 720/1280
               ),
               child: Container(
                 alignment: Alignment.center,
                 padding: EdgeInsets.only(left: 20, right: 20),
-                // width: MediaQuery.of(context).size.height * 0.8 * 1280/720,
-                // height: MediaQuery.of(context).size.width * bodyMainWidthRation * 720/1280,
                 decoration: BoxDecoration(
                   // border: testBorder,
                   image: DecorationImage(

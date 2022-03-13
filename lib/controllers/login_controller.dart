@@ -23,11 +23,14 @@ class LoginController extends ControllerMVC{
           'password': 'password',
           'image_url': MyFirebase.googleUser!.photoURL,
           'birth_year': '1999',
+          'username': MyFirebase.googleUser!.email!.split('@').first,
+          // 'csrfmiddlewaretoken': "{{csrf_token}}"
         };
 
         var created = await ur.createUser(data);
         if(created){
           print("Created");
+          gr.homePageController!.setState(() { });
         }else{
           print("NOt Created");
         }

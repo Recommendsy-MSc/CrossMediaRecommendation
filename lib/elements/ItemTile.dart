@@ -5,6 +5,8 @@ import 'package:cross_media_recommendation/models/basic_movie_model.dart';
 import 'package:cross_media_recommendation/models/basic_title_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
+import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
 
 class ItemTile extends StatefulWidget{
   double parentWidth;
@@ -19,8 +21,7 @@ class PageState extends State<ItemTile>{
   @override
   void initState(){
     super.initState();
-    // print("GOT TILE DATA:");
-    // print(widget.movieModel.toMap().toString());
+
   }
 
   @override
@@ -31,15 +32,64 @@ class PageState extends State<ItemTile>{
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: borderRadius12,
-              child: CachedNetworkImage(
-                imageUrl: tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
-                width: widget.parentWidth,
-                fit: BoxFit.fill,
-                errorWidget: (context, url, error) => Icon(Icons.error),
+            InkWell(
+              onTap: (){
+                gr.bodyMainController!.switchPage(2, data: widget.titleModel);
+              },
+              child: ClipRRect(
+                borderRadius: borderRadius12,
+                child: CachedNetworkImage(
+                  imageUrl: tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
+                  width: widget.parentWidth,
+                  fit: BoxFit.fill,
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
               ),
             ),
+            ur.loggedIn ? CustomSpacer(height: 10,) : CustomSpacer(height: 0,),
+            ur.loggedIn ? Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(Icons.thumb_up_off_alt_outlined, color: Colors.green.withOpacity(0.7),),
+                    CustomSpacer(width: 10,),
+                    Icon(Icons.thumb_down_off_alt_outlined, color: accentColor.withOpacity(0.9),),
+                  ],
+                ),
+                Icon(Icons.remove_circle_outline, color: primaryTextColor.withOpacity(0.7),)
+              ],
+            ) : Container(height: 0,),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Row(
+            //       mainAxisAlignment: MainAxisAlignment.start,
+            //       children: [
+            //         Image.asset(
+            //           'assets/img/like.png',
+            //           height: 20,
+            //           width: 20,
+            //           color: white,
+            //         ),
+            //         CustomSpacer(width: 10,),
+            //         Image.asset(
+            //           'assets/img/dislike.png',
+            //           height: 20,
+            //           width: 20,
+            //           color: white
+            //         )
+            //       ],
+            //     ),
+            //     Image.asset(
+            //       'assets/img/report.png',
+            //       height: 20,
+            //       width: 20,
+            //       color: white,
+            //     ),
+            //   ],
+            // )
             // SizedBox(height: 20,),
             // Flexible(
             //   child: Text(
@@ -57,7 +107,7 @@ class PageState extends State<ItemTile>{
             margin: edgeInsetsAll12,
             padding: EdgeInsets.all(4),
             decoration: BoxDecoration(
-              color: white,
+              color: primaryTextColor,
               borderRadius: borderRadius8
             ),
             child: Icon(

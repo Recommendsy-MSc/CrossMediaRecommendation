@@ -54,6 +54,7 @@ class RestService{
         );
 
         var res = response.data;
+        print(response.requestOptions.method);
         print(response.requestOptions.baseUrl + response.requestOptions.path);
         print(response.requestOptions.queryParameters);
         print(response.requestOptions.data.toString());
@@ -100,6 +101,7 @@ class AppInterceptors extends Interceptor {
     print('ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
     print(err.requestOptions.uri);
     print(err.requestOptions.queryParameters);
+    print(err.requestOptions.data);
     super.onError(err, handler);
   }
 

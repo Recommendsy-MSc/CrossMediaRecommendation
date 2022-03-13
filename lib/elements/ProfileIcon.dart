@@ -12,17 +12,24 @@ class ProfileIcon extends StatefulWidget{
 class PageState extends State<ProfileIcon>{
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: accentColor),
-        borderRadius: BorderRadius.circular(100)
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        minHeight: 50,
+        maxHeight: 80
       ),
-      padding: EdgeInsets.all(4),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(100),
-        child: CachedNetworkImage(
-          imageUrl: ur.currentUser!.image_url!,
-        )
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.08,
+        decoration: BoxDecoration(
+          border: Border.all(color: accentColor),
+          borderRadius: BorderRadius.circular(100)
+        ),
+        padding: EdgeInsets.all(4),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: CachedNetworkImage(
+            imageUrl: ur.currentUser!.image_url!,
+          )
+        ),
       ),
     );
   }

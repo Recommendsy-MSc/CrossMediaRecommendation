@@ -12,11 +12,11 @@ class MyFirebase{
   static Future<void> initializeFirebase() async{
     await Firebase.initializeApp(
       options: FirebaseOptions(
-        apiKey: "AIzaSyD6DmqwfyCiA6tGf1vVbUsfpq5jTukjQQA",
-        appId: "1:960678949124:web:a03eeb1d4604eaeb57e051",
-        messagingSenderId: "960678949124",
-        projectId: "crossmediarecommendation",
-        authDomain: "crossmediarecommendation.firebaseapp.com",
+        apiKey: "AIzaSyB2Vh7IY44mzNtqr1ZWqE69qKxbpouiTJs",
+        appId: "1:642751109396:web:201b7423e92049ede08a01",
+        messagingSenderId: "642751109396",
+        projectId: "crossmr-fa129",
+        authDomain: "crossmr-fa129.firebaseapp.com",
       )
     );
     print("firebase initializer");
@@ -36,8 +36,19 @@ class MyFirebase{
     return false;
   }
 
+
+  // dont touch
   static Future<void> googleSignOut() async{
-    await googleSignIn.signOut();
-    await auth.signOut();
+    try{
+      final curUser = googleSignIn.currentUser ?? await googleSignIn.signIn();
+      if(curUser != null){
+        await googleSignIn.disconnect();
+      }
+      await auth.signOut();
+      await googleSignIn.signOut();
+    }catch(e){
+      print(e);
+    }
+
   }
 }

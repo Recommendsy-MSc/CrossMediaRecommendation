@@ -14,18 +14,20 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-  <base href="/">
-  <meta name="google-signin-client_id" content="960678949124-tmg3un7qknb2193143qg62mrg2molgaq.apps.googleusercontent.com">
-
+  <base href="$FLUTTER_BASE_HREF">
+  <meta name="google-signin-client_id" content="642751109396-9ofdhukhu2fsvj9tc5ee1gqq3fr9lgrl.apps.googleusercontent.com">
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter application.">
+  <meta name="description" content="A new Flutter project.">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="cross_media_recommendation">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
 
   <title>cross_media_recommendation</title>
   <link rel="manifest" href="manifest.json">
@@ -98,25 +100,5 @@
       loadMainDartJs();
     }
   </script>
-  <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyD6DmqwfyCiA6tGf1vVbUsfpq5jTukjQQA",
-    authDomain: "crossmediarecommendation.firebaseapp.com",
-    projectId: "crossmediarecommendation",
-    storageBucket: "crossmediarecommendation.appspot.com",
-    messagingSenderId: "960678949124",
-    appId: "1:960678949124:web:a03eeb1d4604eaeb57e051"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-</script>
 </body>
-
 </html>

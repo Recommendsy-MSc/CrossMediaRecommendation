@@ -5,7 +5,7 @@ import 'package:cross_media_recommendation/models/basic_title_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
+import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
 
 class ItemList extends StatefulWidget{
   List<dynamic> listData;
@@ -21,7 +21,7 @@ class PageState extends State<ItemList>{
   Widget build(BuildContext context) {
     return Container(
       // decoration: testDec,
-      height: (MediaQuery.of(context).size.width * bodyMainWidthRatio - listPageCount*16-24)/listPageCount * 513/342,
+      height: (MediaQuery.of(context).size.width * bodyMainWidthRatio - listPageCount*16-24)/listPageCount * 513/342 + (ur.loggedIn ? 50 : 0),
       child: ScrollablePositionedList.builder(
         itemScrollController: widget.scrollController,
         scrollDirection: Axis.horizontal,
@@ -37,13 +37,7 @@ class PageState extends State<ItemList>{
               ),
               width: (MediaQuery.of(context).size.width * bodyMainWidthRatio - listPageCount*16 - 24) / listPageCount,
               margin: index == 0 ? EdgeInsets.only(right: 8) : index == widget.listData.length-1 ? EdgeInsets.only(left: 8,) : EdgeInsets.only(right: 8, left: 8),
-              child: InkWell(
-                onTap: (){
-                  print("ontap");
-                  gr.bodyMainController!.switchPage(2, data: titleModel);
-                },
-                child: ItemTile(titleModel: titleModel, parentWidth: (MediaQuery.of(context).size.width * bodyMainWidthRatio - listPageCount*16-24) / listPageCount,)
-              )
+              child: ItemTile(titleModel: titleModel, parentWidth: (MediaQuery.of(context).size.width * bodyMainWidthRatio - listPageCount*16-24) / listPageCount,)
             ),
           );
         },

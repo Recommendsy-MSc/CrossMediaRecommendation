@@ -6,6 +6,7 @@ class UserModel{
   String? image_url;
   String? token;
   String? username;
+  bool? is_superuser;
 
   UserModel.fromJson(jsonMap, {token}){
     try{
@@ -16,8 +17,9 @@ class UserModel{
       image_url = jsonMap['image_url'] ?? '';
       this.token = token;
       username = jsonMap['username'] ?? '';
+      is_superuser = jsonMap['is_superuser'] ?? false;
     }catch(e){
-
+      print(e);
     }
   }
 }
