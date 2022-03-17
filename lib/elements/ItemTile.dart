@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cross_media_recommendation/controllers/item_tile_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/models/basic_movie_model.dart';
@@ -7,21 +8,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
 import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
+import 'package:mvc_pattern/mvc_pattern.dart';
 
 class ItemTile extends StatefulWidget{
   double parentWidth;
   BasicTitleModel titleModel;
-  ItemTile({Key? key, required this.parentWidth, required this.titleModel}) : super(key: key);
+  bool showReportButton;
+  ItemTile({Key? key, required this.parentWidth, required this.titleModel, this.showReportButton = false}) : super(key: key);
   @override
   PageState createState() => PageState();
 }
 
-class PageState extends State<ItemTile>{
+class PageState extends StateMVC<ItemTile>{
+  ItemTileController? con;
+
+  PageState() : super(ItemTileController()){
+    con = controller as ItemTileController;
+  }
 
   @override
   void initState(){
     super.initState();
-
+    con!.basicTitleModel = widget.titleModel;
   }
 
   @override
@@ -34,6 +42,7 @@ class PageState extends State<ItemTile>{
           children: [
             InkWell(
               onTap: (){
+                gr.currentTitle = widget.titleModel;
                 gr.bodyMainController!.switchPage(2, data: widget.titleModel);
               },
               child: ClipRRect(
@@ -58,7 +67,18 @@ class PageState extends State<ItemTile>{
                     Icon(Icons.thumb_down_off_alt_outlined, color: accentColor.withOpacity(0.9),),
                   ],
                 ),
-                Icon(Icons.remove_circle_outline, color: primaryTextColor.withOpacity(0.7),)
+                widget.showReportButton
+                    ? Tooltip(
+                      message: "Report inaccurate Recommendation",
+                      child: InkWell(
+                          onTap: (){
+                            print("inaccurate recomm");
+                            con!.reportInaccurateRecommendation();
+                          },
+                            child: Icon(Icons.remove_circle_outline, color: primaryTextColor.withOpacity(0.7),)
+                        ),
+                    )
+                    : SizedBox(height: 0,)
               ],
             ) : Container(height: 0,),
             // Row(

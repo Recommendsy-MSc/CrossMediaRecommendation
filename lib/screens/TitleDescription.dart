@@ -1,4 +1,3 @@
-import 'package:cross_media_recommendation/controllers/body_main_controller.dart';
 import 'package:cross_media_recommendation/controllers/title_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/MyList.dart';
@@ -8,6 +7,7 @@ import 'package:cross_media_recommendation/models/basic_title_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
+import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
 
 
 class TitleDescription extends StatefulWidget{
@@ -70,7 +70,7 @@ class PageState extends StateMVC<TitleDescription>{
                     // fit: BoxFit.fill,
                   ),
                 ),
-                child: TitleDetails(titleModel: con!.titleModel!,),
+                child: TitleDetails(titleModel: con!.titleModel!, width: MediaQuery.of(context).size.width,),
               ),
             ),
             con!.loadedRecom ? Container(
@@ -79,7 +79,7 @@ class PageState extends StateMVC<TitleDescription>{
                 children: con!.recom_data!.keys.map((element){
                   return Column(
                     children: [
-                      MyList(data: con!.recom_data![element],),
+                      MyList(data: con!.recom_data![element], showReportButton: true,),
                       CustomSpacer(height: 30,),
                     ],
                   );

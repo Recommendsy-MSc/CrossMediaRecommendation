@@ -5,6 +5,8 @@ import 'cast_members_model.dart';
 import 'keyword_model.dart';
 
 class TitleModel{
+
+
   String? id;
   String? title;
   String? overview;
@@ -41,9 +43,9 @@ class TitleModel{
       id = jsonMap['id'] != null ? jsonMap['id'].toString() : "-1";
       title = jsonMap['title'] != null ? jsonMap['title'].toString() : "";
       overview = jsonMap['overview'] ?? '';
-      genres = jsonMap['genres'] != null ? List.from(jsonMap['genres']).map((element) => GenreModel.fromJson(element)).toList() : [];
-      title_type = jsonMap['title_type'] ?? 0;
 
+      genres = jsonMap['genres'] != null ? List.from(jsonMap['genres']).map((element) => GenreModel.fromJson(element)).toList() : [];
+      title_type = jsonMap['title_type'] != null ? jsonMap['title_type'] : -1;
       cast_members = jsonMap['cast_members'] != null ? List.from(jsonMap['cast_members']).map((element) => CastModel.fromJson(element)).toList() : [];
       keywords = jsonMap['keywords'] != null ? List.from(jsonMap['keywords']).map((element) => KeywordModel.fromJson(element)).toList() : [];
       original_language = jsonMap['original_languages'] ?? '';
@@ -70,6 +72,80 @@ class TitleModel{
     }catch(e){
       print(e.toString());
       // CustomTrace(StackTrace.current, message: e.toString());
+    }
+  }
+
+  Map toMap(){
+    // post data for patching (update)
+
+    var m = <String, dynamic>{};
+
+    m['title'] = title;
+    m['overview'] = overview;
+
+    m['genres'] = genres!.map((e){
+      return e.id;
+    }).toList();
+    //
+    // // m['production_companies'] = production_companies!.map((e){
+    // //   return e.id;
+    // // }).toList();
+    //
+    m['cast_members'] = cast_members!.map((e){
+      return e.id;
+    }).toList();
+
+    m['tagline'] = tagline ?? "";
+    m['poster_path'] = poster_path;
+    m['backdrop_path'] = backdrop_path;
+
+    return m;
+  }
+
+  static List<String> editable = ['title', 'overview', 'genres', 'cast_members', 'poster_path', 'backdrop_path', 'tagline'];
+
+  dynamic getAttribute(name){
+    switch(name){
+      case 'title':
+        return title;
+      case 'overview':
+        return overview;
+      case 'genres':
+        return genres;
+      case 'cast_members':
+        return cast_members;
+      case 'poster_path':
+        return poster_path;
+      case 'backdrop_path':
+        return backdrop_path;
+      case 'tagline':
+        return tagline;
+    }
+  }
+
+  setAttribute(name, value){
+    switch(name){
+      case 'title':
+        title = value;
+        break;
+      case 'overview':
+        overview = value;
+        break;
+      case 'genres':
+        genres = value;
+        break;
+      case 'cast_members':
+        cast_members = value;
+        break;
+      case 'poster_path':
+        poster_path = value;
+        break;
+      case 'backdrop_path':
+        backdrop_path = value;
+        break;
+      case 'tagline':
+        tagline = value;
+        break;
     }
   }
 }

@@ -3,11 +3,17 @@ class ProductionCompanyModel{
   String? name;
 
   ProductionCompanyModel.fromJson(jsonMap){
+    print("Called from json");
+    print(jsonMap.toString());
     try{
-      id = jsonMap['id'] != null ? jsonMap['id'].toString() : "-1";
-      name = jsonMap['name'] != null ? jsonMap['name'].toString() : "";
+      // commented out bcz jsonmap is a single element id
+      // id = jsonMap['id'] != null ? jsonMap['id'] : "-1";
+      // print(id);
+      // // name = jsonMap['name'] != null ? jsonMap['name'].toString() : "";
+
+      id = jsonMap ?? '-1';
     }catch(e){
-      print(e.toString());
+      print("PC: " + e.toString());
     }
   }
 

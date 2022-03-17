@@ -10,4 +10,10 @@ class API{
   static String movie_recommendations = movies + '/recommendations';
   static String users = '/users';
   static String users_exists = users + '/exists/';
+  static String inaccurate_data = '/inaccurate_data/';
+  static String broken_link = '/broken_link';
+  static String inaccurate_recom = '/inaccurate_recom/';
+  static String broken_links = '/broken_links';
+  static String inaccurate_data_get_latest = inaccurate_data + 'get_latest';
+  static String inaccurate_recommendations = '/inaccurate_recommendations/';
 }

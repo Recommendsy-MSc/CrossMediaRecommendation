@@ -23,7 +23,7 @@ class TitleController extends ControllerMVC{
         data = await tv.getTvDetail(model.id!);
         break;
     }
-    this.titleModel = TitleModel.fromJson(data['data']);
+    titleModel = TitleModel.fromJson(data['data']);
     setState(() {
       titleLoaded = true;
     });
@@ -33,10 +33,10 @@ class TitleController extends ControllerMVC{
     loadedRecom = false;
     switch(model.title_type){
       case 0:
-        recom_data = (await mr.getRecommendations(model.id!))['data'];
+        recom_data = (await mr.getRecommendations(id: model.id!))['data'];
         break;
       case 1:
-        recom_data = (await tv.getRecommendations(model.id!))['data'];
+        recom_data = (await tv.getRecommendations(id: model.id!))['data'];
         break;
     }
     setState(() {

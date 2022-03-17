@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cross_media_recommendation/controllers/title_detail_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/GenreDisplay.dart';
+import 'package:cross_media_recommendation/elements/ReportDialog.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/models/title_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,8 +12,9 @@ import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
 
 class TitleDetails extends StatefulWidget{
   TitleModel titleModel;
+  double? width;
 
-  TitleDetails({Key? key, required this.titleModel}) : super(key: key);
+  TitleDetails({Key? key, required this.titleModel, this.width}) : super(key: key);
   @override
   PageState createState() => PageState();
 }
@@ -34,104 +36,107 @@ class PageState extends StateMVC<TitleDetails>{
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              // Container(
-              //   child: Image.network(
-              //     tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
-              //     width: 250,
-              //     height: 513*250/342,
-              //   ),
-              // ),
-              CachedNetworkImage(
-                imageUrl: tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
-                width: 250,
-                height: 513*250/342,
-              ),
-              Expanded(
-                  child: Container(
-                    height: 513*250/342,
-                    // decoration: testDec,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    widget.titleModel.title!,
-                                    style: Theme.of(context).textTheme.headline2,
-                                  ),
-                                  CustomSpacer(height: 8,),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.date_range,
-                                        color: primaryTextColor,
-                                      ),
-                                      CustomSpacer(width: 8,),
+          Container(
+            width: widget.width,
+            child: Row(
+              children: [
+                // Container(
+                //   child: Image.network(
+                //     tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
+                //     width: 250,
+                //     height: 513*250/342,
+                //   ),
+                // ),
+                CachedNetworkImage(
+                  imageUrl: tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
+                  width: 250,
+                  height: 513*250/342,
+                ),
+                Expanded(
+                    child: Container(
+                      height: 513*250/342,
+                      // decoration: testDec,
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      widget.titleModel.title!,
+                                      style: Theme.of(context).textTheme.headline2,
+                                    ),
+                                    CustomSpacer(height: 8,),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.date_range,
+                                          color: primaryTextColor,
+                                        ),
+                                        CustomSpacer(width: 8,),
 
-                                      Text(
-                                        widget.titleModel.release_date!,
-                                        style: Theme.of(context).textTheme.headline5,
+                                        Text(
+                                          widget.titleModel.release_date!,
+                                          style: Theme.of(context).textTheme.headline5,
 
-                                      ),
-                                      CustomSpacer(width: 12,),
-                                      Icon(
-                                        Icons.access_time,
-                                        color: primaryTextColor,
-                                      ),
-                                      CustomSpacer(width: 4,),
-                                      Text(
-                                        "2h 02min",
-                                        style: Theme.of(context).textTheme.headline5,
+                                        ),
+                                        CustomSpacer(width: 12,),
+                                        Icon(
+                                          Icons.access_time,
+                                          color: primaryTextColor,
+                                        ),
+                                        CustomSpacer(width: 4,),
+                                        Text(
+                                          "2h 02min",
+                                          style: Theme.of(context).textTheme.headline5,
 
-                                      )
-                                    ],
-                                  )
+                                        )
+                                      ],
+                                    )
 
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        Text(
-                          widget.titleModel.tagline!,
-                          style: Theme.of(context).textTheme.headline4,
+                          Text(
+                            widget.titleModel.tagline!,
+                            style: Theme.of(context).textTheme.headline4,
 
-                        ),
-                        Text(
-                          widget.titleModel.overview!,
-                          style: Theme.of(context).textTheme.headline4,
-                        ),
-                        Text(
-                          "Cast: " + con!.getStringFromList(widget.titleModel.cast_members!),
-                          style: Theme.of(context).textTheme.headline4,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        Flexible(
-                          child: Wrap(
-                            children: widget.titleModel.genres!.map((e){
-                              return Container(
-                                margin: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-                                child: GenreDisplay(genre: e.name!)
-                              );
-                            }).toList()
                           ),
-                        ),
+                          Text(
+                            widget.titleModel.overview!,
+                            style: Theme.of(context).textTheme.headline4,
+                          ),
+                          Text(
+                            "Cast: " + con!.getStringFromList(widget.titleModel.cast_members!),
+                            style: Theme.of(context).textTheme.headline4,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Flexible(
+                            child: Wrap(
+                              children: widget.titleModel.genres!.map((e){
+                                return Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                                  child: GenreDisplay(genre: e.name!)
+                                );
+                              }).toList()
+                            ),
+                          ),
 
-                      ],
-                    ),
-                  )
-              ),
-            ],
+                        ],
+                      ),
+                    )
+                ),
+              ],
+            ),
           ),
           ur.loggedIn ? CustomSpacer(height: 10,)  : CustomSpacer(height: 0,),
           ur.loggedIn ? Container(
@@ -155,10 +160,21 @@ class PageState extends StateMVC<TitleDetails>{
                     ),
                   ],
                 ),
-                Icon(
-                  Icons.remove_circle_outline,
-                  color: primaryTextColor.withOpacity(0.7),
-                  size: 38,
+                InkWell(
+                  onTap: (){
+                    print("report dropdown");
+                    showDialog(
+                        context: context,
+                        builder: (context){
+                          return ReportDialog(titleModel: widget.titleModel);
+                        },
+                    );
+                  },
+                  child: Icon(
+                    Icons.remove_circle_outline,
+                    color: primaryTextColor.withOpacity(0.7),
+                    size: 38,
+                  ),
                 )
               ],
             ),

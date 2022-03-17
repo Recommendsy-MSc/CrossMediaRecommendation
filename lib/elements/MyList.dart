@@ -12,7 +12,8 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class MyList extends StatefulWidget{
   Map<String, dynamic> data;
-  MyList({Key? key, required this.data, }) : super(key: key);
+  MyList({Key? key, required this.data, this.showReportButton = false}) : super(key: key);
+  bool showReportButton;
 
   @override
   PageState createState () => PageState();
@@ -59,7 +60,7 @@ class PageState extends StateMVC<MyList>{
             ),
           ),
           CustomSpacer(height: 20,),
-          ItemList(scrollController: scrollController, listData: widget.data['data']['result'], )
+          ItemList(scrollController: scrollController, listData: widget.data['data']['result'], showReportButton: widget.showReportButton,)
         ],
       ),
     );

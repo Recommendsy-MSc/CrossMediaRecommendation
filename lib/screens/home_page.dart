@@ -1,13 +1,10 @@
 import 'package:cross_media_recommendation/controllers/home_page_controller.dart';
-import 'package:cross_media_recommendation/elements/HomeBody.dart';
-import 'package:cross_media_recommendation/elements/HomeSidePane.dart';
-import 'package:cross_media_recommendation/elements/top_nav.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/screens/LoginPage.dart';
-import 'package:cross_media_recommendation/screens/ReportsPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
+import 'AdminBodyMain.dart';
 import 'BodyMain.dart';
 import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
 import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
@@ -51,7 +48,7 @@ class PageState extends StateMVC<HomePage>{
           Container(
             width: MediaQuery.of(context).size.width * bodyMainWidthRatio,
             color: primaryColor,
-            child: con!.genreLoaded ? ur.isAdmin ? ReportPage() : BodyMain() : Text("Genre Loading"),
+            child: con!.genreLoaded ? ur.isAdmin ? AdminBodyMain() : BodyMain() : Text("Genre Loading"),
           ),
           // Container(
           //   width: MediaQuery.of(context).size.width * bodyMainWidthRation,

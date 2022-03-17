@@ -4,6 +4,8 @@ class BasicTitleModel{
   String? poster_path;
   int? title_type;
 
+  BasicTitleModel({this.id, this.title_type});
+
   BasicTitleModel.fromJson(jsonMap){
     try{
       id = jsonMap['id'] != null ? jsonMap['id'].toString() : "-1";

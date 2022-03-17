@@ -28,9 +28,10 @@ Future<dynamic> getTvDetail(String id) async{
 }
 
 
-Future<dynamic> getRecommendations(String id) async{
+Future<dynamic> getRecommendations({String? id, valid = 'True'}) async{
   var qp = {
-    'tv_id': id,
+    'tv_id': id!,
+    'valid': valid
   };
   var data = RestService.request(
     endpoint: API.tv_recommendations,

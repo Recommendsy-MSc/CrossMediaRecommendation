@@ -1,11 +1,13 @@
 import 'package:cross_media_recommendation/controllers/reports_page_controller.dart';
 import 'package:cross_media_recommendation/elements/AdminSidePane.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
-import 'package:cross_media_recommendation/elements/ReportTile.dart';
+import 'package:cross_media_recommendation/elements/BrokenLinkReportTile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
+import '../elements/InaccurateDataReportTile.dart';
+import '../elements/InaccurateRecomReportTile.dart';
 import '../helper/constants.dart';
 
 class ReportPage extends StatefulWidget{
@@ -26,6 +28,7 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
     super.initState();
     tabController = TabController(length: 3, vsync: this);
     tabController!.animateTo(1);
+    con!.reload();
   }
 
   @override
@@ -53,34 +56,96 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
                   )
                 ),
                 CustomSpacer(height: 20,),
-                Container(
-                  child: Row(
-                    children: [
-                      Text(
-                        "Broken Links",
-                        style: Theme.of(context).textTheme.headline6,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      child: Row(
+                        children: [
+                          InkWell(
+                            onTap: (){
+                              con!.switchReports(0);
+                            },
+                            child: Container(
+                              padding: EdgeInsets.only(top: 4, right: 4, bottom: 4),
+                              child: Text(
+                                "Inaccurate Recommendations",
+                                style: TextStyle(
+                                  color: con!.currentReports == 0 ? primaryTextColor : primaryTextColor.withOpacity(0.6),
+                                  fontSize: 14
+                                ),
+                              ),
+                            ),
+                          ),
+                          CustomSpacer(width: 30,),
+                          InkWell(
+                            onTap: (){
+                              con!.switchReports(1);
+                            },
+                            child: Container(
+                              padding: edgeInsetsAll4,
+                              child: Text(
+                                "Inaccurate Data",
+                                style: TextStyle(
+                                    color: con!.currentReports == 1 ? primaryTextColor : primaryTextColor.withOpacity(0.6),
+                                    fontSize: 14
+                                ),
+                              ),
+                            ),
+                          ),
+                          CustomSpacer(width: 30,),
+                          InkWell(
+                            onTap: (){
+                              con!.switchReports(2);
+                            },
+                            child: Container(
+                              padding: edgeInsetsAll4,
+                              child: Text(
+                                "Broken Links",
+                                style: TextStyle(
+                                    color: con!.currentReports == 2 ? primaryTextColor : primaryTextColor.withOpacity(0.6),
+                                    fontSize: 14
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      CustomSpacer(),
-                      Text(
-                        "Inaccurate Recommendations",
-                        style: Theme.of(context).textTheme.headline6,
+                    ),
+                    InkWell(
+                      onTap: (){
+                        con!.reload();
+                      },
+                      child: Container(
+                        child: Icon(
+                          Icons.refresh_rounded,
+                          color: primaryTextColor.withOpacity(0.7),
+                        )
                       ),
-                      CustomSpacer(),
-                      Text(
-                        "Inaccurate Data",
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
                 CustomSpacer(height: 30,),
                 Expanded(
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width,
-                    child: ListView.builder(
-                      itemCount: 10,
+                    child: con!.currentReports == 0 ?
+                    ListView.builder(
+                      itemCount: con!.recomList.length,
                       itemBuilder: (context, index){
-                        return ReportTile();
+                        return InaccurateRecomReportTile(object: con!.recomList[index],);
+                      },
+                    )
+                    : con!.currentReports == 1
+                    ? ListView.builder(
+                      itemCount: con!.dataList.length,
+                      itemBuilder: (context, index){
+                        return InaccurateDataReportTile(object: con!.dataList[index],);
+                      },
+                    ) : ListView.builder(
+                      itemCount: con!.brokenLinkList.length,
+                      itemBuilder: (context, index){
+                        return BrokenLinkReportTile(object: con!.brokenLinkList[index],);
                       },
                     ),
                   ),
@@ -95,7 +160,7 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
             decoration: BoxDecoration(
               border: Border(left: BorderSide(color: primaryTextColor.withOpacity(0.4), width: 0.5))
             ),
-            child: AdminSidePane(reportsPageController: con!,),
+            // child: AdminSidePane(reportsPageController: con!,),
           )
         ],
       )

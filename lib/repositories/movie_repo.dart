@@ -12,7 +12,7 @@ Future<dynamic> getTopMovieForGenre({limit = 25, genre}) async {
     qp['genre'] = genre;
   }
 
-  var data = RestService.request(
+  var data = await RestService.request(
     endpoint: API.top_movies,
     queryParams: qp,
   );
@@ -21,19 +21,35 @@ Future<dynamic> getTopMovieForGenre({limit = 25, genre}) async {
 }
 
 Future<dynamic> getMovieDetail(String id) async{
-  var data = RestService.request(
+  var data = await RestService.request(
     endpoint: API.movies + '/' + id
   );
   return data;
 }
 
-Future<dynamic> getRecommendations(String id) async{
+Future<dynamic> getRecommendations({String? id, valid = "True"}) async{
   var qp = {
-    'movie_id': id,
+    'movie_id': id!,
+    'valid': valid
   };
-  var data = RestService.request(
+  var data = await RestService.request(
     endpoint: API.movie_recommendations,
     queryParams: qp
   );
   return data;
+}
+
+Future<dynamic> patchData(id, postData) async{
+  var endpoint = API.movies + '/' + id + '/';
+  var data = await RestService.request(
+    endpoint: endpoint,
+    data: postData,
+    method: 'PATCH'
+  );
+
+  return data;
+}
+
+Future<dynamic> invalidateMovieMovieRecom({String? movieId, String? movieId2}) async{
+
 }
