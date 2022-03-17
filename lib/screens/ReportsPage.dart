@@ -11,12 +11,14 @@ import '../elements/InaccurateRecomReportTile.dart';
 import '../helper/constants.dart';
 
 class ReportPage extends StatefulWidget{
+  int currentReports;
+  ReportPage({this.currentReports = 0});
   @override
   PageState createState() => PageState();
 }
 
 class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
-  TabController? tabController;
+  // TabController? tabController;
   ReportsPageController? con;
 
   PageState() : super(ReportsPageController()){
@@ -26,16 +28,10 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
   @override
   void initState(){
     super.initState();
-    tabController = TabController(length: 3, vsync: this);
-    tabController!.animateTo(1);
+    con!.currentReports = widget.currentReports;
     con!.reload();
   }
 
-  @override
-  void dispose(){
-    super.dispose();
-    tabController!.dispose();
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,19 +126,37 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: con!.currentReports == 0 ?
-                    ListView.builder(
-                      itemCount: con!.recomList.length,
-                      itemBuilder: (context, index){
-                        return InaccurateRecomReportTile(object: con!.recomList[index],);
-                      },
-                    )
+
+                    con!.recomList.isNotEmpty
+                        ? ListView.builder(
+                          itemCount: con!.recomList.length,
+                          itemBuilder: (context, index){
+                            return InaccurateRecomReportTile(object: con!.recomList[index], reloadCallback: con!.reload,);
+                          },
+                        )
+                        : Text(
+                            "No Reports!",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: primaryTextColor.withOpacity(0.8)
+                            ),
+                          )
                     : con!.currentReports == 1
-                    ? ListView.builder(
-                      itemCount: con!.dataList.length,
-                      itemBuilder: (context, index){
-                        return InaccurateDataReportTile(object: con!.dataList[index],);
-                      },
-                    ) : ListView.builder(
+                    ? con!.dataList.isNotEmpty
+                        ? ListView.builder(
+                          itemCount: con!.dataList.length,
+                          itemBuilder: (context, index){
+                            return InaccurateDataReportTile(object: con!.dataList[index],);
+                          },
+                          )
+                        : Text(
+                            "No Reports!",
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: primaryTextColor.withOpacity(0.8)
+                            ),
+                          )
+                    : ListView.builder(
                       itemCount: con!.brokenLinkList.length,
                       itemBuilder: (context, index){
                         return BrokenLinkReportTile(object: con!.brokenLinkList[index],);
@@ -160,7 +174,7 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
             decoration: BoxDecoration(
               border: Border(left: BorderSide(color: primaryTextColor.withOpacity(0.4), width: 0.5))
             ),
-            // child: AdminSidePane(reportsPageController: con!,),
+            child: AdminSidePane(reportsPageController: con!,),
           )
         ],
       )

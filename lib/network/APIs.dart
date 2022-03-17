@@ -16,4 +16,8 @@ class API{
   static String broken_links = '/broken_links';
   static String inaccurate_data_get_latest = inaccurate_data + 'get_latest';
   static String inaccurate_recommendations = '/inaccurate_recommendations/';
+  static String movie_movie = '/movie_movie';
+  static String movie_tv = '/movie_tv';
+  static String tv_tv = '/tv_tv';
+  static String toggle_validation = '/toggle_validation/';
 }

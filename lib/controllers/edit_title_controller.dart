@@ -3,6 +3,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cross_media_recommendation/repositories/movie_repo.dart' as mr;
 import 'package:cross_media_recommendation/repositories/tv_repo.dart' as tv;
 import 'package:cross_media_recommendation/repositories/reports_repo.dart' as rr;
+import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
 
 class EditTitleController extends ControllerMVC{
   bool titleLoaded = false;
@@ -44,5 +45,7 @@ class EditTitleController extends ControllerMVC{
 
   Future<void> markReportAsResolved() async{
     await rr.markInaccurateDataReportAsCompleted(reportId);
+    // current Report Page index 1 as data
+    gr.adminBodyMainController!.switchPage(0, data: 1);
   }
 }

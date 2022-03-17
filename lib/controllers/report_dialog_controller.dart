@@ -22,8 +22,9 @@ class ReportDialogController extends ControllerMVC{
 
   Future<void> reportInaccurateData() async{
     var data = {
-      'user_id': ur.currentUser!.id,
-      'note': textController.text
+      'note': textController.text,
+      'type': titleModel!.title_type!,
+      'user_id': ur.currentUser!.id
     };
     if(titleModel!.title_type == 0){
       await rr.reportInaccurateDataForMovie(titleModel!.id!, data);

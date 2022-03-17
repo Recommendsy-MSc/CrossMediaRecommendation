@@ -1,7 +1,26 @@
+import 'package:cross_media_recommendation/models/reports_models/inaccurate_recom_model.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
+import 'package:cross_media_recommendation/repositories/movie_repo.dart' as mr;
+import 'package:cross_media_recommendation/repositories/tv_repo.dart' as tr;
+import 'package:cross_media_recommendation/repositories/reports_repo.dart' as rr;
 
 class InaccurateRecomController extends ControllerMVC{
-  Future<void> markAsDone({String? reportId}) async{
+  InaccurateRecomModel? model;
+  Future<void> markAsDone() async{
+    if(model!.type == 0){
+      if(model!.recommendedType == 0){
+        await mr.invalidateMovieMovieRecom(movieId: model!.title, movieId2: model!.recommendedTitle);
+      }else if(model!.recommendedType == 1){
+        await mr.invalidateMovieTvRecom(movieId: model!.title, tvId: model!.recommendedTitle);
+      }
+    }else if(model!.type == 1){
+      if(model!.recommendedType == 0){
+        await mr.invalidateMovieTvRecom(movieId: model!.title, tvId: model!.recommendedTitle);
+      }else if(model!.recommendedType == 1){
+        await tr.invalidateTvTvRecom(tvId: model!.title, tvId2: model!.recommendedTitle);
+      }
+    }
+    await rr.markInaccurateRecomAsCompleted(model!.id);
 
   }
 }

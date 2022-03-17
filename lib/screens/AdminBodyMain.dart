@@ -23,7 +23,7 @@ class PageState extends StateMVC<AdminBodyMain>{
     super.initState();
     print("Reinit BODY MAin");
     gr.adminBodyMainController = con;
-    con!.switchPage(0);
+    con!.switchPage(0, data: 0);
   }
   @override
   Widget build(BuildContext context) {

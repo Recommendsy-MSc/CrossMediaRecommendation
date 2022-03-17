@@ -1,6 +1,7 @@
 import 'package:cross_media_recommendation/models/genre_model.dart';
 import 'package:cross_media_recommendation/models/production_company_model.dart';
 
+import '../helper/custom_trace.dart';
 import 'cast_members_model.dart';
 import 'keyword_model.dart';
 
@@ -31,12 +32,12 @@ class TitleModel{
   String? type;
 
   //Movie Special
-  String? backdrop_path;
+  String? backdrop_path = '';
   String? imdb_id;
   String? language;
   String? popularity;
-  String? release_date;
-  String? runtime;
+  String? release_date = '';
+  String? runtime = '';
 
   TitleModel.fromJson(jsonMap){
     try{
@@ -65,13 +66,13 @@ class TitleModel{
       }else if(title_type == 1){
         in_production = jsonMap['in_production'] != null ? jsonMap['in_production'] : false;
         last_air_date = jsonMap['last_air_date'] ?? '';
-        no_episodes = jsonMap['no_episodes'] ?? '';
-        no_seasons = jsonMap['no_seasons'] ?? '';
+        no_episodes = jsonMap['no_episodes'] != null ? jsonMap['no_episodes'].toString() :  '';
+        no_seasons = jsonMap['no_seasons'] != null ? jsonMap['no_seasons'].toString() : '';
         type = jsonMap['type'] ?? '';
       }
     }catch(e){
       print(e.toString());
-      // CustomTrace(StackTrace.current, message: e.toString());
+      CustomTrace(StackTrace.current, message: e.toString());
     }
   }
 

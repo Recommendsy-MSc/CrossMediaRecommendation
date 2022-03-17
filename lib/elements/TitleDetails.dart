@@ -28,6 +28,7 @@ class PageState extends StateMVC<TitleDetails>{
   @override
   void initState(){
     super.initState();
+    print("Titlw Type: " + widget.titleModel.title_type.toString());
   }
   @override
   Widget build(BuildContext context) {

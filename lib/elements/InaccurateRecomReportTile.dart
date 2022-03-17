@@ -8,7 +8,8 @@ import 'CustomSpacer.dart';
 
 class InaccurateRecomReportTile extends StatefulWidget{
   InaccurateRecomModel? object;
-  InaccurateRecomReportTile({Key? key, required this.object}) : super(key: key);
+  Function? reloadCallback;
+  InaccurateRecomReportTile({Key? key, required this.object, this.reloadCallback}) : super(key: key);
   @override
   PageState createState() => PageState();
 }
@@ -18,6 +19,12 @@ class PageState extends StateMVC<InaccurateRecomReportTile>{
 
   PageState() : super(InaccurateRecomController()){
     con = controller as InaccurateRecomController;
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    con!.model = widget.object;
   }
   @override
   Widget build(BuildContext context) {
@@ -38,10 +45,10 @@ class PageState extends StateMVC<InaccurateRecomReportTile>{
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    width: 100,
+                    width: 60,
                     // decoration: testDec,
                     child: Text(
-                      "#" + widget.object!.title!,
+                      "#" + widget.object!.id!,
                       style: TextStyle(
                           color: primaryTextColor.withOpacity(0.7),
                           fontSize: 14,
@@ -116,8 +123,9 @@ class PageState extends StateMVC<InaccurateRecomReportTile>{
                   Tooltip(
                     message: "Remove from Recommendations",
                     child: InkWell(
-                      onTap: (){
-                        con!.markAsDone(reportId: widget.object!.id!);
+                      onTap: () async{
+                        await con!.markAsDone();
+                        widget.reloadCallback!();
                       },
                       child: Container(
                         // decoration: testDec,

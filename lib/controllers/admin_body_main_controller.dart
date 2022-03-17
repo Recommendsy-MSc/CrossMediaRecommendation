@@ -7,10 +7,9 @@ import '../screens/ReportsPage.dart';
 class AdminBodyMainController extends ControllerMVC{
   Widget? bodyWidget;
   void switchPage(int index, {dynamic data}){
-    print("Switching: ");
     switch(index){
       case 0:
-        bodyWidget = ReportPage();
+        bodyWidget = ReportPage(currentReports: data,);
         break;
       case 1:
         bodyWidget = EditableTitlePage(customData: data,);
