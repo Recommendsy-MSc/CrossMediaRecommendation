@@ -2,6 +2,7 @@ import 'package:cross_media_recommendation/network/rest_service.dart';
 import 'package:flutter/material.dart';
 import 'package:cross_media_recommendation/network/APIs.dart';
 import 'package:http/http.dart' as http;
+import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
 
 
 Future<dynamic> getTopMovieForGenre({limit = 25, genre}) async {
@@ -15,14 +16,15 @@ Future<dynamic> getTopMovieForGenre({limit = 25, genre}) async {
   var data = await RestService.request(
     endpoint: API.top_movies,
     queryParams: qp,
+    auth: ur.loggedIn
   );
-
   return data;
 }
 
 Future<dynamic> getMovieDetail(String id) async{
   var data = await RestService.request(
-    endpoint: API.movies + '/' + id
+    endpoint: API.movies + '/' + id,
+    auth: ur.loggedIn
   );
   return data;
 }
@@ -34,7 +36,8 @@ Future<dynamic> getRecommendations({String? id, valid = "True"}) async{
   };
   var data = await RestService.request(
     endpoint: API.movie_recommendations,
-    queryParams: qp
+    queryParams: qp,
+    auth: ur.loggedIn
   );
   return data;
 }
@@ -44,7 +47,8 @@ Future<dynamic> patchData(id, postData) async{
   var data = await RestService.request(
     endpoint: endpoint,
     data: postData,
-    method: 'PATCH'
+    method: 'PATCH',
+    // auth: ur.loggedIn
   );
 
   return data;
@@ -75,5 +79,31 @@ Future<dynamic> invalidateMovieTvRecom({String? movieId, String? tvId}) async{
       method: 'POST'
   );
 
+  return data;
+}
+
+Future<dynamic> likeMovie(String? movieId) async{
+  var endpoint = API.movies + '/' + movieId! + API.like;
+  var data = await RestService.request(
+    endpoint: endpoint,
+    data: {
+      'user_id': ur.currentUser!.id!
+    },
+    method: 'POST',
+    auth: true
+  );
+  return data;
+}
+
+Future<dynamic> dislikeMovie(String? movieId) async{
+  var endpoint = API.movies + '/' + movieId! + API.dislike;
+  var data = await RestService.request(
+      endpoint: endpoint,
+      data: {
+        'user_id': ur.currentUser!.id!
+      },
+      method: 'POST',
+      auth: true
+  );
   return data;
 }

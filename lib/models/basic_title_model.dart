@@ -3,6 +3,7 @@ class BasicTitleModel{
   String? title;
   String? poster_path;
   int? title_type;
+  int? user_rating;
 
   BasicTitleModel({this.id, this.title_type});
 
@@ -12,6 +13,7 @@ class BasicTitleModel{
       title = jsonMap['title'] != null ? jsonMap['title'].toString() : "";
       poster_path = jsonMap['poster_path'] ?? '';
       title_type = jsonMap['title_type'] ?? '0';
+      user_rating = jsonMap['user_rating'] ?? 0;
     }catch(e){
       print(e.toString());
       // CustomTrace(StackTrace.current, message: e.toString());

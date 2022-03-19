@@ -20,4 +20,6 @@ class API{
   static String movie_tv = '/movie_tv';
   static String tv_tv = '/tv_tv';
   static String toggle_validation = '/toggle_validation/';
+  static String like = '/like/';
+  static String dislike = '/dislike/';
 }

@@ -6,8 +6,6 @@ import 'cast_members_model.dart';
 import 'keyword_model.dart';
 
 class TitleModel{
-
-
   String? id;
   String? title;
   String? overview;
@@ -21,6 +19,7 @@ class TitleModel{
   List<String>? spoken_languages;
   String? status;
   String? tagline;
+  int? user_rating;
 
 
   // TV Special
@@ -55,6 +54,8 @@ class TitleModel{
       spoken_languages = jsonMap['spoken_languages'] != null ? List.from(jsonMap['spoken_languages']) : [];
       tagline = jsonMap['tag_line'] ?? '';
       status = jsonMap['status'] ?? '';
+
+      user_rating = jsonMap['user_rating'] ?? 0;
 
       if(title_type == 0){
         backdrop_path = jsonMap['backdrop_path'] ?? '';

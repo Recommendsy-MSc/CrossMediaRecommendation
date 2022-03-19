@@ -30,6 +30,9 @@ class PageState extends StateMVC<ItemTile>{
   void initState(){
     super.initState();
     con!.basicTitleModel = widget.titleModel;
+    print(widget.titleModel.title);
+    print(widget.titleModel.user_rating);
+
   }
 
   @override
@@ -62,9 +65,21 @@ class PageState extends StateMVC<ItemTile>{
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.thumb_up_off_alt_outlined, color: Colors.green.withOpacity(0.7),),
+                    InkWell(
+                      onTap: con!.like,
+                      child: Icon(
+                        widget.titleModel.user_rating == 5 ? Icons.thumb_up_alt_rounded : Icons.thumb_up_off_alt_outlined,
+                        color: widget.titleModel.user_rating == 5 ? Colors.green.withOpacity(0.7) : primaryTextColor.withOpacity(0.3),
+                      ),
+                    ),
                     CustomSpacer(width: 10,),
-                    Icon(Icons.thumb_down_off_alt_outlined, color: accentColor.withOpacity(0.9),),
+                    InkWell(
+                      onTap: con!.dislike,
+                      child: Icon(
+                        widget.titleModel.user_rating == 1 ? Icons.thumb_down_alt_rounded : Icons.thumb_down_off_alt_outlined,
+                        color: widget.titleModel.user_rating == 1 ? accentColor.withOpacity(0.9) : primaryTextColor.withOpacity(0.3),
+                      ),
+                    ),
                   ],
                 ),
                 widget.showReportButton

@@ -7,7 +7,8 @@ Future<dynamic> searchString(search_string) async{
     queryParams: {
       'q': search_string,
       'order_by': '-popularity'
-    }
+    },
+    auth: true
   );
 
   return data;

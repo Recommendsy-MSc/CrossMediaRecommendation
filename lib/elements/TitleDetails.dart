@@ -29,6 +29,7 @@ class PageState extends StateMVC<TitleDetails>{
   void initState(){
     super.initState();
     print("Titlw Type: " + widget.titleModel.title_type.toString());
+    con!.titleModel = widget.titleModel;
   }
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class PageState extends StateMVC<TitleDetails>{
                 //   ),
                 // ),
                 CachedNetworkImage(
-                  imageUrl: tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
+                  imageUrl: tmdb_image_url + poster_size_342 + con!.titleModel!.poster_path!,
                   width: 250,
                   height: 513*250/342,
                 ),
@@ -70,7 +71,7 @@ class PageState extends StateMVC<TitleDetails>{
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      widget.titleModel.title!,
+                                      con!.titleModel!.title!,
                                       style: Theme.of(context).textTheme.headline2,
                                     ),
                                     CustomSpacer(height: 8,),
@@ -83,7 +84,7 @@ class PageState extends StateMVC<TitleDetails>{
                                         CustomSpacer(width: 8,),
 
                                         Text(
-                                          widget.titleModel.release_date!,
+                                          con!.titleModel!.release_date!,
                                           style: Theme.of(context).textTheme.headline5,
 
                                         ),
@@ -107,23 +108,23 @@ class PageState extends StateMVC<TitleDetails>{
                             ),
                           ),
                           Text(
-                            widget.titleModel.tagline!,
+                            con!.titleModel!.tagline!,
                             style: Theme.of(context).textTheme.headline4,
 
                           ),
                           Text(
-                            widget.titleModel.overview!,
+                            con!.titleModel!.overview!,
                             style: Theme.of(context).textTheme.headline4,
                           ),
                           Text(
-                            "Cast: " + con!.getStringFromList(widget.titleModel.cast_members!),
+                            "Cast: " + con!.getStringFromList(con!.titleModel!.cast_members!),
                             style: Theme.of(context).textTheme.headline4,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
                           Flexible(
                             child: Wrap(
-                              children: widget.titleModel.genres!.map((e){
+                              children: con!.titleModel!.genres!.map((e){
                                 return Container(
                                   margin: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
                                   child: GenreDisplay(genre: e.name!)
@@ -148,16 +149,22 @@ class PageState extends StateMVC<TitleDetails>{
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(
-                      Icons.thumb_up_off_alt_outlined,
-                      color: Colors.green.withOpacity(0.7),
-                      size: 34,
+                    InkWell(
+                      onTap: con!.like,
+                      child: Icon(
+                        con!.titleModel!.user_rating == 5 ? Icons.thumb_up_alt_rounded : Icons.thumb_up_off_alt_outlined,
+                        color: con!.titleModel!.user_rating == 5 ? Colors.green.withOpacity(0.7) : primaryTextColor.withOpacity(0.3),
+                        size: 34,
+                      ),
                     ),
                     CustomSpacer(width: 10,),
-                    Icon(
-                      Icons.thumb_down_off_alt_outlined,
-                      color: accentColor.withOpacity(0.9),
-                      size: 36,
+                    InkWell(
+                      onTap: con!.dislike,
+                      child: Icon(
+                        con!.titleModel!.user_rating == 1 ? Icons.thumb_down_alt_rounded : Icons.thumb_down_off_alt_outlined,
+                        color: con!.titleModel!.user_rating == 1 ? accentColor.withOpacity(0.9) : primaryTextColor.withOpacity(0.3),
+                        size: 34,
+                      ),
                     ),
                   ],
                 ),

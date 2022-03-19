@@ -2,6 +2,7 @@ import 'package:cross_media_recommendation/app_config.dart';
 import 'package:cross_media_recommendation/helper/custom_trace.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
+import 'package:cross_media_recommendation/repositories/user_repo.dart' as userRepo;
 
 class RestService{
   static Dio? dio;
@@ -77,11 +78,11 @@ class AppInterceptors extends Interceptor {
     //   'x-client-id': AppConfig.config.clientId,
     //   'x-client-device': AppConfig.config.clientDevice,
     // });
-    if (options.headers['authrequired'] == 'true') {
+    if (options.headers['authrequired'] == true) {
       options.headers.remove("authrequired");
       options.headers.addAll({
-        // 'Authorization': 'Token ' + userRepo.currentUser.authToken,
-        // 'Access-Control-Allow-Origin': '*'
+        'Authorization': 'Token ' + userRepo.currentUser!.token!,
+        'Access-Control-Allow-Origin': '*'
       });
 
       // return options;
