@@ -107,3 +107,34 @@ Future<dynamic> dislikeMovie(String? movieId) async{
   );
   return data;
 }
+
+Future<dynamic> getMovieRecomForUser({limit, genre}) async{
+  var endpoinrt = API.users + '/' + ur.currentUser!.id! + API.recommend_movies;
+  var qp = {
+    'limit': limit
+  };
+  if (genre != null){
+    qp['genre'] = genre;
+  }
+  var data = await RestService.request(
+    endpoint: endpoinrt,
+    queryParams: qp,
+    auth: ur.loggedIn
+  );
+
+  return data;
+}
+
+Future<dynamic> reportMissingMovieTitle({String? name}) async{
+  var data = await RestService.request(
+      endpoint: API.missing_title,
+      data: {
+        'user': ur.currentUser!.id,
+        'title': name!,
+        'title_type': 0
+      },
+      method: 'POST'
+  );
+
+  return data;
+}

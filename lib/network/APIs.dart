@@ -5,7 +5,7 @@ class API{
   static String tv_genres = '/genres_tv';
   static String search = '/search';
   static String tv = '/tv';
-  static String top_tv = tv + 'top_tv';
+  static String top_tv = tv + '/top_tv';
   static String tv_recommendations = tv + '/recommendations';
   static String movie_recommendations = movies + '/recommendations';
   static String users = '/users';
@@ -22,4 +22,7 @@ class API{
   static String toggle_validation = '/toggle_validation/';
   static String like = '/like/';
   static String dislike = '/dislike/';
+  static String recommend_movies = '/recommend_movies/';
+  static String recommend_tv   = '/recommend_tv/';
+  static String missing_title = '/missing_title/';
 }

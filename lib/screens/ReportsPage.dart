@@ -8,6 +8,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../elements/InaccurateDataReportTile.dart';
 import '../elements/InaccurateRecomReportTile.dart';
+import '../elements/MissingTitleReportTile.dart';
 import '../helper/constants.dart';
 
 class ReportPage extends StatefulWidget{
@@ -89,6 +90,22 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
                               ),
                             ),
                           ),
+                          // CustomSpacer(width: 30,),
+                          // InkWell(
+                          //   onTap: (){
+                          //     con!.switchReports(2);
+                          //   },
+                          //   child: Container(
+                          //     padding: edgeInsetsAll4,
+                          //     child: Text(
+                          //       "Broken Links",
+                          //       style: TextStyle(
+                          //           color: con!.currentReports == 2 ? primaryTextColor : primaryTextColor.withOpacity(0.6),
+                          //           fontSize: 14
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                           CustomSpacer(width: 30,),
                           InkWell(
                             onTap: (){
@@ -97,7 +114,7 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
                             child: Container(
                               padding: edgeInsetsAll4,
                               child: Text(
-                                "Broken Links",
+                                "Missing Titles",
                                 style: TextStyle(
                                     color: con!.currentReports == 2 ? primaryTextColor : primaryTextColor.withOpacity(0.6),
                                     fontSize: 14
@@ -156,12 +173,25 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
                                 color: primaryTextColor.withOpacity(0.8)
                             ),
                           )
-                    : ListView.builder(
-                      itemCount: con!.brokenLinkList.length,
+                    : con!.missingTitlesList.isNotEmpty ? ListView.builder(
+                      itemCount: con!.missingTitlesList.length,
                       itemBuilder: (context, index){
-                        return BrokenLinkReportTile(object: con!.brokenLinkList[index],);
+                        return MissingTitleReportTile(object: con!.missingTitlesList[index],);
                       },
+                    )
+                        : Text(
+                    "No Reports!",
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: primaryTextColor.withOpacity(0.8)
                     ),
+                  )
+                    // ListView.builder(
+                    //   itemCount: con!.brokenLinkList.length,
+                    //   itemBuilder: (context, index){
+                    //     return BrokenLinkReportTile(object: con!.brokenLinkList[index],);
+                    //   },
+                    // ),
                   ),
                 )
               ],

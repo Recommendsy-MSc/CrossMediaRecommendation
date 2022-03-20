@@ -4,6 +4,7 @@ import 'package:cross_media_recommendation/repositories/reports_repo.dart' as rr
 import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
 import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
 import 'package:cross_media_recommendation/repositories/movie_repo.dart' as mr;
+import 'package:cross_media_recommendation/repositories/tv_repo.dart' as tr;
 
 class ItemTileController extends ControllerMVC{
   BasicTitleModel? basicTitleModel;
@@ -26,12 +27,14 @@ class ItemTileController extends ControllerMVC{
     if(basicTitleModel!.title_type == 0) {
       resp = await mr.dislikeMovie(basicTitleModel!.id);
     }
-    else{
-
+    else if(basicTitleModel!.title_type == 1){
+      resp = await tr.dislikeTv(basicTitleModel!.id);
     }
     if(resp['success']){
       basicTitleModel!.user_rating = 1;
-      setState(() { });
+      setState(() {
+        print('setting tile sttae');
+      });
     }
 
   }
@@ -41,12 +44,14 @@ class ItemTileController extends ControllerMVC{
     if(basicTitleModel!.title_type == 0) {
       resp = await mr.likeMovie(basicTitleModel!.id);
     }
-    else{
-
+    else if(basicTitleModel!.title_type == 1){
+      resp = await tr.likeTv(basicTitleModel!.id);
     }
     if(resp['success']){
       basicTitleModel!.user_rating = 5;
-      setState(() { });
+      setState(() {
+        print('setting tile sttae');
+      });
     }
   }
 }

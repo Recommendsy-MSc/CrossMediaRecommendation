@@ -1,20 +1,22 @@
 import 'package:cross_media_recommendation/controllers/report_tile_controller.dart';
+import 'package:cross_media_recommendation/models/reports_models/missing_title_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
+
 import '../helper/constants.dart';
-import '../models/reports_models/inaccurate_data_model.dart';
-import '../models/reports_models/inaccurate_recom_model.dart';
 import 'CustomSpacer.dart';
 
-class InaccurateDataReportTile extends StatefulWidget{
-  InaccurateDataModel? object;
-  InaccurateDataReportTile({Key? key, required this.object}) : super(key: key);
+class MissingTitleReportTile extends StatefulWidget{
+  MissingTitleModel object;
+
+  MissingTitleReportTile({required this.object});
+
   @override
   PageState createState() => PageState();
 }
 
-class PageState extends StateMVC<InaccurateDataReportTile>{
+class PageState extends StateMVC<MissingTitleReportTile>{
   ReportTileController? con;
 
   PageState() : super(ReportTileController()){
@@ -38,20 +40,15 @@ class PageState extends StateMVC<InaccurateDataReportTile>{
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  InkWell(
-                    onTap: (){
-                      con!.gotoTitle(id: widget.object!.title!, type: widget.object!.type!, reportId: widget.object!.id!);
-                    },
-                    child: Container(
-                      width: 100,
-                      // decoration: testDec,
-                      child: Text(
-                        "#" + widget.object!.title!,
-                        style: TextStyle(
-                            color: Colors.blue,
-                            fontSize: 14,
-                            letterSpacing: 1.01
-                        ),
+                  Container(
+                    width: 100,
+                    // decoration: testDec,
+                    child: Text(
+                      "#" + widget.object.id!,
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 14,
+                          letterSpacing: 1.01
                       ),
                     ),
                   ),
@@ -60,22 +57,7 @@ class PageState extends StateMVC<InaccurateDataReportTile>{
                     child: Container(
                       // decoration: testDec,
                       child: Text(
-                        widget.object!.name!,
-                        style: TextStyle(
-                            color: primaryTextColor.withOpacity(0.7),
-                            fontSize: 14,
-                            letterSpacing: 1.01
-                        ),
-                      ),
-                    ),
-                  ),
-                  CustomSpacer(width: 50,),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      // decoration: testDec,
-                      child: Text(
-                        widget.object!.note!,
+                        widget.object.title!,
                         style: TextStyle(
                             color: primaryTextColor.withOpacity(0.7),
                             fontSize: 14,
@@ -88,7 +70,19 @@ class PageState extends StateMVC<InaccurateDataReportTile>{
                   Container(
                     // decoration: testDec,
                     child: Text(
-                      "User #" + widget.object!.user!,
+                      widget.object.title_type == 0 ? 'Movie' : 'Tv',
+                      style: TextStyle(
+                          color: primaryTextColor.withOpacity(0.7),
+                          fontSize: 14,
+                          letterSpacing: 1.01
+                      ),
+                    ),
+                  ),
+                  CustomSpacer(width: 50,),
+                  Container(
+                    // decoration: testDec,
+                    child: Text(
+                      "User #" + widget.object.user!,
                       style: TextStyle(
                           color: primaryTextColor.withOpacity(0.7),
                           fontSize: 14,
@@ -108,7 +102,7 @@ class PageState extends StateMVC<InaccurateDataReportTile>{
                   Container(
                     // decoration: testDec,
                     child: Text(
-                      widget.object!.createdDate!.substring(0, 10),
+                      widget.object.created_date!.substring(0, 10),
                       style: TextStyle(
                           color: primaryTextColor.withOpacity(0.7),
                           fontSize: 14,
@@ -116,18 +110,6 @@ class PageState extends StateMVC<InaccurateDataReportTile>{
                       ),
                     ),
                   ),
-                  // CustomSpacer(width: 100,),
-                  // Container(
-                  //   // decoration: testDec,
-                  //   child: Text(
-                  //     'Actions',
-                  //     style: TextStyle(
-                  //         color: accentColor,
-                  //         fontSize: 14,
-                  //         letterSpacing: 1.01
-                  //     ),
-                  //   ),
-                  // )
                 ],
               ),
             ),

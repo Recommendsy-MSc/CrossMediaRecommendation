@@ -131,3 +131,12 @@ Future<dynamic> markInaccurateRecomAsCompleted(id) async{
 
   return resp;
 }
+
+// fetch missing title for both movies and tv
+Future<dynamic> fetchMissingTitles() async{
+  var data = await RestService.request(
+    endpoint: API.missing_title,
+  );
+
+  return data;
+}

@@ -30,13 +30,12 @@ class PageState extends StateMVC<ItemTile>{
   void initState(){
     super.initState();
     con!.basicTitleModel = widget.titleModel;
-    print(widget.titleModel.title);
-    print(widget.titleModel.user_rating);
-
   }
 
   @override
   Widget build(BuildContext context) {
+    print("Rebuild tile");
+    print(con!.basicTitleModel!.user_rating!);
     return Stack(
       children: [
         Column(
@@ -45,13 +44,13 @@ class PageState extends StateMVC<ItemTile>{
           children: [
             InkWell(
               onTap: (){
-                gr.currentTitle = widget.titleModel;
-                gr.bodyMainController!.switchPage(2, data: widget.titleModel);
+                gr.currentTitle = con!.basicTitleModel;
+                gr.bodyMainController!.switchPage(2, data: con!.basicTitleModel);
               },
               child: ClipRRect(
                 borderRadius: borderRadius12,
                 child: CachedNetworkImage(
-                  imageUrl: tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
+                  imageUrl: tmdb_image_url + poster_size_342 + con!.basicTitleModel!.poster_path!,
                   width: widget.parentWidth,
                   fit: BoxFit.fill,
                   errorWidget: (context, url, error) => Icon(Icons.error),
@@ -68,16 +67,16 @@ class PageState extends StateMVC<ItemTile>{
                     InkWell(
                       onTap: con!.like,
                       child: Icon(
-                        widget.titleModel.user_rating == 5 ? Icons.thumb_up_alt_rounded : Icons.thumb_up_off_alt_outlined,
-                        color: widget.titleModel.user_rating == 5 ? Colors.green.withOpacity(0.7) : primaryTextColor.withOpacity(0.3),
+                        con!.basicTitleModel!.user_rating == 5 ? Icons.thumb_up_alt_rounded : Icons.thumb_up_off_alt_outlined,
+                        color: con!.basicTitleModel!.user_rating == 5 ? Colors.green.withOpacity(0.7) : primaryTextColor.withOpacity(0.3),
                       ),
                     ),
                     CustomSpacer(width: 10,),
                     InkWell(
                       onTap: con!.dislike,
                       child: Icon(
-                        widget.titleModel.user_rating == 1 ? Icons.thumb_down_alt_rounded : Icons.thumb_down_off_alt_outlined,
-                        color: widget.titleModel.user_rating == 1 ? accentColor.withOpacity(0.9) : primaryTextColor.withOpacity(0.3),
+                        con!.basicTitleModel!.user_rating == 1 ? Icons.thumb_down_alt_rounded : Icons.thumb_down_off_alt_outlined,
+                        color: con!.basicTitleModel!.user_rating == 1 ? accentColor.withOpacity(0.9) : primaryTextColor.withOpacity(0.3),
                       ),
                     ),
                   ],
@@ -128,7 +127,7 @@ class PageState extends StateMVC<ItemTile>{
             // SizedBox(height: 20,),
             // Flexible(
             //   child: Text(
-            //     widget.titleModel.title!,
+            //     con!.basicTitleModel.title!,
             //     style: Theme.of(context).textTheme.headline5,
             //     maxLines: 2,
             //     overflow: TextOverflow.ellipsis,

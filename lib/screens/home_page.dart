@@ -27,8 +27,9 @@ class PageState extends StateMVC<HomePage>{
     super.initState();
     // print("Home init");
     con!.initialDataFetch();
-
   }
+
+  // might be called twice leading to issues with BodyMain Unique Key
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +49,7 @@ class PageState extends StateMVC<HomePage>{
           Container(
             width: MediaQuery.of(context).size.width * bodyMainWidthRatio,
             color: primaryColor,
-            child: con!.genreLoaded ? ur.isAdmin ? AdminBodyMain() : BodyMain() : Text("Genre Loading"),
+            child: con!.genreLoaded ? ur.isAdmin ? AdminBodyMain() : BodyMain(key: UniqueKey(),) : Text("Genre Loading"),
           ),
           // Container(
           //   width: MediaQuery.of(context).size.width * bodyMainWidthRation,
