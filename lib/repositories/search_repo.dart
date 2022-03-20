@@ -13,3 +13,27 @@ Future<dynamic> searchString(search_string) async{
 
   return data;
 }
+
+Future<dynamic> searchTbdbMovie(search_string) async{
+  var data = await RestService.request(
+    endpoint: API.search_tmdb_movie,
+    queryParams: {
+      'q': search_string
+    },
+    auth: true
+  );
+
+  return data;
+}
+
+Future<dynamic> searchTbdbTv(search_string) async{
+  var data = await RestService.request(
+      endpoint: API.search_tmdb_tv,
+      queryParams: {
+        'q': search_string
+      },
+      auth: true
+  );
+
+  return data;
+}

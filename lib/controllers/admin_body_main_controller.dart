@@ -1,3 +1,4 @@
+import 'package:cross_media_recommendation/screens/AdminSuggestedTitle.dart';
 import 'package:cross_media_recommendation/screens/EditableTitlePage.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -13,6 +14,10 @@ class AdminBodyMainController extends ControllerMVC{
         break;
       case 1:
         bodyWidget = EditableTitlePage(customData: data,);
+        break;
+      case 2:
+        bodyWidget = AdminSuggestedTitles(object: data,);
+        break;
     }
     setState(() {
     });

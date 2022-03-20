@@ -1,4 +1,5 @@
 import 'package:cross_media_recommendation/models/basic_title_model.dart';
+import 'package:cross_media_recommendation/models/reports_models/missing_title_model.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
 
@@ -10,5 +11,9 @@ class ReportTileController extends ControllerMVC{
       'reportId': reportId
     };
     gr.adminBodyMainController!.switchPage(1, data: data);
+  }
+
+  Future<void> gotToMissingTitle({MissingTitleModel? object}) async{
+    gr.adminBodyMainController!.switchPage(2, data: object!);
   }
 }

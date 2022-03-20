@@ -3,7 +3,9 @@ class API{
   static String top_movies = movies + '/top_movies';
   static String genres = '/genres';
   static String tv_genres = '/genres_tv';
-  static String search = '/search';
+  static String search = '/search/';
+  static String search_tmdb_movie = search + 'tmdb_movie/';
+  static String search_tmdb_tv = search + 'tmdb_tv/';
   static String tv = '/tv';
   static String top_tv = tv + '/top_tv';
   static String tv_recommendations = tv + '/recommendations';

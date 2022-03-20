@@ -1,12 +1,15 @@
 import 'package:cross_media_recommendation/elements/MissingTitleReportTile.dart';
+import 'package:cross_media_recommendation/elements/SuggestedTitleTile.dart';
 import 'package:cross_media_recommendation/models/reports_models/broken_link_model.dart';
 import 'package:cross_media_recommendation/models/reports_models/inaccurate_data_model.dart';
 import 'package:cross_media_recommendation/models/reports_models/inaccurate_recom_model.dart';
 import 'package:cross_media_recommendation/models/reports_models/missing_title_model.dart';
+import 'package:cross_media_recommendation/models/suggested_title_model.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
 import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
 import 'package:cross_media_recommendation/repositories/reports_repo.dart' as rr;
+import 'package:cross_media_recommendation/repositories/search_repo.dart' as sr;
 
 
 class ReportsPageController extends ControllerMVC{
@@ -14,6 +17,9 @@ class ReportsPageController extends ControllerMVC{
   List<InaccurateDataModel> dataList = [];
   List<BrokenLinkModel> brokenLinkList = [];
   List<MissingTitleModel> missingTitlesList = [];
+  List<SuggestedTitleModel> suggestedTitlesList = [];
+  bool showSuggestedPreview = false;
+  SuggestedTitleModel? previewModel;
 
   int currentReports = 0;
   Future<void> logoutUser() async{
@@ -79,5 +85,25 @@ class ReportsPageController extends ControllerMVC{
     data.forEach((element){
       brokenLinkList.add(BrokenLinkModel.fromJson(element));
     });
+  }
+
+  Future<void> fetchSuggestionsForMissing({search_string, type=0}) async{
+    suggestedTitlesList = [];
+    dynamic data;
+    if(type == 0){
+      data = await sr.searchTbdbMovie(search_string);
+    }else{
+      data = await sr.searchTbdbTv(search_string);
+    }
+    data['data']['result'].forEach((element){
+      suggestedTitlesList.add(SuggestedTitleModel.fromJson(element));
+    });
+    setState(() { });
+  }
+
+  void switchSuggestedTitlePreview(object){
+    previewModel = object;
+    showSuggestedPreview = true;
+    setState(() { });
   }
 }

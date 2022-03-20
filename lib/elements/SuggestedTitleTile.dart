@@ -1,27 +1,21 @@
-import 'package:cross_media_recommendation/controllers/report_tile_controller.dart';
-import 'package:cross_media_recommendation/models/reports_models/missing_title_model.dart';
+import 'package:cross_media_recommendation/models/suggested_title_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../helper/constants.dart';
 import 'CustomSpacer.dart';
 
-class MissingTitleReportTile extends StatefulWidget{
-  MissingTitleModel object;
+class SuggestedTitleTile extends StatefulWidget{
+  SuggestedTitleModel? object;
+  Function showPreviewCallback;
 
-  MissingTitleReportTile({required this.object});
-
+  SuggestedTitleTile({required this.object, required this.showPreviewCallback});
   @override
   PageState createState() => PageState();
 }
 
-class PageState extends StateMVC<MissingTitleReportTile>{
-  ReportTileController? con;
+class PageState extends State<SuggestedTitleTile>{
 
-  PageState() : super(ReportTileController()){
-    con = controller as ReportTileController;
-  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,13 +36,13 @@ class PageState extends StateMVC<MissingTitleReportTile>{
                 children: [
                   InkWell(
                     onTap:(){
-                      con!.gotToMissingTitle(object: widget.object);
+                      widget.showPreviewCallback(widget.object);
                     },
                     child: Container(
                       width: 100,
                       // decoration: testDec,
                       child: Text(
-                        "#" + widget.object.id!,
+                        "#" + widget.object!.id!,
                         style: TextStyle(
                             color: Colors.blue,
                             fontSize: 14,
@@ -62,7 +56,7 @@ class PageState extends StateMVC<MissingTitleReportTile>{
                     child: Container(
                       // decoration: testDec,
                       child: Text(
-                        widget.object.title!,
+                        widget.object!.title!,
                         style: TextStyle(
                             color: primaryTextColor.withOpacity(0.7),
                             fontSize: 14,
@@ -71,31 +65,6 @@ class PageState extends StateMVC<MissingTitleReportTile>{
                       ),
                     ),
                   ),
-                  CustomSpacer(width: 50,),
-                  Container(
-                    // decoration: testDec,
-                    child: Text(
-                      widget.object.title_type == 0 ? 'Movie' : 'Tv',
-                      style: TextStyle(
-                          color: primaryTextColor.withOpacity(0.7),
-                          fontSize: 14,
-                          letterSpacing: 1.01
-                      ),
-                    ),
-                  ),
-                  CustomSpacer(width: 50,),
-                  Container(
-                    // decoration: testDec,
-                    child: Text(
-                      "User #" + widget.object.user!,
-                      style: TextStyle(
-                          color: primaryTextColor.withOpacity(0.7),
-                          fontSize: 14,
-                          letterSpacing: 1.01
-                      ),
-                    ),
-                  ),
-                  CustomSpacer(width: 50,),
 
                 ],
               ),
@@ -107,7 +76,7 @@ class PageState extends StateMVC<MissingTitleReportTile>{
                   Container(
                     // decoration: testDec,
                     child: Text(
-                      widget.object.created_date!.substring(0, 10),
+                      widget.object!.release_date!,
                       style: TextStyle(
                           color: primaryTextColor.withOpacity(0.7),
                           fontSize: 14,
