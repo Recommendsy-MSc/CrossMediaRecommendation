@@ -1,3 +1,4 @@
+import 'package:cross_media_recommendation/models/BaseModel.dart';
 import 'package:cross_media_recommendation/models/genre_model.dart';
 import 'package:cross_media_recommendation/models/production_company_model.dart';
 
@@ -5,7 +6,7 @@ import '../helper/custom_trace.dart';
 import 'cast_members_model.dart';
 import 'keyword_model.dart';
 
-class TitleModel{
+class TitleModel implements BaseModel{
   String? id;
   String? title;
   String? overview;
@@ -77,26 +78,19 @@ class TitleModel{
     }
   }
 
-  Map toMap(){
+  @override
+  Map<String, dynamic> toMap(){
     // post data for patching (update)
 
     var m = <String, dynamic>{};
-
     m['title'] = title;
     m['overview'] = overview;
-
     m['genres'] = genres!.map((e){
       return e.id;
     }).toList();
-    //
-    // // m['production_companies'] = production_companies!.map((e){
-    // //   return e.id;
-    // // }).toList();
-    //
     m['cast_members'] = cast_members!.map((e){
       return e.id;
     }).toList();
-
     m['tagline'] = tagline ?? "";
     m['poster_path'] = poster_path;
     m['backdrop_path'] = backdrop_path;

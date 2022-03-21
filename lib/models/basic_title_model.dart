@@ -1,4 +1,6 @@
-class BasicTitleModel{
+import 'BaseModel.dart';
+
+class BasicTitleModel implements BaseModel{
   String? id;
   String? title;
   String? poster_path;
@@ -20,8 +22,9 @@ class BasicTitleModel{
     }
   }
 
-  Map toMap(){
-    var m = Map<String, dynamic>();
+  @override
+  Map<String, dynamic> toMap(){
+    var m = <String, dynamic>{};
     m['id'] = int.parse(id!);
     m['title'] = title!;
     m['poster_path'] = poster_path!;

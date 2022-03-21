@@ -1,4 +1,6 @@
-class ProductionCompanyModel{
+import 'BaseModel.dart';
+
+class ProductionCompanyModel implements BaseModel{
   String? id;
   String? name;
 
@@ -17,7 +19,8 @@ class ProductionCompanyModel{
     }
   }
 
-  Map toMap(){
+  @override
+  Map<String, dynamic> toMap(){
     var m = <String, dynamic>{};
 
     m['id'] = int.parse(id!);

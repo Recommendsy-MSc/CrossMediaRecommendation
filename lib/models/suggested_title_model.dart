@@ -1,8 +1,9 @@
 import 'dart:convert';
 
+import 'package:cross_media_recommendation/models/BaseModel.dart';
 import 'package:cross_media_recommendation/models/genre_model.dart';
 
-class SuggestedTitleModel{
+class SuggestedTitleModel implements BaseModel{
   String? id;
   String? title;
   String? backdrop_path;
@@ -30,5 +31,11 @@ class SuggestedTitleModel{
     catch(e){
       print(e);
     }
+  }
+
+  @override
+  Map<String, dynamic> toMap(){
+    var m = <String, dynamic>{};
+    return m;
   }
 }

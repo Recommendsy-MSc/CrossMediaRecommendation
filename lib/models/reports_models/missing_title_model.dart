@@ -1,4 +1,6 @@
-class MissingTitleModel{
+import 'package:cross_media_recommendation/models/BaseModel.dart';
+
+class MissingTitleModel implements BaseModel{
   String? id;
   String? title;
   String? created_date;
@@ -17,5 +19,11 @@ class MissingTitleModel{
     catch(e){
       print(e);
     }
+  }
+
+  @override
+  Map<String, dynamic> toMap(){
+    var m = <String, dynamic>{};
+    return m;
   }
 }

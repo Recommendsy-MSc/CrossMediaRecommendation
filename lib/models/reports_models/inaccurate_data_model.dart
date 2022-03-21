@@ -1,4 +1,6 @@
-class InaccurateDataModel{
+import 'package:cross_media_recommendation/models/BaseModel.dart';
+
+class InaccurateDataModel implements BaseModel{
   String? id;
   String? title;
   String? createdDate;
@@ -22,5 +24,11 @@ class InaccurateDataModel{
     }catch(e){
       print("Error:" + e.toString());
     }
+  }
+
+  @override
+  Map<String, dynamic> toMap(){
+    var m = <String, dynamic>{};
+    return m;
   }
 }

@@ -1,4 +1,6 @@
-class UserModel{
+import 'BaseModel.dart';
+
+class UserModel implements BaseModel{
   String? id;
   String? name;
   String? email;
@@ -21,5 +23,11 @@ class UserModel{
     }catch(e){
       print(e);
     }
+  }
+
+  @override
+  Map<String, dynamic> toMap(){
+    var m = <String, dynamic>{};
+    return m;
   }
 }

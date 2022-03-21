@@ -1,4 +1,6 @@
-class GenreModel{
+import 'BaseModel.dart';
+
+class GenreModel implements BaseModel{
   String? id;
   String? name;
 
@@ -11,7 +13,8 @@ class GenreModel{
     }
   }
 
-  Map toMap(){
+  @override
+  Map<String, dynamic> toMap(){
     var m = <String, dynamic>{};
 
     m['id'] = int.parse(id!);

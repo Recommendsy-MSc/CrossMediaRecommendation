@@ -1,4 +1,6 @@
-class KeywordModel{
+import 'package:cross_media_recommendation/models/BaseModel.dart';
+
+class KeywordModel implements BaseModel{
   String? id;
   String? name;
 
@@ -11,7 +13,8 @@ class KeywordModel{
     }
   }
 
-  Map toMap(){
+  @override
+  Map<String, dynamic> toMap(){
     var m = <String, dynamic>{};
 
     m['id'] = int.parse(id!);

@@ -1,4 +1,6 @@
-class CastModel{
+import 'BaseModel.dart';
+
+class CastModel implements BaseModel{
   String? id;
   String? name;
   String? profile_path;
@@ -13,5 +15,11 @@ class CastModel{
     }catch(e){
       print("Cast: " + e.toString());
     }
+  }
+
+  @override
+  Map<String, dynamic> toMap(){
+    var m = <String, dynamic>{};
+    return m;
   }
 }
