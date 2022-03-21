@@ -9,9 +9,10 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import '../models/title_model.dart';
 
 class ReportDialog extends StatefulWidget{
+  String? name;
   TitleModel? titleModel;
 
-  ReportDialog({Key? key, required this.titleModel}) : super(key: key);
+  ReportDialog({Key? key, required this.titleModel, this.name}) : super(key: key);
   @override
   PageState createState() => PageState();
 }
@@ -34,7 +35,7 @@ class PageState extends StateMVC<ReportDialog>{
     return AlertDialog(
       backgroundColor: primaryColor,
       title: Text(
-          "Report",
+          widget.name!,
         style: TextStyle(
           fontSize: 18,
           color: accentColor

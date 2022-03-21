@@ -3,6 +3,7 @@ import 'package:cross_media_recommendation/controllers/title_detail_controller.d
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/GenreDisplay.dart';
 import 'package:cross_media_recommendation/elements/ReportDialog.dart';
+import 'package:cross_media_recommendation/elements/ReportDialogDef.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/models/title_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -171,12 +172,15 @@ class PageState extends StateMVC<TitleDetails>{
                 InkWell(
                   onTap: (){
                     print("report dropdown");
-                    showDialog(
-                        context: context,
-                        builder: (context){
-                          return ReportDialog(titleModel: widget.titleModel);
-                        },
-                    );
+                    // showDialog(
+                    //     context: context,
+                    //     builder: (context){
+                    //       return ReportDialog(titleModel: widget.titleModel);
+                    //     },
+                    // );
+                    ReportDialogDef(data: widget.titleModel, name: "Report Title").show(context).then((value){
+
+                    });
                   },
                   child: Icon(
                     Icons.remove_circle_outline,

@@ -2,6 +2,7 @@ import 'package:cross_media_recommendation/controllers/edit_title_controller.dar
 import 'package:cross_media_recommendation/elements/ButtonComponent.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/EditStringDialog.dart';
+import 'package:cross_media_recommendation/elements/EditStringDialogDef.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -43,17 +44,27 @@ class PageState extends State<TitleEditor>{
             ),
             CustomSpacer(),
             InkWell(
-              onTap: (){
-                showDialog(
-                  context: context,
-                  builder: (context){
-                    return EditStringDialog(name: "Title", value: widget.con!.titleModel!.title!,);
-                  }
-                ).then((value){
+              onTap: () async{
+                // showDialog(
+                //   context: context,
+                //   builder: (context){
+                //     return EditStringDialog(name: "Title", value: widget.con!.titleModel!.title!,);
+                //   }
+                // ).then((value){
+                //   if(value['submit']){
+                //     widget.con!.titleModel!.title = value['data'];
+                //     widget.con!.refresh();
+                //   }
+                // });
+
+                EditStringDialogDef(name: 'Title', value: widget.con!.titleModel!.title!).show(context).then((value){
                   if(value['submit']){
+                    print("submitted");
+                    print(value['data']);
                     widget.con!.titleModel!.title = value['data'];
                     widget.con!.refresh();
                   }
+                  // Navigator.of(context).pop();
                 });
               },
               child: Text(
