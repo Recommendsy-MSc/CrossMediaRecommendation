@@ -44,8 +44,9 @@ class PageState extends StateMVC<ItemTile>{
           children: [
             InkWell(
               onTap: (){
-                gr.currentTitle = con!.basicTitleModel;
-                gr.bodyMainController!.switchPage(2, data: con!.basicTitleModel);
+                // gr.currentTitle = con!.basicTitleModel;
+                // gr.bodyMainController!.switchPage(2, data: con!.basicTitleModel);
+                Navigator.of(context).pushNamed('/TitleDescription', arguments: con!.basicTitleModel);
               },
               child: ClipRRect(
                 borderRadius: borderRadius12,

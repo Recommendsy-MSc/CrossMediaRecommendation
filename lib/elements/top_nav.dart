@@ -78,7 +78,8 @@ class PageState extends State<TopNav>{
                   },
                   child: ButtonComponent(title: 'Sign In', onClick: (){
                     ur.isGuest = false;
-                    gr.homePageController!.setState(() { });
+                    // gr.homePageController!.setState(() { });
+                    Navigator.of(context).pushNamed('/LoginPage');
                   },)
                 ),
 

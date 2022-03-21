@@ -1,6 +1,7 @@
 import 'package:cross_media_recommendation/controllers/sidepane_controller.dart';
 import 'package:cross_media_recommendation/elements/ButtonComponent.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
+import 'package:cross_media_recommendation/elements/ReportMissingTitleDialogDef.dart';
 import 'package:cross_media_recommendation/elements/ReportMissionTitle.dart';
 import 'package:cross_media_recommendation/elements/UserBrief.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
@@ -34,12 +35,13 @@ class PageState extends StateMVC<SidePane>{
             children: [
               InkWell(
                 onTap: (){
-                  showDialog(
-                    context: context,
-                    builder: (context){
-                      return ReportMissingTitle();
-                    }
-                  );
+                  // showDialog(
+                  //   context: context,
+                  //   builder: (context){
+                  //     return ReportMissingTitle();
+                  //   }
+                  // );
+                  ReportMissingTitleDialogDef().show(context);
                 },
                 child: Text(
                   "Report a missing Title",

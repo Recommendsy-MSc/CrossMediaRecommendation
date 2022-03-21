@@ -8,7 +8,8 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
 
 class BodyMain extends StatefulWidget{
-  BodyMain({Key? key}) : super(key: key);
+  int index;
+  BodyMain({Key? key, this.index = 0}) : super(key: key);
   @override
   PageState createState() => PageState();
 }
@@ -24,12 +25,10 @@ class PageState extends StateMVC<BodyMain>{
   void initState(){
     super.initState();
     gr.bodyMainController = con;
-    print("SIW PAGE");
-    con!.switchPage(0);
+    con!.switchPage(widget.index);
   }
   @override
   Widget build(BuildContext context) {
-    print("Building BODY MAIN");
     return ConstrainedBox(
       constraints: BoxConstraints(
         minHeight: MediaQuery.of(context).size.height,

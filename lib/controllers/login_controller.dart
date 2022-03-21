@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cross_media_recommendation/helper/firebase.dart';
 import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
@@ -7,7 +8,8 @@ class LoginController extends ControllerMVC{
 
   void guestLogin(){
     ur.isGuest = true;
-    gr.homePageController!.setState(() { });
+    // gr.homePageController!.setState(() { });
+    Navigator.of(state!.context).pushNamed('/HomePage');
   }
 
   Future<void> triggerGoogleLogin() async{
@@ -24,13 +26,13 @@ class LoginController extends ControllerMVC{
           'image_url': MyFirebase.googleUser!.photoURL,
           'birth_year': '1999',
           'username': MyFirebase.googleUser!.email!.split('@').first,
-          // 'csrfmiddlewaretoken': "{{csrf_token}}"
         };
 
         var created = await ur.createUser(data);
         if(created){
           print("Created");
-          gr.homePageController!.setState(() { });
+          // gr.homePageController!.setState(() { });
+          Navigator.of(state!.context).pushNamedAndRemoveUntil('/HomePage', (route) => false);
         }else{
           print("NOt Created");
         }
@@ -38,7 +40,9 @@ class LoginController extends ControllerMVC{
       }else{
         print("exist");
         print(ur.currentUser!.image_url);
-        gr.homePageController!.setState(() { });
+        // gr.homePageController!.setState(() { });
+        Navigator.of(state!.context).pushNamedAndRemoveUntil('/HomePage', (route) => false);
+
       }
     }else{
       print("Bro please no");

@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget{
       onGenerateRoute: RouteGenerator.generateRoute,
       initialRoute: '/HomePage',
       theme: ThemeData(
+        scaffoldBackgroundColor: primaryColor,
         textTheme: TextTheme(
           headline1: TextStyle(color: accentColor, fontSize: 26),
           headline2: TextStyle(color: primaryTextColor, fontSize: 26),
