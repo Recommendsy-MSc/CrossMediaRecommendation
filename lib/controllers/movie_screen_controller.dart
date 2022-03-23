@@ -58,8 +58,8 @@ class MovieScreenController extends ControllerMVC{
         tabDataLoaded = true;
       });
     }
-    print(data['count']);
-    print("Added " + genre);
+    // printdata['count']);
+    // print"Added " + genre);
   }
 
 

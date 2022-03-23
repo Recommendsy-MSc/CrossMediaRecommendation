@@ -9,7 +9,7 @@ class SearchBarController extends ControllerMVC{
 
   void searchStringCallback() async{
 
-    search_results_data = (await fetchSearchResults(searchTextController!.text))['data'];
+    search_results_data = (await fetchSearchResults(searchTextController.text))['data'];
     Navigator.of(state!.context).pushNamed('/SearchScreen', arguments: this);
     // switchPage(3);
   }

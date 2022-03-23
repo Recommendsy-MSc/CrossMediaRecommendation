@@ -5,12 +5,12 @@ class HomePageController extends ControllerMVC{
   bool genreLoaded = false;
 
   Future<void> initialDataFetch() async{
-    print("valling data fetch");
+    // print"valling data fetch");
     await gr.fetchMovieTvGenres();
 
     setState(() {
       genreLoaded = true;
-      print("SETTING HOME PAGE");
+      // print"SETTING HOME PAGE");
     });
   }
 }

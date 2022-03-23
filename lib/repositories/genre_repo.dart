@@ -11,16 +11,16 @@ Future<void> fetchMovieTvGenres() async{
   for(var data in movie_genre_data['data']){
     movie_genres[data['id']] = data['name'];
   }
-  // print(movie_genre_data);
+  // // printmovie_genre_data);
 
   var tv_genre_data = await RestService.request(endpoint: API.tv_genres);
   for(var data in tv_genre_data['data']){
     tv_genres[data['id']] = data['name'];
   }
-  // print(tv_genre_data);
-  print("set genres");
+  // // printtv_genre_data);
+  // print"set genres");
   for(var i in movie_genres.keys){
-    print(i);
+    // printi);
   }
   genreLoaded = true;
 }

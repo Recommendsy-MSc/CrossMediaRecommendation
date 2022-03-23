@@ -47,8 +47,8 @@ class PageState extends State<TitleEditor>{
               onTap: () async{
                 EditStringDialogDef(name: 'Title', value: widget.con!.titleModel!.title!).show(context).then((value){
                   if(value['submit']){
-                    print("submitted");
-                    print(value['data']);
+                    // print"submitted");
+                    // printvalue['data']);
                     widget.con!.titleModel!.title = value['data'];
                     widget.con!.refresh();
                   }

@@ -70,9 +70,9 @@ Future<dynamic> getBrokenLinkReports({active="True"}) async{
       'active': active ? "True" : "False"
     }
   );
-  print(resp['success']);
+  // printresp['success']);
   if(resp['success'] as bool) {
-    print("in");
+    // print"in");
     return resp['data'];
   }
   return [];
@@ -85,9 +85,9 @@ Future<dynamic> getInaccurateRecomReports({active="True"}) async{
       'active': active ? "True" : "False"
     }
   );
-  print(resp['success']);
+  // printresp['success']);
   if(resp['success'] as bool) {
-    print("true");
+    // print"true");
     return resp['data'];
   }
   return [];

@@ -33,7 +33,7 @@ class ItemTileController extends ControllerMVC{
     if(resp['success']){
       basicTitleModel!.user_rating = 1;
       setState(() {
-        print('setting tile sttae');
+        // print'setting tile sttae');
       });
     }
 
@@ -50,7 +50,7 @@ class ItemTileController extends ControllerMVC{
     if(resp['success']){
       basicTitleModel!.user_rating = 5;
       setState(() {
-        print('setting tile sttae');
+        // print'setting tile sttae');
       });
     }
   }

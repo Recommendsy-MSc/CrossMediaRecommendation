@@ -34,8 +34,8 @@ class PageState extends StateMVC<ItemTile>{
 
   @override
   Widget build(BuildContext context) {
-    // print("Rebuild tile");
-    print(con!.basicTitleModel!.user_rating!);
+    // // print"Rebuild tile");
+    // printcon!.basicTitleModel!.user_rating!);
     return Stack(
       children: [
         Column(
@@ -87,7 +87,7 @@ class PageState extends StateMVC<ItemTile>{
                       message: "Report inaccurate Recommendation",
                       child: InkWell(
                           onTap: (){
-                            print("inaccurate recomm");
+                            // print"inaccurate recomm");
                             con!.reportInaccurateRecommendation();
                           },
                             child: Icon(Icons.remove_circle_outline, color: primaryTextColor.withOpacity(0.7),)

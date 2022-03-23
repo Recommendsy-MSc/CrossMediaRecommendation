@@ -9,7 +9,7 @@ class GenreModel implements BaseModel{
       id = jsonMap['id'] != null ? jsonMap['id'].toString() : "-1";
       name = jsonMap['name'] != null ? jsonMap['name'].toString() : "";
     }catch(e){
-      print("Genre:" + e.toString());
+      // print"Genre:" + e.toString());
     }
   }
 

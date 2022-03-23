@@ -21,7 +21,7 @@ class PageState extends StateMVC<AdminBodyMain>{
   @override
   void initState(){
     super.initState();
-    print("Reinit BODY MAin");
+    // print"Reinit BODY MAin");
     gr.adminBodyMainController = con;
     con!.switchPage(0, data: 0);
   }

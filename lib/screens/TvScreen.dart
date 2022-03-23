@@ -1,6 +1,7 @@
 import 'package:cross_media_recommendation/controllers/body_main_controller.dart';
 import 'package:cross_media_recommendation/controllers/movie_screen_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
+import 'package:cross_media_recommendation/elements/Loader.dart';
 import 'package:cross_media_recommendation/elements/MyList.dart';
 import 'package:cross_media_recommendation/elements/MyList2.dart';
 import 'package:cross_media_recommendation/elements/TodaysPick.dart';
@@ -52,16 +53,21 @@ class PageState extends StateMVC<TvScreen>{
         physics: AlwaysScrollableScrollPhysics(),
         itemCount: con!.defaultListData.length,
         itemBuilder: (context, index){
-          return Column(
-            children: [
-              MyList(data: con!.defaultListData[index],),
-              CustomSpacer(height: 30,),
-            ],
+          print(con!.defaultListData[index]['data']['list_header']);
+          print("VISIBILI: " + (!(con!.defaultListData[index]['data']['result'] == 0)).toString());
+          return Visibility(
+            visible: !(con!.defaultListData[index]['data']['result'] == 0),
+            child: Column(
+              children: [
+                MyList(data: con!.defaultListData[index],),
+                CustomSpacer(height: 30,),
+              ],
+            ),
           );
         },
       ) : Container(
           child: Text("NO Available")
-      ) : Center(child: CircularProgressIndicator()),
+      ) : Center(child: Loading(color: primaryTextColor,)),
       // child: con!.defaultListLoaded ? Column(
       //   children: con!.defaultListData.map((element) {
       //     return Column(

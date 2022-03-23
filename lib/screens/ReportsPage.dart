@@ -31,7 +31,9 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
   void initState(){
     super.initState();
     con!.currentReports = widget.currentReports;
-    con!.reload();
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      con!.reload();
+    });
   }
 
   @override

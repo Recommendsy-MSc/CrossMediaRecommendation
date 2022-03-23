@@ -29,7 +29,7 @@ class SuggestedTitleModel implements BaseModel{
       }
     }
     catch(e){
-      print(e);
+      // printe);
     }
   }
 

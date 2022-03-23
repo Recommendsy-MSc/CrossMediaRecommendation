@@ -1,5 +1,6 @@
 import 'package:cross_media_recommendation/elements/MissingTitleReportTile.dart';
 import 'package:cross_media_recommendation/elements/SuggestedTitleTile.dart';
+import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/models/reports_models/broken_link_model.dart';
 import 'package:cross_media_recommendation/models/reports_models/inaccurate_data_model.dart';
 import 'package:cross_media_recommendation/models/reports_models/inaccurate_recom_model.dart';
@@ -13,6 +14,8 @@ import 'package:cross_media_recommendation/repositories/reports_repo.dart' as rr
 import 'package:cross_media_recommendation/repositories/search_repo.dart' as sr;
 import 'package:cross_media_recommendation/repositories/movie_repo.dart' as mr;
 import 'package:cross_media_recommendation/repositories/tv_repo.dart' as tr;
+
+import '../elements/Loader.dart';
 
 
 class ReportsPageController extends ControllerMVC{
@@ -38,9 +41,15 @@ class ReportsPageController extends ControllerMVC{
   }
 
   void switchReports(index) async{
-    print(currentReports);
+    // // printcurrentReports);
     currentReports = index;
     setState(() { });
+    showDialog(
+        context: state!.context,
+        builder: (context){
+          return Loading(color: primaryTextColor,);
+        }
+    );
     switch(index){
       case 0:
         await fetchInaccurateRecommendationsReports();
@@ -53,9 +62,16 @@ class ReportsPageController extends ControllerMVC{
         await fetchMissingTitleReports();
         break;
     }
+    Navigator.of(state!.context).pop();
+    // showDialog(
+    //     context: state!.context,
+    //     builder: (context){
+    //       return Loading(color: primaryTextColor,);
+    //     }
+    // );
 
     setState(() {
-      print("setting state");
+      // print"setting state");
     });
   }
 

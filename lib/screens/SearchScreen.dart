@@ -39,7 +39,7 @@ class PageState extends State<SearchScreen>{
                 children: [
                   Container(
                     child: Text(
-                      "Search: " + widget.searchBarController.searchTextController!.text,
+                      "Search: " + widget.searchBarController.searchTextController.text,
                       style: TextStyle(
                         fontSize: 16,
                         color: primaryTextColor.withOpacity(0.7)
@@ -49,7 +49,7 @@ class PageState extends State<SearchScreen>{
                   CustomSpacer(height: 20,),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: widget.searchBarController!.search_results_data!.keys.length,
+                      itemCount: widget.searchBarController.search_results_data!.keys.length,
                       itemBuilder: (context, index){
                         return Column(
                           children: [

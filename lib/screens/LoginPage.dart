@@ -73,6 +73,11 @@ class PageState extends StateMVC<LoginPage>{
                         },
                       ),
                       TextFormField(
+                        onFieldSubmitted: (value){
+                          if(con!.formKey.currentState!.validate()){
+                            con!.doCredentialLogin();
+                          }
+                        },
                         controller: con!.passwordController,
                         decoration: InputDecoration(
                           hintText: "********",

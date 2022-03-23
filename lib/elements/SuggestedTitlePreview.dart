@@ -57,7 +57,7 @@ class PageState extends State<SuggestedTitlePreview>{
                         CustomSpacer(height: 20,),
                         Flexible(
                           child: Wrap(
-                              children: widget!.object!.genres!.map((e){
+                              children: widget.object!.genres!.map((e){
                                 return Container(
                                     margin: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
                                     child: GenreDisplay(genre: e.name!)

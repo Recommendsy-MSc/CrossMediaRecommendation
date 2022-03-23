@@ -22,7 +22,7 @@ class InaccurateDataModel implements BaseModel{
       active = jsonMap['active'] ?? false;
 
     }catch(e){
-      print("Error:" + e.toString());
+      // print"Error:" + e.toString());
     }
   }
 

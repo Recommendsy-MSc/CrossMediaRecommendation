@@ -21,8 +21,8 @@ class ReportDialogController extends ControllerMVC{
   }
 
   Future<void> reportBrokenLink() async{
-    print(titleModel!.title_type);
-    print(titleModel!.title);
+    // printtitleModel!.title_type);
+    // printtitleModel!.title);
     if(titleModel!.title_type == 0){
       await rr.reportBrokenLinkForMovie(titleModel!.id!);
     }else if(titleModel!.title_type == 1){

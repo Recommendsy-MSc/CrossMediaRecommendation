@@ -14,14 +14,14 @@ class MissingTitleModel implements BaseModel{
       id = jsonMap['id'] != null ? jsonMap['id'].toString() : '';
       title = jsonMap['title'] ?? "";
       created_date = jsonMap['created_date'] != null ? jsonMap['created_date'].toString() : '';
-      print(created_date);
+      // printcreated_date);
       user = jsonMap['user'] != null ? jsonMap['user'].toString() : '';
       title_type = jsonMap['title_type'] ?? '0';
       active = jsonMap['active'] ?? false;
       added = jsonMap['added'] ?? '';
     }
     catch(e){
-      print(e);
+      // printe);
     }
   }
 

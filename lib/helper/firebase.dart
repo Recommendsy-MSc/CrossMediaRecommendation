@@ -19,7 +19,7 @@ class MyFirebase{
         authDomain: "crossmr-fa129.firebaseapp.com",
       )
     );
-    print("firebase initializer");
+    // print"firebase initializer");
   }
 
   static Future<bool> signInWithGoogle() async{
@@ -27,10 +27,10 @@ class MyFirebase{
     try{
       final UserCredential userCred = await auth.signInWithPopup(authProvider);
       googleUser = userCred.user;
-      print(googleUser!.email);
+      // printgoogleUser!.email);
       return true;
     }catch(e){
-      print(e);
+      // printe);
       return false;
     }
     return false;
@@ -47,7 +47,7 @@ class MyFirebase{
       await auth.signOut();
       await googleSignIn.signOut();
     }catch(e){
-      print(e);
+      // printe);
     }
 
   }

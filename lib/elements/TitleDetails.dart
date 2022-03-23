@@ -29,7 +29,7 @@ class PageState extends StateMVC<TitleDetails>{
   @override
   void initState(){
     super.initState();
-    print("Titlw Type: " + widget.titleModel.title_type.toString());
+    // print"Titlw Type: " + widget.titleModel.title_type.toString());
     con!.titleModel = widget.titleModel;
   }
   @override
@@ -171,7 +171,7 @@ class PageState extends StateMVC<TitleDetails>{
                 ),
                 InkWell(
                   onTap: (){
-                    print("report dropdown");
+                    // print"report dropdown");
                     // showDialog(
                     //     context: context,
                     //     builder: (context){

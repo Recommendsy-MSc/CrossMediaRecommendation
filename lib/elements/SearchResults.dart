@@ -21,8 +21,8 @@ class PageState extends StateMVC<SearchResults>{
   void initState(){
     super.initState();
     // html.window.history.pushState(null, 'Search', '#/home/search');
-    print("SRD");
-    print(widget.search_results_data);
+    // print"SRD");
+    // printwidget.search_results_data);
   }
   @override
   Widget build(BuildContext context) {

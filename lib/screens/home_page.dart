@@ -25,7 +25,7 @@ class PageState extends StateMVC<HomePage>{
   @override
   void initState(){
     super.initState();
-    // print("Home init");
+    // // print"Home init");
     con!.initialDataFetch();
   }
 

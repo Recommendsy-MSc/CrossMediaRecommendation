@@ -17,7 +17,7 @@ class BasicTitleModel implements BaseModel{
       title_type = jsonMap['title_type'] ?? '0';
       user_rating = jsonMap['user_rating'] ?? 0;
     }catch(e){
-      print(e.toString());
+      // printe.toString());
       // CustomTrace(StackTrace.current, message: e.toString());
     }
   }

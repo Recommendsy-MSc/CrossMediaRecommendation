@@ -25,7 +25,7 @@ class InaccurateRecomModel implements BaseModel{
       name = jsonMap['name'] ?? '';
       active = jsonMap['active'] ?? false;
     }catch(e){
-      print("Error:" + e.toString());
+      // print"Error:" + e.toString());
     }
   }
 

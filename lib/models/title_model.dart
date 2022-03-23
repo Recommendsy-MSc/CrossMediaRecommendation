@@ -73,7 +73,7 @@ class TitleModel implements BaseModel{
         type = jsonMap['type'] ?? '';
       }
     }catch(e){
-      print(e.toString());
+      // printe.toString());
       CustomTrace(StackTrace.current, message: e.toString());
     }
   }

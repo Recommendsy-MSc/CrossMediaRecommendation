@@ -21,7 +21,7 @@ class UserModel implements BaseModel{
       username = jsonMap['username'] ?? '';
       is_superuser = jsonMap['is_superuser'] ?? false;
     }catch(e){
-      print(e);
+      // printe);
     }
   }
 

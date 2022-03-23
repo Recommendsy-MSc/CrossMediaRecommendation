@@ -19,7 +19,7 @@ class BrokenLinkModel implements BaseModel{
       count = jsonMap['count'] ?? '-1';
       active = jsonMap['active'] ?? false;
     }catch(e){
-      print("Error:" + e.toString());
+      // print"Error:" + e.toString());
     }
   }
 

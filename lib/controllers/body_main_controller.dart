@@ -15,7 +15,7 @@ class BodyMainController extends ControllerMVC{
   bool showSidePane = false;
 
   void switchPage(int index, {dynamic? data}){
-    print("Switching: ");
+    // print"Switching: ");
     switch(index){
       case 0:
         bodyWidget = MovieScreen();

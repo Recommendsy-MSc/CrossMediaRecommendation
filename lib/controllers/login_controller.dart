@@ -18,10 +18,10 @@ class LoginController extends ControllerMVC{
   Future<void> triggerGoogleLogin() async{
     bool success = await MyFirebase.signInWithGoogle();
     if(success){
-      print(MyFirebase.googleUser.toString());
+      // printMyFirebase.googleUser.toString());
       bool user_exists = await ur.doesUserExists(MyFirebase.googleUser!.email);
       if(!user_exists){
-        print("doesnt exist");
+        // print"doesnt exist");
         var data = {
           'email': MyFirebase.googleUser!.email,
           'name': MyFirebase.googleUser!.displayName,
@@ -33,16 +33,16 @@ class LoginController extends ControllerMVC{
 
         var created = await ur.createUser(data);
         if(created){
-          print("Created");
+          // print"Created");
           // gr.homePageController!.setState(() { });
           Navigator.of(state!.context).pushNamedAndRemoveUntil('/HomePage', (route) => false);
         }else{
-          print("NOt Created");
+          // print"NOt Created");
         }
 
       }else{
-        print("exist");
-        print(ur.currentUser!.image_url);
+        // print"exist");
+        // printur.currentUser!.image_url);
         // gr.homePageController!.setState(() { });
         if(ur.currentUser!.is_superuser!){
           Navigator.of(state!.context).pushNamedAndRemoveUntil('/ReportPage', (route) => false);
@@ -53,7 +53,7 @@ class LoginController extends ControllerMVC{
 
       }
     }else{
-      print("Bro please no");
+      // print"Bro please no");
     }
   }
 

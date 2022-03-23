@@ -19,13 +19,13 @@ Future<bool> doesUserExists(email) async{
   );
 
   if(resp['success'] as bool){
-    print("user exists");
+    // // print"user exists");
     currentUser = UserModel.fromJson(resp['data']['user'], token: resp['data']['token']);
     loggedIn = true;
     isAdmin = currentUser!.is_superuser!;
     googleLogin = true;
-    print(currentUser!.email);
-    print(currentUser!.token);
+    // // printcurrentUser!.email);
+    // // printcurrentUser!.token);
 
     return true;
   }
@@ -34,7 +34,7 @@ Future<bool> doesUserExists(email) async{
 }
 
 Future<bool> createUser(data) async{
-  print(data.toString());
+  // // printdata.toString());
 
   var resp = await RestService.request(
     endpoint: API.users + '/',
@@ -48,8 +48,8 @@ Future<bool> createUser(data) async{
     googleLogin = true;
     isGuest = false;
     isAdmin = currentUser!.is_superuser!;
-    print(currentUser!.email);
-    print(currentUser!.token);
+    // printcurrentUser!.email);
+    // printcurrentUser!.token);
     return true;
   }
   return false;

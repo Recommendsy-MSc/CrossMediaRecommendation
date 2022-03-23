@@ -53,7 +53,8 @@ class PageState extends StateMVC<MyList>{
             ),
           ),
           CustomSpacer(height: 20,),
-            ItemList(scrollController: con!.scrollController, listData: widget.data['data']['result'], showReportButton: widget.showReportButton,)
+          ItemList(scrollController: con!.scrollController, listData: widget.data['data']['result'], showReportButton: widget.showReportButton,)
+
         ],
       ),
     );

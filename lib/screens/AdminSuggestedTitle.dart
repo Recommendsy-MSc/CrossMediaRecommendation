@@ -112,7 +112,17 @@ class PageState extends StateMVC<AdminSuggestedTitles>{
                           ],
                         ),
                         CustomSpacer(height: 30,),
-                        con!.showSuggestedPreview ? SuggestedTitlePreview(object: con!.previewModel) : Container()
+                        con!.showSuggestedPreview ? SuggestedTitlePreview(object: con!.previewModel)
+                            : Container(
+                          child: Text(
+                            "Click on Title to Preview",
+                            style: TextStyle(
+                              color: primaryTextColor.withOpacity(0.5),
+                              fontSize: 14,
+                              letterSpacing: 1.005
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   )

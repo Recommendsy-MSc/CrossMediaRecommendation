@@ -13,7 +13,7 @@ class CastModel implements BaseModel{
       profile_path = jsonMap['profile_path'];
       popularity = jsonMap['popularity'] != null ? jsonMap['popularity'].toString() : '';
     }catch(e){
-      print("Cast: " + e.toString());
+      // print"Cast: " + e.toString());
     }
   }
 
