@@ -9,8 +9,9 @@ import 'CustomSpacer.dart';
 
 class MissingTitleReportTile extends StatefulWidget{
   MissingTitleModel object;
+  Function? reloadCallback;
 
-  MissingTitleReportTile({required this.object});
+  MissingTitleReportTile({required this.object, this.reloadCallback});
 
   @override
   PageState createState() => PageState();
@@ -21,6 +22,12 @@ class PageState extends StateMVC<MissingTitleReportTile>{
 
   PageState() : super(ReportTileController()){
     con = controller as ReportTileController;
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    con!.reloadCallback = widget.reloadCallback;
   }
   @override
   Widget build(BuildContext context) {

@@ -53,7 +53,7 @@ Future<dynamic> getRecommendations({String? id, valid = "True"}) async{
   return data;
 }
 
-Future<dynamic> patchData(id, postData) async{
+Future<bool> patchData(id, postData) async{
   var endpoint = API.movies + '/' + id + '/';
   var data = await RestService.request(
     endpoint: endpoint,
@@ -62,7 +62,7 @@ Future<dynamic> patchData(id, postData) async{
     // auth: ur.loggedIn
   );
 
-  return data;
+  return data['success'];
 }
 
 Future<bool> invalidateMovieMovieRecom({String? movieId, String? movieId2}) async{

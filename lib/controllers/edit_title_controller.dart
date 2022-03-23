@@ -1,3 +1,4 @@
+import 'package:cross_media_recommendation/helper/FToastHelper.dart';
 import 'package:cross_media_recommendation/models/title_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -38,15 +39,23 @@ class EditTitleController extends ControllerMVC{
   }
 
   Future<void> patchNewData() async{
+    var success = false;
     if (titleModel!.title_type == 0){
-      var resp = await mr.patchData(titleModel!.id!, titleModel!.toMap());
+      success = await mr.patchData(titleModel!.id!, titleModel!.toMap());
     }else{
-      var resp = await tv.patchData(titleModel!.id!, titleModel!.toMap());
+      success = await tv.patchData(titleModel!.id!, titleModel!.toMap());
     }
+    if(success) {
+      CustomToast(msg: "Title Updated!", context: state!.context).showToast();
+    }
+
   }
 
   Future<void> markReportAsResolved() async{
-    await rr.markInaccurateDataReportAsCompleted(reportId);
-    Navigator.of(state!.context).pop();
+    var success = await rr.markInaccurateDataReportAsCompleted(reportId);
+    if(success){
+      Navigator.of(state!.context).pop(true);
+    }
+
   }
 }

@@ -39,6 +39,7 @@ class ReportsPageController extends ControllerMVC{
   }
 
   void reload(){
+    print("reloading");
     switchReports(currentReports);
   }
 
@@ -126,6 +127,7 @@ class ReportsPageController extends ControllerMVC{
 
   Future<void> addTitleForMissingReport({report_id}) async{
     bool success = false;
+    gr.showLoader(state!.context);
     if(previewModel!.title_type == 0){
       var data = await mr.createFromTMDB(tmdb_id: previewModel!.id);
       success = data['success'];
@@ -133,10 +135,12 @@ class ReportsPageController extends ControllerMVC{
       var data = await tr.createFromTMDB(tmdb_id: previewModel!.id);
       success = data['success'];
     }
-
     if(success) {
-      var data = await rr.markMissingTitleAsCompleted(report_id, previewModel!.id);
-      Navigator.of(state!.context).pop();
+      bool success = await rr.markMissingTitleAsCompleted(report_id, previewModel!.id);
+      gr.hideLoader(state!.context);
+      Navigator.of(state!.context).pop(success);
+    }else{
+      gr.hideLoader(state!.context);
     }
   }
 }

@@ -39,7 +39,7 @@ class PageState extends StateMVC<EditableTitlePage>{
           children: [
             Container(
                 child: Text(
-                    "Title View",
+                    "Title Preview",
                     style: Theme.of(context).textTheme.headline1
                 )
             ),

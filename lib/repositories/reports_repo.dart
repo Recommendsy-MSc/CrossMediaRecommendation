@@ -106,7 +106,7 @@ Future<dynamic> getInaccurateDataReports({active = "True"}) async{
   return [];
 }
 
-Future<dynamic> markInaccurateDataReportAsCompleted(id) async{
+Future<bool> markInaccurateDataReportAsCompleted(id) async{
   var endpoint = API.inaccurate_data + id + '/';
   var resp = await RestService.request(
     endpoint: endpoint,
@@ -116,7 +116,7 @@ Future<dynamic> markInaccurateDataReportAsCompleted(id) async{
     }
   );
 
-  return resp['data'];
+  return resp['success'];
 }
 
 Future<dynamic> markInaccurateRecomAsCompleted(id) async{
@@ -144,7 +144,7 @@ Future<dynamic> fetchMissingTitles({active=true}) async{
   return data;
 }
 
-Future<dynamic> markMissingTitleAsCompleted(id, title_id) async{
+Future<bool> markMissingTitleAsCompleted(id, title_id) async{
   var endpoint = API.missing_title + id + '/';
   var data = await RestService.request(
     endpoint: endpoint,
@@ -156,5 +156,5 @@ Future<dynamic> markMissingTitleAsCompleted(id, title_id) async{
     auth: true
   );
 
-  return data;
+  return data['success'];
 }

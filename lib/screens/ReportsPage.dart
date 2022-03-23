@@ -170,7 +170,7 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
                     child: con!.currentReports == 0 ?
 
                     con!.recomList.isNotEmpty
-                        
+
                         ? ListView.builder(
                           itemCount: con!.recomList.length,
                           itemBuilder: (context, index){
@@ -189,7 +189,7 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
                         ? ListView.builder(
                           itemCount: con!.dataList.length,
                           itemBuilder: (context, index){
-                            return InaccurateDataReportTile(object: con!.dataList[index],);
+                            return InaccurateDataReportTile(object: con!.dataList[index],reloadCallback: con!.reload,);
                           },
                           )
                         : Text(
@@ -202,7 +202,7 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
                     : con!.missingTitlesList.isNotEmpty ? ListView.builder(
                       itemCount: con!.missingTitlesList.length,
                       itemBuilder: (context, index){
-                        return MissingTitleReportTile(object: con!.missingTitlesList[index],);
+                      return MissingTitleReportTile(object: con!.missingTitlesList[index], reloadCallback: con!.reload,);
                       },
                     )
                         : Text(

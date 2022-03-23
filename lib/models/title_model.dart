@@ -53,7 +53,7 @@ class TitleModel implements BaseModel{
       poster_path = jsonMap['poster_path'] ?? '';
       production_companies = jsonMap['production_companies'] != null ? List.from(jsonMap['production_companies']).map((element) => ProductionCompanyModel.fromJson(element)).toList() : [];
       spoken_languages = jsonMap['spoken_languages'] != null ? List.from(jsonMap['spoken_languages']) : [];
-      tagline = jsonMap['tag_line'] ?? '';
+      tagline = jsonMap['tagline'] ?? '';
       status = jsonMap['status'] ?? '';
 
       user_rating = jsonMap['user_rating'] ?? 0;
@@ -83,8 +83,8 @@ class TitleModel implements BaseModel{
     // post data for patching (update)
 
     var m = <String, dynamic>{};
-    m['title'] = title;
-    m['overview'] = overview;
+    m['title'] = title ?? "";
+    m['overview'] = overview ?? "";
     // m['genres'] = genres!.map((e){
     //   return e.id;
     // }).toList();
@@ -92,8 +92,8 @@ class TitleModel implements BaseModel{
     //   return e.id;
     // }).toList();
     m['tagline'] = tagline ?? "";
-    m['poster_path'] = poster_path;
-    m['backdrop_path'] = backdrop_path;
+    m['poster_path'] = poster_path ?? "";
+    m['backdrop_path'] = backdrop_path ?? "";
 
     return m;
   }

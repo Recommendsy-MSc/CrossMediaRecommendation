@@ -125,7 +125,7 @@ Future<dynamic> reportMissingTvTitle({String? name}) async{
   return data;
 }
 
-Future<dynamic> patchData(id, postData) async{
+Future<bool> patchData(id, postData) async{
   var endpoint = API.tv + '/' + id + '/';
   var data = await RestService.request(
     endpoint: endpoint,
@@ -134,5 +134,5 @@ Future<dynamic> patchData(id, postData) async{
     // auth: ur.loggedIn
   );
 
-  return data;
+  return data['success'];
 }

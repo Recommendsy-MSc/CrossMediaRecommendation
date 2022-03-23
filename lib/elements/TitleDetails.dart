@@ -105,7 +105,6 @@ class PageState extends StateMVC<TitleDetails>{
                           Text(
                             con!.titleModel!.tagline!,
                             style: Theme.of(context).textTheme.headline4,
-
                           ),
                           Text(
                             con!.titleModel!.overview!,
@@ -136,7 +135,7 @@ class PageState extends StateMVC<TitleDetails>{
             ),
           ),
           ur.loggedIn ? CustomSpacer(height: 10,)  : CustomSpacer(height: 0,),
-          ur.loggedIn ? Container(
+          ur.loggedIn && !ur.isAdmin ? Container(
             width: 250,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

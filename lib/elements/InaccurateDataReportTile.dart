@@ -9,7 +9,8 @@ import 'CustomSpacer.dart';
 
 class InaccurateDataReportTile extends StatefulWidget{
   InaccurateDataModel? object;
-  InaccurateDataReportTile({Key? key, required this.object}) : super(key: key);
+  Function? reloadCallback;
+  InaccurateDataReportTile({Key? key, required this.object, this.reloadCallback}) : super(key: key);
   @override
   PageState createState() => PageState();
 }
@@ -19,6 +20,12 @@ class PageState extends StateMVC<InaccurateDataReportTile>{
 
   PageState() : super(ReportTileController()){
     con = controller as ReportTileController;
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    con!.reloadCallback = widget.reloadCallback!;
   }
   @override
   Widget build(BuildContext context) {
@@ -39,8 +46,9 @@ class PageState extends StateMVC<InaccurateDataReportTile>{
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   InkWell(
-                    onTap: (){
-                      con!.gotoTitle(id: widget.object!.title!, type: widget.object!.type!, reportId: widget.object!.id!);
+                    onTap: () async{
+                      await con!.gotoTitle(id: widget.object!.title!, type: widget.object!.type!, reportId: widget.object!.id!);
+
                     },
                     child: Container(
                       width: 100,
