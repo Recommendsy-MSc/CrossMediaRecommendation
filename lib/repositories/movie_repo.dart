@@ -4,6 +4,17 @@ import 'package:cross_media_recommendation/network/APIs.dart';
 import 'package:http/http.dart' as http;
 import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
 
+Future<dynamic> createFromTMDB({tmdb_id}) async{
+  var data = RestService.request(
+      endpoint: API.create_movie_from_tmdb,
+      queryParams: {
+        'tmdb_id': tmdb_id
+      },
+      auth: true
+  );
+
+  return data;
+}
 
 Future<dynamic> getTopMovieForGenre({limit = 25, genre}) async {
   var qp = {

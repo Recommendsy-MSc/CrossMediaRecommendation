@@ -11,7 +11,6 @@ import '../screens/TvScreen.dart';
 
 class BodyMainController extends ControllerMVC{
   Widget? bodyWidget;
-  Map<String, dynamic>? search_results;
   List<String> tabs = ['Movies', 'Shows'];
   bool showSidePane = false;
 
@@ -21,9 +20,9 @@ class BodyMainController extends ControllerMVC{
       case 0:
         bodyWidget = MovieScreen();
         break;
-      case 3:
-        bodyWidget = SearchResults(search_results_data: search_results!['data'],);
-        break;
+      // case 3:
+      //   bodyWidget = SearchResults(search_results_data: search_results!['data'],);
+      //   break;
       case 2:
         bodyWidget = TitleDescription(titleModel: data! as BasicTitleModel,);
         break;
@@ -42,14 +41,7 @@ class BodyMainController extends ControllerMVC{
   }
 
 
-  void searchStringSubmitCallback(search_string) async{
-    search_results = await fetchSearchResults(search_string);
-    switchPage(3);
-  }
 
-  Future<dynamic> fetchSearchResults(search_string) async{
-    return await sr.searchString(search_string);
-  }
 
 
 }

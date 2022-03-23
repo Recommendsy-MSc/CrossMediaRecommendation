@@ -27,4 +27,7 @@ class API{
   static String recommend_movies = '/recommend_movies/';
   static String recommend_tv   = '/recommend_tv/';
   static String missing_title = '/missing_title/';
+  static String create_movie_from_tmdb = movies + '/' + 'create_from_tmdb/';
+  static String create_tv_from_tmdb = tv + '/' + 'create_from_tmdb/';
+  static String credential_login = users + '/login/';
 }

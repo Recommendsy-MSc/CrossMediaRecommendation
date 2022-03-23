@@ -26,23 +26,16 @@ class PageState extends StateMVC<MyList>{
     con = controller as ListController;
   }
 
-  ItemScrollController scrollController = ItemScrollController();
-  ItemPositionsListener scrollPosition = ItemPositionsListener.create();
-  int curIndex = 0;
-  int count = 0;
-  int max = 0;
+
   @override
   void initState(){
     super.initState();
     con!.data = widget.data;
-    max = widget.data['data']['result'].length;
-    print(max);
+    con!.max = widget.data['data']['result'].length;
   }
   @override
   Widget build(BuildContext context) {
-    // print(MediaQuery.of(context).size.width * 0.7);
-    // print(MediaQuery.of(context).size.width * 0.18);
-    // print("Count: " + count.toString());
+
     return Container(
       // height: MediaQuery.of(context).size.height,
       child: Column(
@@ -55,30 +48,16 @@ class PageState extends StateMVC<MyList>{
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 HeadingElement(title: widget.data['data']['list_header'],),
-                ListScrollButton(nextPageCB: nextPage, prevPageCB: prevPage,),
+                ListScrollButton(nextPageCB: con!.nextPage, prevPageCB: con!.prevPage,),
               ],
             ),
           ),
           CustomSpacer(height: 20,),
-          ItemList(scrollController: scrollController, listData: widget.data['data']['result'], showReportButton: widget.showReportButton,)
+            ItemList(scrollController: con!.scrollController, listData: widget.data['data']['result'], showReportButton: widget.showReportButton,)
         ],
       ),
     );
   }
 
-  void nextPage(){
 
-    if(curIndex < (max-count)){
-      scrollController.scrollTo(index: (curIndex + listPageCount), duration: Duration(milliseconds: 400), curve: Curves.easeOut);
-      curIndex += listPageCount;
-    }
-
-  }
-
-  void prevPage(){
-    if(curIndex > 0){
-      scrollController.scrollTo(index: (curIndex - listPageCount), duration: Duration(milliseconds: 400), curve: Curves.easeOut);
-      curIndex -= listPageCount;
-    }
-  }
 }

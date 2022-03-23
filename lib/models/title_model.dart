@@ -85,12 +85,12 @@ class TitleModel implements BaseModel{
     var m = <String, dynamic>{};
     m['title'] = title;
     m['overview'] = overview;
-    m['genres'] = genres!.map((e){
-      return e.id;
-    }).toList();
-    m['cast_members'] = cast_members!.map((e){
-      return e.id;
-    }).toList();
+    // m['genres'] = genres!.map((e){
+    //   return e.id;
+    // }).toList();
+    // m['cast_members'] = cast_members!.map((e){
+    //   return e.id;
+    // }).toList();
     m['tagline'] = tagline ?? "";
     m['poster_path'] = poster_path;
     m['backdrop_path'] = backdrop_path;

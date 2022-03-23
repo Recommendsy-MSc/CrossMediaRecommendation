@@ -61,11 +61,7 @@ class MovieScreenController extends ControllerMVC{
     print(data['count']);
     print("Added " + genre);
   }
-  //
-  // fetchRecommendedTvForGenre({limit = 12, genre}) async{
-  //   var data = await tr.getTvRecomForUser(limit: limit, genre: genre);
-  //   defaultListData.add(data);
-  // }
+
 
 
 }

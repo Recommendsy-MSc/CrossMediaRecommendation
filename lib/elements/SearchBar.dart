@@ -1,23 +1,30 @@
+import 'package:cross_media_recommendation/controllers/search_bar_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mvc_pattern/mvc_pattern.dart';
 
 class SearchBar extends StatefulWidget{
-  Function onSubmitCallback;
-  SearchBar({Key? key, required this.onSubmitCallback}): super(key: key);
+  SearchBar({Key? key,}): super(key: key);
 
   @override
   PageState createState () => PageState();
 }
 
-class PageState extends State<SearchBar>{
+class PageState extends StateMVC<SearchBar>{
+  SearchBarController? con;
+
+  PageState() : super(SearchBarController()){
+    con = controller as SearchBarController;
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.2,
 
         child: TextFormField(
+          controller: con!.searchTextController,
           style: TextStyle(color: primaryTextColor.withOpacity(0.8), fontSize: 14),
           decoration: InputDecoration(
             isDense: true,
@@ -39,7 +46,7 @@ class PageState extends State<SearchBar>{
 
           ),
           onFieldSubmitted: (value){
-            widget.onSubmitCallback(value);
+            con!.searchStringCallback();
           },
         )
     );

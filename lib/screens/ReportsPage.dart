@@ -1,5 +1,6 @@
 import 'package:cross_media_recommendation/controllers/reports_page_controller.dart';
 import 'package:cross_media_recommendation/elements/AdminSidePane.dart';
+import 'package:cross_media_recommendation/elements/ButtonComponent.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/BrokenLinkReportTile.dart';
 import 'package:flutter/cupertino.dart';
@@ -125,16 +126,38 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
                         ],
                       ),
                     ),
-                    InkWell(
-                      onTap: (){
-                        con!.reload();
-                      },
-                      child: Container(
-                        child: Icon(
-                          Icons.refresh_rounded,
-                          color: primaryTextColor.withOpacity(0.7),
-                        )
-                      ),
+                    Row(
+                      children: [
+                        ButtonComponent(
+                            title: con!.activeReports ? "Active" : "Completed",
+                            textStyle: con!.activeReports
+                            ? TextStyle(
+                                fontSize: 16,
+                                color: accentColor,
+                                letterSpacing: 1.01
+                            )
+                            : TextStyle(
+                                fontSize: 16,
+                                color: Colors.green,
+                                letterSpacing: 1.01
+                            ) ,
+                            onClick: (){
+                              con!.switchActive();
+                            }
+                        ),
+                        CustomSpacer(width: 30,),
+                        InkWell(
+                          onTap: (){
+                            con!.reload();
+                          },
+                          child: Container(
+                            child: Icon(
+                              Icons.refresh_rounded,
+                              color: primaryTextColor.withOpacity(0.7),
+                            )
+                          ),
+                        ),
+                      ],
                     )
                   ],
                 ),

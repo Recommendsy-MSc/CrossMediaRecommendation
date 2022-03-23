@@ -1,4 +1,5 @@
 import 'package:cross_media_recommendation/models/title_model.dart';
+import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cross_media_recommendation/repositories/movie_repo.dart' as mr;
 import 'package:cross_media_recommendation/repositories/tv_repo.dart' as tv;
@@ -37,15 +38,15 @@ class EditTitleController extends ControllerMVC{
   }
 
   Future<void> patchNewData() async{
-    var resp = await mr.patchData(titleModel!.id!, titleModel!.toMap());
-    print("Response");
-    print(resp['success']);
-    print(resp['data']);
+    if (titleModel!.title_type == 0){
+      var resp = await mr.patchData(titleModel!.id!, titleModel!.toMap());
+    }else{
+      var resp = await tv.patchData(titleModel!.id!, titleModel!.toMap());
+    }
   }
 
   Future<void> markReportAsResolved() async{
     await rr.markInaccurateDataReportAsCompleted(reportId);
-    // current Report Page index 1 as data
-    gr.adminBodyMainController!.switchPage(0, data: 1);
+    Navigator.of(state!.context).pop();
   }
 }

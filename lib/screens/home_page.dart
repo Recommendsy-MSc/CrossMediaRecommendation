@@ -53,7 +53,7 @@ class PageState extends StateMVC<HomePage>{
             Container(
               width: MediaQuery.of(context).size.width * bodyMainWidthRatio,
               color: primaryColor,
-              child: con!.genreLoaded ? ur.isAdmin ? AdminBodyMain() : BodyMain(key: UniqueKey(),) : Text("Genre Loading"),
+              child: con!.genreLoaded ? BodyMain(key: UniqueKey(),) : Text("Genre Loading"),
             ),
             // Container(
             //   width: MediaQuery.of(context).size.width * bodyMainWidthRation,

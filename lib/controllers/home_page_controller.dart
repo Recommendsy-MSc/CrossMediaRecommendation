@@ -7,6 +7,7 @@ class HomePageController extends ControllerMVC{
   Future<void> initialDataFetch() async{
     print("valling data fetch");
     await gr.fetchMovieTvGenres();
+
     setState(() {
       genreLoaded = true;
       print("SETTING HOME PAGE");

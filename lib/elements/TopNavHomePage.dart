@@ -11,9 +11,9 @@ import 'ProfileIcon.dart';
 import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
 import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
 
-class TopNav extends StatefulWidget{
+class TopNavHomePage extends StatefulWidget{
   BodyMainController bodyMainController;
-  TopNav({Key? key, required this.bodyMainController}) : super(key: key);
+  TopNavHomePage({Key? key, required this.bodyMainController}) : super(key: key);
 
   @override
   PageState createState () => PageState();
@@ -21,17 +21,17 @@ class TopNav extends StatefulWidget{
 
 
 
-class PageState extends State<TopNav>{
+class PageState extends State<TopNavHomePage>{
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
+      height: 80,
       // decoration: testDec,
       child: Row(
         children: [
           InkWell(
             onTap: (){
-              gr.bodyMainController!.switchPage(0);
+              Navigator.of(context).pushNamedAndRemoveUntil('/HomePage', (route) => false);
             },
             child: Text(
               "CRM",
@@ -62,7 +62,7 @@ class PageState extends State<TopNav>{
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                SearchBar(onSubmitCallback: widget.bodyMainController.searchStringSubmitCallback,),
+                SearchBar(),
                 widget.bodyMainController.showSidePane ? CustomSpacer(width: MediaQuery.of(context).size.width * 0.2,) : CustomSpacer(width: 50,),
                 ur.loggedIn && !ur.isGuest? InkWell(
                   onTap: (){

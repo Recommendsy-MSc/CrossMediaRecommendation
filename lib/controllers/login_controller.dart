@@ -5,6 +5,9 @@ import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
 import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
 
 class LoginController extends ControllerMVC{
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   void guestLogin(){
     ur.isGuest = true;
@@ -41,11 +44,27 @@ class LoginController extends ControllerMVC{
         print("exist");
         print(ur.currentUser!.image_url);
         // gr.homePageController!.setState(() { });
-        Navigator.of(state!.context).pushNamedAndRemoveUntil('/HomePage', (route) => false);
+        if(ur.currentUser!.is_superuser!){
+          Navigator.of(state!.context).pushNamedAndRemoveUntil('/ReportPage', (route) => false);
+        }else{
+          Navigator.of(state!.context).pushNamedAndRemoveUntil('/HomePage', (route) => false);
+        }
+
 
       }
     }else{
       print("Bro please no");
+    }
+  }
+
+  Future<void> doCredentialLogin() async{
+    var success = await ur.credentialsLogin(email: emailController.text, password: passwordController.text);
+    if(success){
+      if(ur.currentUser!.is_superuser!){
+        Navigator.of(state!.context).pushNamedAndRemoveUntil('/ReportPage', (route) => false);
+      }else{
+        Navigator.of(state!.context).pushNamedAndRemoveUntil('/HomePage', (route) => false);
+      }
     }
   }
 }

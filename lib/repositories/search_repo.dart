@@ -8,7 +8,7 @@ Future<dynamic> searchString(search_string) async{
       'q': search_string,
       'order_by': '-popularity'
     },
-    auth: true
+    // auth: true
   );
 
   return data;

@@ -63,7 +63,7 @@ class RestService{
         return res;
 
       }catch(e){
-        // CustomTrace(StackTrace.current, message: e.toString());
+        CustomTrace(StackTrace.current, message: e.toString());
         print("Error: " + e.toString());
     }
 

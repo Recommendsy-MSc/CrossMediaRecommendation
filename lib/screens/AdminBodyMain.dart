@@ -1,4 +1,4 @@
-import 'package:cross_media_recommendation/elements/top_nav.dart';
+import 'package:cross_media_recommendation/elements/TopNavHomePage.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';

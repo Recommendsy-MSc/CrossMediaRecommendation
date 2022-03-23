@@ -14,6 +14,8 @@ void main(){
   runApp(MyApp());
 }
 
+
+// TODO: Change MyApp name.
 class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget{
       scrollBehavior: MyCustomScrollBehaviour(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.generateRoute,
-      initialRoute: '/HomePage',
+      initialRoute: '/LoginPage',
       theme: ThemeData(
         scaffoldBackgroundColor: primaryColor,
         textTheme: TextTheme(

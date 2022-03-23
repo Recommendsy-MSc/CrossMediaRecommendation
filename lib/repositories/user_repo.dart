@@ -7,6 +7,7 @@ UserModel? currentUser;
 bool loggedIn = false;
 bool isGuest = true;
 bool isAdmin = false;
+bool googleLogin = false;
 
 Future<bool> doesUserExists(email) async{
   var resp = await  RestService.request(
@@ -22,6 +23,7 @@ Future<bool> doesUserExists(email) async{
     currentUser = UserModel.fromJson(resp['data']['user'], token: resp['data']['token']);
     loggedIn = true;
     isAdmin = currentUser!.is_superuser!;
+    googleLogin = true;
     print(currentUser!.email);
     print(currentUser!.token);
 
@@ -43,6 +45,8 @@ Future<bool> createUser(data) async{
   if(resp['success'] as bool){
     currentUser = UserModel.fromJson(resp['data']['user'], token: resp['data']['token']);
     loggedIn = true;
+    googleLogin = true;
+    isGuest = false;
     isAdmin = currentUser!.is_superuser!;
     print(currentUser!.email);
     print(currentUser!.token);
@@ -52,9 +56,33 @@ Future<bool> createUser(data) async{
 }
 
 Future<void> logout() async{
-  await MyFirebase.googleSignOut();
+  currentUser = null;
+  if(googleLogin) {
+    await MyFirebase.googleSignOut();
+    googleLogin = false;
+  }
   loggedIn = false;
   isGuest = true;
   isAdmin = false;
+}
 
+Future<bool> credentialsLogin({email, password}) async{
+  var resp = await RestService.request(
+    endpoint: API.credential_login,
+    data: {
+      "email": email,
+      "password": password
+    },
+    method: 'POST'
+  );
+
+  if(resp['success']){
+    currentUser = UserModel.fromJson(resp['data']['user'], token: resp['data']['token']);
+    loggedIn = true;
+    isGuest = false;
+    isAdmin = currentUser!.is_superuser!;
+    googleLogin = false;
+  }
+
+  return resp['success'];
 }

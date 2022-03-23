@@ -1,6 +1,6 @@
 import 'package:cross_media_recommendation/controllers/body_main_controller.dart';
 import 'package:cross_media_recommendation/elements/SidePane.dart';
-import 'package:cross_media_recommendation/elements/top_nav.dart';
+import 'package:cross_media_recommendation/elements/TopNavHomePage.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +47,7 @@ class PageState extends StateMVC<BodyMain>{
             // decoration: testDec,
               padding: EdgeInsets.symmetric(horizontal: 20),
               // decoration: testDec,
-              child: TopNav(bodyMainController: con!)
+              child: TopNavHomePage(bodyMainController: con!)
           ),
           Visibility(
             visible: con!.showSidePane,

@@ -11,11 +11,12 @@ class ReportTileController extends ControllerMVC{
       'type': type,
       'reportId': reportId
     };
-    gr.adminBodyMainController!.switchPage(1, data: data);
+    // gr.adminBodyMainController!.switchPage(1, data: data);
     Navigator.of(state!.context).pushNamed('/EditableTitlePage', arguments: data);
   }
 
   Future<void> gotToMissingTitle({MissingTitleModel? object}) async{
-    gr.adminBodyMainController!.switchPage(2, data: object!);
+    Navigator.of(state!.context).pushNamed('/AdminSuggestedTitles', arguments: object!);
+    // gr.adminBodyMainController!.switchPage(2, data: object!);
   }
 }

@@ -11,6 +11,7 @@ import '../elements/CustomSpacer.dart';
 class EditableTitlePage extends StatefulWidget{
   Map<String, dynamic>? customData;
   EditableTitlePage({Key? key, required this.customData}) : super(key: key);
+
   @override
   PageState createState() => PageState();
 }

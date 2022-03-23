@@ -5,8 +5,19 @@ import 'package:flutter/material.dart';
 class ButtonComponent extends StatelessWidget{
   String? title;
   Function? onClick;
+  TextStyle textStyle;
+  BoxDecoration boxDecoration;
 
-  ButtonComponent({Key? key, required this.title, required this.onClick}) : super(key: key);
+  ButtonComponent({Key? key,
+    required this.title,
+    required this.onClick,
+    this.textStyle = const TextStyle(
+        fontSize: 16,
+        color: accentColor,
+        letterSpacing: 1.01
+    ),
+    this.boxDecoration = const BoxDecoration()
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -15,17 +26,10 @@ class ButtonComponent extends StatelessWidget{
       },
       child: Container(
         // padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        // decoration: BoxDecoration(
-        //   color: accentColor,
-        //   borderRadius: borderRadius12
-        // ),
+        decoration: boxDecoration,
         child: Text(
           title!,
-          style: TextStyle(
-            fontSize: 16,
-            color: accentColor,
-            letterSpacing: 1.01
-          ),
+          style: textStyle
         ),
       ),
     );

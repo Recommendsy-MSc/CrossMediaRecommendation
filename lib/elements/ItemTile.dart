@@ -34,7 +34,7 @@ class PageState extends StateMVC<ItemTile>{
 
   @override
   Widget build(BuildContext context) {
-    print("Rebuild tile");
+    // print("Rebuild tile");
     print(con!.basicTitleModel!.user_rating!);
     return Stack(
       children: [

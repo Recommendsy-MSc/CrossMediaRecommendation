@@ -45,18 +45,6 @@ class PageState extends State<TitleEditor>{
             CustomSpacer(),
             InkWell(
               onTap: () async{
-                // showDialog(
-                //   context: context,
-                //   builder: (context){
-                //     return EditStringDialog(name: "Title", value: widget.con!.titleModel!.title!,);
-                //   }
-                // ).then((value){
-                //   if(value['submit']){
-                //     widget.con!.titleModel!.title = value['data'];
-                //     widget.con!.refresh();
-                //   }
-                // });
-
                 EditStringDialogDef(name: 'Title', value: widget.con!.titleModel!.title!).show(context).then((value){
                   if(value['submit']){
                     print("submitted");
@@ -78,16 +66,12 @@ class PageState extends State<TitleEditor>{
             CustomSpacer(height: 10,),
             InkWell(
               onTap: (){
-                showDialog(
-                    context: context,
-                    builder: (context){
-                      return EditStringDialog(name: "Overview", value: widget.con!.titleModel!.overview!, large: true,);
-                    }
-                ).then((value){
+                EditStringDialogDef(name: 'Overview', value: widget.con!.titleModel!.overview!).show(context).then((value){
                   if(value['submit']){
                     widget.con!.titleModel!.overview = value['data'];
                     widget.con!.refresh();
                   }
+                  // Navigator.of(context).pop();
                 });
               },
               child: Text(
@@ -98,35 +82,31 @@ class PageState extends State<TitleEditor>{
                 ),
               ),
             ),
-            CustomSpacer(height: 10,),
-            Text(
-                "Genres",
-              style: TextStyle(
-                  fontSize: 14,
-                  color: primaryTextColor.withOpacity(0.9)
-              ),
-            ),
-            CustomSpacer(height: 10,),
-            Text(
-                "Cast",
-              style: TextStyle(
-                  fontSize: 14,
-                  color: primaryTextColor.withOpacity(0.9)
-              ),
-            ),
+            // CustomSpacer(height: 10,),
+            // Text(
+            //     "Genres",
+            //   style: TextStyle(
+            //       fontSize: 14,
+            //       color: primaryTextColor.withOpacity(0.9)
+            //   ),
+            // ),
+            // CustomSpacer(height: 10,),
+            // Text(
+            //     "Cast",
+            //   style: TextStyle(
+            //       fontSize: 14,
+            //       color: primaryTextColor.withOpacity(0.9)
+            //   ),
+            // ),
             CustomSpacer(height: 10,),
             InkWell(
               onTap: (){
-                showDialog(
-                    context: context,
-                    builder: (context){
-                      return EditStringDialog(name: "Tagline", value: widget.con!.titleModel!.tagline!,);
-                    }
-                ).then((value){
+                EditStringDialogDef(name: 'Tagline', value: widget.con!.titleModel!.tagline!).show(context).then((value){
                   if(value['submit']){
                     widget.con!.titleModel!.tagline = value['data'];
                     widget.con!.refresh();
                   }
+                  // Navigator.of(context).pop();
                 });
               },
               child: Text(
@@ -140,16 +120,12 @@ class PageState extends State<TitleEditor>{
             CustomSpacer(height: 10,),
             InkWell(
               onTap: (){
-                showDialog(
-                    context: context,
-                    builder: (context){
-                      return EditStringDialog(name: "Poster Path", value: widget.con!.titleModel!.poster_path!,);
-                    }
-                ).then((value){
+                EditStringDialogDef(name: 'Poster Path', value: widget.con!.titleModel!.poster_path!).show(context).then((value){
                   if(value['submit']){
                     widget.con!.titleModel!.poster_path = value['data'];
                     widget.con!.refresh();
                   }
+                  // Navigator.of(context).pop();
                 });
               },
               child: Text(
@@ -163,16 +139,12 @@ class PageState extends State<TitleEditor>{
             CustomSpacer(height: 10,),
             InkWell(
               onTap: (){
-                showDialog(
-                    context: context,
-                    builder: (context){
-                      return EditStringDialog(name: "Backdrop Path", value: widget.con!.titleModel!.backdrop_path!,);
-                    }
-                ).then((value){
+                EditStringDialogDef(name: 'Backdrop Path', value: widget.con!.titleModel!.backdrop_path!).show(context).then((value){
                   if(value['submit']){
                     widget.con!.titleModel!.backdrop_path = value['data'];
                     widget.con!.refresh();
                   }
+                  // Navigator.of(context).pop();
                 });
               },
               child: Text(
@@ -184,12 +156,6 @@ class PageState extends State<TitleEditor>{
               ),
             ),
 
-
-            // ListView.builder(
-            //   itemBuilder: (context, index){
-            //
-            //   },
-            // )
           ],
         ),
         Row(

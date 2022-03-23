@@ -44,7 +44,7 @@ class PageState extends StateMVC<SidePane>{
                   ReportMissingTitleDialogDef().show(context);
                 },
                 child: Text(
-                  "Report a missing Title",
+                  "Report a Missing Title",
                   style: TextStyle(
                     fontSize: 12,
                     color: primaryTextColor.withOpacity(0.5)

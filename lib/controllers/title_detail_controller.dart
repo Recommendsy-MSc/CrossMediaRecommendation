@@ -5,7 +5,7 @@ import 'package:cross_media_recommendation/repositories/movie_repo.dart' as mr;
 
 class TitleDetailController extends ControllerMVC{
   TitleModel? titleModel;
-  getStringFromList(List<CastModel> list){
+  String getStringFromList(List<CastModel> list){
     String s = '';
 
     for(CastModel item in list){

@@ -67,7 +67,7 @@ Future<dynamic> getBrokenLinkReports({active="True"}) async{
   var resp = await RestService.request(
     endpoint: API.broken_links,
     queryParams: {
-      'active': active
+      'active': active ? "True" : "False"
     }
   );
   print(resp['success']);
@@ -82,7 +82,7 @@ Future<dynamic> getInaccurateRecomReports({active="True"}) async{
   var resp = await RestService.request(
     endpoint: API.inaccurate_recommendations,
     queryParams: {
-      'active': active
+      'active': active ? "True" : "False"
     }
   );
   print(resp['success']);
@@ -97,7 +97,7 @@ Future<dynamic> getInaccurateDataReports({active = "True"}) async{
   var resp = await RestService.request(
     endpoint: API.inaccurate_data_get_latest,
     queryParams: {
-      'active': active
+      'active': active ? "True" : "False"
     }
   );
   if(resp['success'] as bool) {
@@ -133,9 +133,27 @@ Future<dynamic> markInaccurateRecomAsCompleted(id) async{
 }
 
 // fetch missing title for both movies and tv
-Future<dynamic> fetchMissingTitles() async{
+Future<dynamic> fetchMissingTitles({active=true}) async{
   var data = await RestService.request(
     endpoint: API.missing_title,
+    queryParams: {
+      'active': active ? "True" : "False"
+    }
+  );
+
+  return data;
+}
+
+Future<dynamic> markMissingTitleAsCompleted(id, title_id) async{
+  var endpoint = API.missing_title + id + '/';
+  var data = await RestService.request(
+    endpoint: endpoint,
+    method: 'PATCH',
+    data: {
+      'active': false,
+      'added': title_id
+    },
+    auth: true
   );
 
   return data;

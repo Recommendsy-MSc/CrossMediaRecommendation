@@ -106,7 +106,7 @@ class PageState extends StateMVC<AdminSuggestedTitles>{
                             con!.showSuggestedPreview ? Tooltip(
                               message: "Add Title to Databse",
                               child: ButtonComponent(title: "Add", onClick: (){
-
+                                con!.addTitleForMissingReport(report_id: widget.object.id!,);
                               }),
                             ) : Container()
                           ],
