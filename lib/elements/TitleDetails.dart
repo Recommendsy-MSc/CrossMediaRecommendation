@@ -174,7 +174,7 @@ class PageState extends StateMVC<TitleDetails>{
                     ReportDialogDef(data: widget.titleModel, name: "Report Title").show(context).then((value){
                         if(value == true){
                           CustomToast(context: context, msg: "Reported!", ).showToast();
-                        }else{
+                        }else if(value == false){
                           CustomToast(context: context, msg: "An Error Occured!", ).showToast();
                         }
                     });

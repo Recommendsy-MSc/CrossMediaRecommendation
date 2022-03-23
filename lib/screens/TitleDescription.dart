@@ -14,9 +14,10 @@ import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as
 
 
 class TitleDescription extends StatefulWidget{
-  BasicTitleModel titleModel;
+  BasicTitleModel? titleModel;
+  Map<String, dynamic>? args;
 
-  TitleDescription({Key? key, required this.titleModel}) : super(key: key);
+  TitleDescription({Key? key, this.titleModel, this.args}) : super(key: key);
   @override
   PageState createState() => PageState();
 }
@@ -30,21 +31,23 @@ class PageState extends StateMVC<TitleDescription>{
   @override
   void initState(){
     super.initState();
-    print("DESC");
-    print(widget.titleModel.toMap().toString());
-    con!.fetchTitleDetails(widget.titleModel);
-    con!.fetchRecommendations(widget.titleModel);
+    // print(widget.titleModel!.toMap().toString());
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      con!.loadData(model: widget.titleModel, qp: widget.args!);
+    });
+
   }
 
-  @override
-  void didUpdateWidget(TitleDescription oldWidget){
-    con!.fetchTitleDetails(widget.titleModel);
-    con!.fetchRecommendations(widget.titleModel);
-    super.didUpdateWidget(oldWidget);
-  }
+  // @override
+  // void didUpdateWidget(TitleDescription oldWidget){
+  //   con!.fetchTitleDetails(widget.titleModel!);
+  //   con!.fetchRecommendations(widget.titleModel!);
+  //   super.didUpdateWidget(oldWidget);
+  // }
 
   @override
   Widget build(BuildContext context) {
+    print(con!.titleLoaded.toString());
     return Scaffold(
       body: con!.titleLoaded ? Container(
         height: double.infinity,

@@ -17,7 +17,8 @@ import '../screens/SearchScreen.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
-    switch (settings.name) {
+    final uri = Uri.parse(settings.name!);
+    switch (uri.path) {
       case '/HomePage':
         return CustomPageRoute(settings: settings, builder: (context) => HomePage());
       case '/LoginPage':
@@ -27,9 +28,9 @@ class RouteGenerator {
       case '/ReportPage':
         return CustomPageRoute(settings: settings, builder: (context) => ReportPage());
       case '/SearchScreen':
-        return CustomPageRoute(settings: settings, builder: (context) => SearchScreen(searchBarController: args as SearchBarController,));
+        return CustomPageRoute(settings: settings, builder: (context) => SearchScreen(searchBarController: args != null ? args as SearchBarController : null, qp: uri.queryParameters,));
       case '/TitleDescription':
-        return CustomPageRoute(settings: settings, builder: (context) => TitleDescription(titleModel: args as BasicTitleModel));
+        return CustomPageRoute(settings: settings, builder: (context) => TitleDescription(titleModel: args != null ? args as BasicTitleModel : null, args: uri.queryParameters,));
       case '/AdminSuggestedTitles':
         return CustomPageRoute(settings: settings, builder: (context) => AdminSuggestedTitles(object: args as MissingTitleModel));
 

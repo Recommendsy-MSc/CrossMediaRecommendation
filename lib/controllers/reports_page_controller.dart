@@ -28,8 +28,19 @@ class ReportsPageController extends ControllerMVC{
   List<SuggestedTitleModel> suggestedTitlesList = [];
   bool showSuggestedPreview = false;
   SuggestedTitleModel? previewModel;
+  bool loginChecked = false;
 
-
+  void checkLogin(){
+    print("checing login");
+    if(ur.currentUser == null){
+      Navigator.of(state!.context).pushNamedAndRemoveUntil('/LoginPage', (route) => false);
+    }else{
+      reload();
+    }
+    setState(() {
+      loginChecked = true;
+    });
+  }
 
   int currentReports = 0;
   Future<void> logoutUser() async{

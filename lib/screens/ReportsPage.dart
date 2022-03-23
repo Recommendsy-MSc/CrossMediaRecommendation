@@ -3,6 +3,7 @@ import 'package:cross_media_recommendation/elements/AdminSidePane.dart';
 import 'package:cross_media_recommendation/elements/ButtonComponent.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/BrokenLinkReportTile.dart';
+import 'package:cross_media_recommendation/elements/Loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -32,7 +33,7 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
     super.initState();
     con!.currentReports = widget.currentReports;
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      con!.reload();
+      con!.checkLogin();
     });
   }
 
@@ -230,7 +231,7 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
             decoration: BoxDecoration(
               border: Border(left: BorderSide(color: primaryTextColor.withOpacity(0.4), width: 0.5))
             ),
-            child: AdminSidePane(reportsPageController: con!,),
+            child: con!.loginChecked ? AdminSidePane(reportsPageController: con!,) : Loading(color: primaryTextColor,),
           )
         ],
       )

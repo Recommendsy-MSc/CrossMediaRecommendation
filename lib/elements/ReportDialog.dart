@@ -136,9 +136,7 @@ class PageState extends StateMVC<ReportDialog>{
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ButtonComponent(title: "Submit", onClick: () async{
-
               Navigator.of(context).pop(await con!.reportInaccurateData());
-
             }),
             ButtonComponent(title: "Cancel", onClick: (){
               Navigator.of(context).pop();

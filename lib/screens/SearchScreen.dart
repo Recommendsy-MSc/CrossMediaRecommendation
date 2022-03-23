@@ -1,4 +1,5 @@
 import 'package:cross_media_recommendation/controllers/search_bar_controller.dart';
+import 'package:cross_media_recommendation/controllers/search_screen_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/Loader.dart';
 import 'package:cross_media_recommendation/elements/TopNavSearchPage.dart';
@@ -10,22 +11,24 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import '../elements/MyList.dart';
 
 class SearchScreen extends StatefulWidget{
-  SearchBarController searchBarController;
-  SearchScreen({required this.searchBarController});
+  SearchBarController? searchBarController;
+  Map<String, dynamic>? qp;
+  SearchScreen({this.searchBarController, this.qp});
 
   @override
   PageState createState() => PageState();
 }
 
 class PageState extends StateMVC<SearchScreen>{
-
-
-
+  SearchScreenController? con;
+  PageState() : super(SearchScreenController()){
+    con = controller as SearchScreenController;
+  }
   @override
   void initState(){
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
-      widget.searchBarController.fetchSearchResults();
+      con!.load(qp: widget.qp, barController: widget.searchBarController);
     });
   }
 
@@ -40,19 +43,19 @@ class PageState extends StateMVC<SearchScreen>{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  con!.loadedBasic ? Container(
                     child: Text(
-                      "Search: " + widget.searchBarController.searchTextController.text,
+                      "Search: " + con!.searchString!,
                       style: TextStyle(
                         fontSize: 16,
                         color: primaryTextColor.withOpacity(0.7)
                       ),
                     )
-                  ),
+                  ) : Container(),
                   CustomSpacer(height: 20,),
                   Expanded(
-                    child: FutureBuilder(
-                      future: widget.searchBarController.fetchSearchResults(),
+                    child: con!.loadedBasic ? FutureBuilder(
+                      future: con!.search(),
                       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
                         if(snapshot.connectionState == ConnectionState.waiting){
                           return Loading(color: primaryTextColor,);
@@ -78,7 +81,7 @@ class PageState extends StateMVC<SearchScreen>{
                           );
                         }
                       },
-                    )
+                    ) : Loading(color: primaryTextColor,)
                   ),
                 ],
               ),

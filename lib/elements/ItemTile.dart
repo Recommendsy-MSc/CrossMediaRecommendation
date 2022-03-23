@@ -31,8 +31,7 @@ class PageState extends StateMVC<ItemTile>{
   void initState(){
     super.initState();
     con!.basicTitleModel = widget.titleModel;
-    print("Tile");
-    print(widget.titleModel.toMap().toString());
+
   }
 
   @override
