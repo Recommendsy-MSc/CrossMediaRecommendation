@@ -110,6 +110,20 @@ class PageState extends StateMVC<TitleDetails>{
                             con!.titleModel!.overview!,
                             style: Theme.of(context).textTheme.headline4,
                           ),
+                          Visibility(
+                            visible: widget.titleModel.title_type == 1,
+                            child: Text(
+                              con!.titleModel!.no_seasons.toString() + " Seasons",
+                              style: Theme.of(context).textTheme.headline4,
+                            ),
+                          ),
+                          // Visibility(
+                          //   visible: widget.titleModel.title_type == 1,
+                          //   child: Text(
+                          //     "Episodes: " + con!.titleModel!.no_episodes.toString(),
+                          //     style: Theme.of(context).textTheme.headline4,
+                          //   ),
+                          // ),
                           Text(
                             "Cast: " + con!.getStringFromList(con!.titleModel!.cast_members!),
                             style: Theme.of(context).textTheme.headline4,

@@ -13,9 +13,10 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 
 class ItemTile extends StatefulWidget{
   double parentWidth;
+  double parentHeight;
   BasicTitleModel titleModel;
   bool showReportButton;
-  ItemTile({Key? key, required this.parentWidth, required this.titleModel, this.showReportButton = false}) : super(key: key);
+  ItemTile({Key? key, required this.parentWidth, required this.titleModel, this.showReportButton = false, required this.parentHeight}) : super(key: key);
   @override
   PageState createState() => PageState();
 }
@@ -31,7 +32,6 @@ class PageState extends StateMVC<ItemTile>{
   void initState(){
     super.initState();
     con!.basicTitleModel = widget.titleModel;
-
   }
 
   @override
@@ -53,8 +53,11 @@ class PageState extends StateMVC<ItemTile>{
               child: ClipRRect(
                 borderRadius: borderRadius12,
                 child: CachedNetworkImage(
-                  imageUrl: tmdb_image_url + poster_size_342 + con!.basicTitleModel!.poster_path!,
+                  imageUrl: con!.basicTitleModel!.title_type == 3
+                  ? con!.basicTitleModel!.poster_path!
+                  : tmdb_image_url + poster_size_342 + con!.basicTitleModel!.poster_path!,
                   width: widget.parentWidth,
+                  height: widget.parentHeight,
                   fit: BoxFit.fill,
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
@@ -145,20 +148,28 @@ class PageState extends StateMVC<ItemTile>{
             // )
           ],
         ),
-        Align(
-          alignment: Alignment.topRight,
-          child: Container(
-            margin: edgeInsetsAll12,
-            padding: EdgeInsets.all(4),
-            decoration: BoxDecoration(
-              color: primaryTextColor,
-              borderRadius: borderRadius8
+        Visibility(
+          visible: ur.loggedIn,
+          child: Align(
+            alignment: Alignment.topRight,
+            child: InkWell(
+              onTap: (){
+                con!.toggleWishList();
+              },
+              child: Container(
+                margin: edgeInsetsAll12,
+                padding: EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                  color: con!.basicTitleModel!.added! ? primaryColor : primaryTextColor,
+                  borderRadius: borderRadius8
+                ),
+                child: Icon(
+                  con!.basicTitleModel!.added! ? Icons.done : Icons.add,
+                  color: con!.basicTitleModel!.added! ? primaryTextColor : accentColor,
+                  size: 20,
+                )
+              ),
             ),
-            child: Icon(
-              Icons.add,
-              color: accentColor,
-              size: 20,
-            )
           ),
         )
       ],

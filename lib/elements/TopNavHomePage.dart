@@ -45,7 +45,16 @@ class PageState extends State<TopNavHomePage>{
                 margin: EdgeInsets.symmetric(horizontal: 12),
                 child: InkWell(
                   onTap: (){
-                    widget.bodyMainController.switchPage(widget.bodyMainController.tabs.indexOf(e));
+                    if(widget.bodyMainController.tabs.indexOf(e) == 2){
+                      if(ur.loggedIn){
+                        widget.bodyMainController.switchPage(widget.bodyMainController.tabs.indexOf(e));
+                      }else{
+                        Navigator.of(context).pushNamed('/LoginPage');
+                      }
+                    }else{
+                      widget.bodyMainController.switchPage(widget.bodyMainController.tabs.indexOf(e));
+                    }
+
                   },
                   child: Text(
                     e.toString(),

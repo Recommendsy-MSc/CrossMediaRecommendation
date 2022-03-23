@@ -8,8 +8,20 @@ import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
 import 'package:cross_media_recommendation/repositories/movie_repo.dart' as mr;
 import 'package:cross_media_recommendation/repositories/tv_repo.dart' as tr;
 
+import 'package:cross_media_recommendation/repositories/wishlist_repo.dart' as wr;
+import 'package:cross_media_recommendation/repositories/book_repo.dart' as br;
 class ItemTileController extends ControllerMVC{
   BasicTitleModel? basicTitleModel;
+
+  Future<void> toggleWishList() async{
+    if(await wr.toggleWishlist(title_id: basicTitleModel!.id, title_type: basicTitleModel!.title_type)){
+      print("Setting state");
+      setState(() {
+        basicTitleModel!.added = !basicTitleModel!.added!;
+      });
+    }
+  }
+
   Future<bool> reportInaccurateRecommendation() async{
     print("TILE Report");
     print(basicTitleModel!.title);
@@ -41,6 +53,8 @@ class ItemTileController extends ControllerMVC{
     }
     else if(basicTitleModel!.title_type == 1){
       resp = await tr.dislikeTv(basicTitleModel!.id);
+    }else if(basicTitleModel!.title_type == 3){
+      resp = await br.dislikeBook(basicTitleModel!.id);
     }
     if(resp['success']){
       basicTitleModel!.user_rating = 1;
@@ -58,6 +72,8 @@ class ItemTileController extends ControllerMVC{
     }
     else if(basicTitleModel!.title_type == 1){
       resp = await tr.likeTv(basicTitleModel!.id);
+    }else if(basicTitleModel!.title_type == 3){
+      resp = await br.likeBook(basicTitleModel!.id);
     }
     if(resp['success']){
       basicTitleModel!.user_rating = 5;

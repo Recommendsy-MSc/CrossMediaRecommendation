@@ -38,7 +38,7 @@ class PageState extends State<ItemList>{
               ),
               width: (MediaQuery.of(context).size.width * bodyMainWidthRatio - listPageCount*16 - 24) / listPageCount,
               margin: index == 0 ? EdgeInsets.only(right: 8) : index == widget.listData.length-1 ? EdgeInsets.only(left: 8,) : EdgeInsets.only(right: 8, left: 8),
-              child: ItemTile(titleModel: titleModel, parentWidth: (MediaQuery.of(context).size.width * bodyMainWidthRatio - listPageCount*16-24) / listPageCount, showReportButton: widget.showReportButton,)
+              child: ItemTile(parentHeight: (MediaQuery.of(context).size.width * bodyMainWidthRatio - listPageCount*16-24)/listPageCount * 513/342,titleModel: titleModel, parentWidth: (MediaQuery.of(context).size.width * bodyMainWidthRatio - listPageCount*16-24) / listPageCount, showReportButton: widget.showReportButton,)
             ),
           );
         },

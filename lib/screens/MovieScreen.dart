@@ -39,7 +39,7 @@ class PageState extends StateMVC<MovieScreen>{
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 100, left: 20, right: 20, bottom: 20),
+      padding: EdgeInsets.only(top: 80, left: 20, right: 20, bottom: 20),
       height: double.infinity,
       // decoration: testDec,
       // height: MediaQuery.of(context).size.height,

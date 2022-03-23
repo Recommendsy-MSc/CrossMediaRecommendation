@@ -30,4 +30,6 @@ class API{
   static String create_movie_from_tmdb = movies + '/' + 'create_from_tmdb/';
   static String create_tv_from_tmdb = tv + '/' + 'create_from_tmdb/';
   static String credential_login = users + '/login/';
+  static String my_list = '/my_list/';
+  static String books = '/books';
 }

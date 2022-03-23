@@ -21,6 +21,7 @@ class TitleModel implements BaseModel{
   String? status;
   String? tagline;
   int? user_rating;
+  bool? added;
 
 
   // TV Special
@@ -39,39 +40,59 @@ class TitleModel implements BaseModel{
   String? release_date = '';
   String? runtime = '';
 
+
+  //Book
+  String? author = '';
+  String? goodReadsLink = '';
+  String? amazonLink = '';
+  String? series = '';
   TitleModel.fromJson(jsonMap){
     try{
+      added = jsonMap['added'] != null ? jsonMap['added'] : false;
       id = jsonMap['id'] != null ? jsonMap['id'].toString() : "-1";
       title = jsonMap['title'] != null ? jsonMap['title'].toString() : "";
       overview = jsonMap['overview'] ?? '';
-
-      genres = jsonMap['genres'] != null ? List.from(jsonMap['genres']).map((element) => GenreModel.fromJson(element)).toList() : [];
-      title_type = jsonMap['title_type'] != null ? jsonMap['title_type'] : -1;
-      cast_members = jsonMap['cast_members'] != null ? List.from(jsonMap['cast_members']).map((element) => CastModel.fromJson(element)).toList() : [];
-      keywords = jsonMap['keywords'] != null ? List.from(jsonMap['keywords']).map((element) => KeywordModel.fromJson(element)).toList() : [];
-      original_language = jsonMap['original_languages'] ?? '';
-      poster_path = jsonMap['poster_path'] ?? '';
-      production_companies = jsonMap['production_companies'] != null ? List.from(jsonMap['production_companies']).map((element) => ProductionCompanyModel.fromJson(element)).toList() : [];
-      spoken_languages = jsonMap['spoken_languages'] != null ? List.from(jsonMap['spoken_languages']) : [];
-      tagline = jsonMap['tagline'] ?? '';
-      status = jsonMap['status'] ?? '';
-
       user_rating = jsonMap['user_rating'] ?? 0;
 
-      if(title_type == 0){
-        backdrop_path = jsonMap['backdrop_path'] ?? '';
-        imdb_id = jsonMap['imdb_id'] ?? '';
-        language = jsonMap['language'] ?? '';
-        popularity = jsonMap['type'] != null ? jsonMap['popularity'].toString() : '';
-        release_date = jsonMap['release_date'] ?? '';
-        runtime = jsonMap['runtime'] ?? '';
-      }else if(title_type == 1){
-        in_production = jsonMap['in_production'] != null ? jsonMap['in_production'] : false;
-        last_air_date = jsonMap['last_air_date'] ?? '';
-        no_episodes = jsonMap['no_episodes'] != null ? jsonMap['no_episodes'].toString() :  '';
-        no_seasons = jsonMap['no_seasons'] != null ? jsonMap['no_seasons'].toString() : '';
-        type = jsonMap['type'] ?? '';
+      title_type = jsonMap['title_type'] != null ? jsonMap['title_type'] : -1;
+      if(title_type == 3){
+        poster_path = jsonMap['cover_link'] ?? '';
+        genres = jsonMap['genres'] != null ? List.from(jsonMap['genres']).map((element){
+          return GenreModel.fromJson({'name': element});
+        }).toList() : [];
+        release_date = jsonMap['date_published'] ?? '';
+        author = jsonMap['author'] ?? '';
+        goodReadsLink = jsonMap['link'] ?? '';
+        amazonLink = jsonMap['amazon_redirect_link'] ?? "";
+        series = jsonMap['series'] != null ? jsonMap['series'].toString().substring(1, jsonMap['series'].toString().length-1) : "";
+      }else{
+        genres = jsonMap['genres'] != null ? List.from(jsonMap['genres']).map((element) => GenreModel.fromJson(element)).toList() : [];
+        cast_members = jsonMap['cast_members'] != null ? List.from(jsonMap['cast_members']).map((element) => CastModel.fromJson(element)).toList() : [];
+        keywords = jsonMap['keywords'] != null ? List.from(jsonMap['keywords']).map((element) => KeywordModel.fromJson(element)).toList() : [];
+        original_language = jsonMap['original_languages'] ?? '';
+        poster_path = jsonMap['poster_path'] ?? '';
+        production_companies = jsonMap['production_companies'] != null ? List.from(jsonMap['production_companies']).map((element) => ProductionCompanyModel.fromJson(element)).toList() : [];
+        spoken_languages = jsonMap['spoken_languages'] != null ? List.from(jsonMap['spoken_languages']) : [];
+        tagline = jsonMap['tagline'] ?? '';
+        status = jsonMap['status'] ?? '';
+
+
+        if(title_type == 0){
+          backdrop_path = jsonMap['backdrop_path'] ?? '';
+          imdb_id = jsonMap['imdb_id'] ?? '';
+          language = jsonMap['language'] ?? '';
+          popularity = jsonMap['type'] != null ? jsonMap['popularity'].toString() : '';
+          release_date = jsonMap['release_date'] ?? '';
+          runtime = jsonMap['runtime'] ?? '';
+        }else if(title_type == 1){
+          in_production = jsonMap['in_production'] != null ? jsonMap['in_production'] : false;
+          last_air_date = jsonMap['last_air_date'] ?? '';
+          no_episodes = jsonMap['no_episodes'] != null ? jsonMap['no_episodes'].toString() :  '';
+          no_seasons = jsonMap['no_seasons'] != null ? jsonMap['no_seasons'].toString() : '';
+          type = jsonMap['type'] ?? '';
+        }
       }
+
     }catch(e){
       // printe.toString());
       CustomTrace(StackTrace.current, message: e.toString());
