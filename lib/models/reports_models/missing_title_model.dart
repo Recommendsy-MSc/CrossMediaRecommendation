@@ -8,6 +8,7 @@ class MissingTitleModel implements BaseModel{
   int? title_type;
   bool? active;
   String? added;
+  String? completedDate;
 
   MissingTitleModel.fromJson(jsonMap){
     try{
@@ -19,6 +20,8 @@ class MissingTitleModel implements BaseModel{
       title_type = jsonMap['title_type'] ?? '0';
       active = jsonMap['active'] ?? false;
       added = jsonMap['added'] ?? '';
+      completedDate = jsonMap['completed_date'] != null ? jsonMap['completed_date'].toString() : null;
+
     }
     catch(e){
       // printe);

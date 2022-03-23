@@ -1,3 +1,4 @@
+import 'package:cross_media_recommendation/helper/FToastHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cross_media_recommendation/helper/firebase.dart';
@@ -58,13 +59,17 @@ class LoginController extends ControllerMVC{
   }
 
   Future<void> doCredentialLogin() async{
+    gr.showLoader(state!.context);
     var success = await ur.credentialsLogin(email: emailController.text, password: passwordController.text);
+    gr.hideLoader(state!.context);
     if(success){
       if(ur.currentUser!.is_superuser!){
         Navigator.of(state!.context).pushNamedAndRemoveUntil('/ReportPage', (route) => false);
       }else{
         Navigator.of(state!.context).pushNamedAndRemoveUntil('/HomePage', (route) => false);
       }
+    }else{
+      CustomToast(context: state!.context, msg: "Invalid Credentials!").showToast();
     }
   }
 }

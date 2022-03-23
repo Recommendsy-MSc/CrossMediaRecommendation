@@ -6,8 +6,12 @@ import 'package:cross_media_recommendation/repositories/reports_repo.dart' as rr
 
 class InaccurateRecomController extends ControllerMVC{
   InaccurateRecomModel? model;
+  bool processing = false;
   Future<bool> markAsDone() async{
     bool success = false;
+    setState(() {
+      processing = true;
+    });
     if(model!.type == 0){
       if(model!.recommendedType == 0){
         success = await mr.invalidateMovieMovieRecom(movieId: model!.title, movieId2: model!.recommendedTitle);
@@ -25,7 +29,9 @@ class InaccurateRecomController extends ControllerMVC{
       success = await rr.markInaccurateRecomAsCompleted(model!.id);
       if(success){
         model!.active = false;
-        setState(() { });
+        setState(() {
+          processing = false;
+        });
       }
     }
     return success;

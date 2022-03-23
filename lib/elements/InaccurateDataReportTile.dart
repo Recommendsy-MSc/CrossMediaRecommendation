@@ -113,14 +113,34 @@ class PageState extends StateMVC<InaccurateDataReportTile>{
               // decoration: testDec,
               child: Row(
                 children: [
-                  Container(
-                    // decoration: testDec,
-                    child: Text(
-                      widget.object!.createdDate!.substring(0, 10),
-                      style: TextStyle(
-                          color: primaryTextColor.withOpacity(0.7),
-                          fontSize: 14,
-                          letterSpacing: 1.01
+                  Tooltip(
+                    message: "Created on",
+                    child: Container(
+                      // decoration: testDec,
+                      child: Text(
+                        widget.object!.createdDate!.substring(0, 10),
+                        style: TextStyle(
+                            color: primaryTextColor.withOpacity(0.7),
+                            fontSize: 14,
+                            letterSpacing: 1.01
+                        ),
+                      ),
+                    ),
+                  ),
+                  widget.object!.active! ? Container() : CustomSpacer(width: 50,),
+                  widget.object!.active!
+                  ? Container() :
+                  Tooltip(
+                    message: "Completed on",
+                    child: Container(
+                      // decoration: testDec,
+                      child: Text(
+                        widget.object!.completedDate!.substring(0, 10),
+                        style: TextStyle(
+                            color: primaryTextColor.withOpacity(0.7),
+                            fontSize: 14,
+                            letterSpacing: 1.01
+                        ),
                       ),
                     ),
                   ),

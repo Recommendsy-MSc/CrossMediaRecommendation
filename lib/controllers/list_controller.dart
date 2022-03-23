@@ -9,11 +9,11 @@ class ListController extends ControllerMVC{
   ItemScrollController scrollController = ItemScrollController();
   // ItemPositionsListener scrollPosition = ItemPositionsListener.create();
   int curIndex = 0;
-  int count = 0;
   int max = 0;
 
   void nextPage(){
-    if(curIndex < (max-count)){
+    if(curIndex < (max-listPageCount)){
+      print("scrolling next");
       scrollController.scrollTo(index: (curIndex + listPageCount), duration: Duration(milliseconds: 400), curve: Curves.easeOut);
       curIndex += listPageCount;
     }

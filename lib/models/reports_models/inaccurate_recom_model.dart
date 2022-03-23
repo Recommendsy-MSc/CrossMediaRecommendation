@@ -11,6 +11,7 @@ class InaccurateRecomModel implements BaseModel{
   int? recommendedType;
   int? count;
   bool? active;
+  String? completedDate;
 
   InaccurateRecomModel.fromJson(jsonMap){
     try{
@@ -24,6 +25,8 @@ class InaccurateRecomModel implements BaseModel{
       count = jsonMap['count'] ?? '-1';
       name = jsonMap['name'] ?? '';
       active = jsonMap['active'] ?? false;
+      completedDate = jsonMap['completed_date'] != null ? jsonMap['completed_date'].toString() : "";
+
     }catch(e){
       // print"Error:" + e.toString());
     }

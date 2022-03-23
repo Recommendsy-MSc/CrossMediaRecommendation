@@ -26,6 +26,7 @@ class PageState extends State<AdminSidePane>{
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   child: Text(

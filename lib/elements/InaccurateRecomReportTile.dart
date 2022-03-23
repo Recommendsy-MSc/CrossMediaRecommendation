@@ -6,6 +6,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import '../helper/constants.dart';
 import '../models/reports_models/inaccurate_recom_model.dart';
 import 'CustomSpacer.dart';
+import 'Loader.dart';
 
 class InaccurateRecomReportTile extends StatefulWidget{
   Function? reloadCallback;
@@ -93,6 +94,7 @@ class PageState extends StateMVC<InaccurateRecomReportTile>{
             Container(
               // decoration: testDec,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Tooltip(
                     message: "Number of Reports",
@@ -108,17 +110,25 @@ class PageState extends StateMVC<InaccurateRecomReportTile>{
                       ),
                     ),
                   ),
-                  CustomSpacer(width: 150,),
-                  Tooltip(
-                    message: "Remove from Recommendations",
-                    child: InkWell(
-                      onTap: (){
-                        con!.markAsDone();
-                        // widget.reloadCallback!();
-                      },
-                      child: Container(
-                        // decoration: testDec,
-                        child: Text(
+                  CustomSpacer(width: 80,),
+                  Container(
+                    width: 100,
+                    child: Tooltip(
+                      message: widget.object!.active! ? "Remove from Recommendations" : "Disabled",
+                      child: InkWell(
+                        onTap: (){
+                          if(widget.object!.active!) {
+                            con!.markAsDone();
+                          }
+                          // widget.reloadCallback!();
+                        },
+                        child: con!.processing ? Center(
+                          child: SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: Loading(color: primaryTextColor,)
+                          ),
+                        ) : Text(
                           con!.model!.active! ? 'Remove' : "Completed",
                           style: TextStyle(
                               color: con!.model!.active! ? accentColor : Colors.green,

@@ -49,7 +49,9 @@ class PageState extends StateMVC<MissingTitleReportTile>{
                 children: [
                   InkWell(
                     onTap:(){
-                      con!.gotToMissingTitle(object: widget.object);
+                      if(widget.object.active!) {
+                        con!.gotToMissingTitle(object: widget.object);
+                      }
                     },
                     child: Container(
                       width: 100,
@@ -66,16 +68,40 @@ class PageState extends StateMVC<MissingTitleReportTile>{
                   ),
                   CustomSpacer(),
                   Expanded(
-                    child: Container(
-                      // decoration: testDec,
-                      child: Text(
-                        widget.object.title!,
-                        style: TextStyle(
-                            color: primaryTextColor.withOpacity(0.7),
-                            fontSize: 14,
-                            letterSpacing: 1.01
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            // decoration: testDec,
+                            child: Text(
+                              widget.object.title!,
+                              style: TextStyle(
+                                  color: primaryTextColor.withOpacity(0.7),
+                                  fontSize: 14,
+                                  letterSpacing: 1.01
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
+                        CustomSpacer(width: 50,),
+                        !widget.object.active! ? Expanded(
+                          child: Tooltip(
+                            message: "# ID of Title Added",
+                            child: Container(
+                              // decoration: testDec,
+                              child: Text(
+                                widget.object.added!,
+                                style: TextStyle(
+                                    color: primaryTextColor.withOpacity(0.7),
+                                    fontSize: 14,
+                                    letterSpacing: 1.01
+                                ),
+                              ),
+                            ),
+                          ),
+                        ) : Container(),
+                        CustomSpacer(width: 50,),
+                      ],
                     ),
                   ),
                   CustomSpacer(width: 50,),
@@ -111,14 +137,34 @@ class PageState extends StateMVC<MissingTitleReportTile>{
               // decoration: testDec,
               child: Row(
                 children: [
-                  Container(
-                    // decoration: testDec,
-                    child: Text(
-                      widget.object.created_date!.substring(0, 10),
-                      style: TextStyle(
-                          color: primaryTextColor.withOpacity(0.7),
-                          fontSize: 14,
-                          letterSpacing: 1.01
+                  Tooltip(
+                    message: "Created on",
+                    child: Container(
+                      // decoration: testDec,
+                      child: Text(
+                        widget.object.created_date!.substring(0, 10),
+                        style: TextStyle(
+                            color: primaryTextColor.withOpacity(0.7),
+                            fontSize: 14,
+                            letterSpacing: 1.01
+                        ),
+                      ),
+                    ),
+                  ),
+                  widget.object.active! ? Container() : CustomSpacer(width: 50,),
+                  widget.object.active!
+                      ? Container() :
+                  Tooltip(
+                    message: "Completed on",
+                    child: Container(
+                      // decoration: testDec,
+                      child: Text(
+                        widget.object.completedDate != null ? widget.object.completedDate!.substring(0, 10) : "",
+                        style: TextStyle(
+                            color: primaryTextColor.withOpacity(0.7),
+                            fontSize: 14,
+                            letterSpacing: 1.01
+                        ),
                       ),
                     ),
                   ),

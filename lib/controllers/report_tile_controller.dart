@@ -2,7 +2,7 @@ import 'package:cross_media_recommendation/models/basic_title_model.dart';
 import 'package:cross_media_recommendation/models/reports_models/missing_title_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
+import 'package:cross_media_recommendation/repositories/reports_repo.dart' as rr;
 
 class ReportTileController extends ControllerMVC{
   Function? reloadCallback;
@@ -35,4 +35,7 @@ class ReportTileController extends ControllerMVC{
     });
     // gr.adminBodyMainController!.switchPage(2, data: object!);
   }
+
+  // in case no match found
+
 }

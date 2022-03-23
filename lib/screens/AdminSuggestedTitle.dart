@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
+import '../elements/NoRecordFound.dart';
 import '../elements/SuggestedTitleTile.dart';
 import '../helper/constants.dart';
 
@@ -49,9 +50,17 @@ class PageState extends StateMVC<AdminSuggestedTitles>{
               )
             ),
             CustomSpacer(height: 30,),
-            Container(
-                width: MediaQuery.of(context).size.width * 0.6,
-              child: MissingTitleReportTile(object: widget.object)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                    width: MediaQuery.of(context).size.width * 0.6,
+                  child: MissingTitleReportTile(object: widget.object)
+                ),
+                ButtonComponent(title: "Mark as Completed", onClick: (){
+                  con!.markMissingReportAsCompleted(report_id: widget.object.id!);
+                })
+              ],
             ),
             CustomSpacer(height: 30,),
             Expanded(
@@ -75,7 +84,7 @@ class PageState extends StateMVC<AdminSuggestedTitles>{
                             itemBuilder: (context, index){
                               return SuggestedTitleTile(object: con!.suggestedTitlesList[index], showPreviewCallback: con!.switchSuggestedTitlePreview,);
                             },
-                          ): Container(),
+                          ): NoRecordsFound(title: "No Matched Found",),
                         )
                       ],
                     ),

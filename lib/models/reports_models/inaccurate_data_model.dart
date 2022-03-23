@@ -9,6 +9,7 @@ class InaccurateDataModel implements BaseModel{
   String? note;
   String? user;
   bool? active;
+  String? completedDate;
 
   InaccurateDataModel.fromJson(jsonMap){
     try{
@@ -20,6 +21,8 @@ class InaccurateDataModel implements BaseModel{
       user = jsonMap['user'] != null ? jsonMap['user'].toString() : '';
       note = jsonMap['note'] ?? '';
       active = jsonMap['active'] ?? false;
+      completedDate = jsonMap['completed_date'] != null ? jsonMap['completed_date'].toString() : null;
+
 
     }catch(e){
       // print"Error:" + e.toString());

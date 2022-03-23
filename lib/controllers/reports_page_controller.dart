@@ -1,5 +1,6 @@
 import 'package:cross_media_recommendation/elements/MissingTitleReportTile.dart';
 import 'package:cross_media_recommendation/elements/SuggestedTitleTile.dart';
+import 'package:cross_media_recommendation/helper/FToastHelper.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/models/reports_models/broken_link_model.dart';
 import 'package:cross_media_recommendation/models/reports_models/inaccurate_data_model.dart';
@@ -141,6 +142,18 @@ class ReportsPageController extends ControllerMVC{
       Navigator.of(state!.context).pop(success);
     }else{
       gr.hideLoader(state!.context);
+    }
+  }
+
+  Future<void> markMissingReportAsCompleted({report_id}) async{
+    gr.showLoader(state!.context);
+    bool success = await rr.markMissingTitleAsCompleted(report_id, "");
+    gr.hideLoader(state!.context);
+    if(success){
+      // CustomToast(context: state!.context, msg: "Completed!");
+      Navigator.of(state!.context).pop(success);
+    }else {
+      CustomToast(context: state!.context, msg: "An Error Occured!").showToast();
     }
   }
 }

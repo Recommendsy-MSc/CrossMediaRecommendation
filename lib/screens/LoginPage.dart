@@ -61,6 +61,10 @@ class PageState extends StateMVC<LoginPage>{
                           ),
                           enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: primaryTextColor.withOpacity(0.1))
+                          ),
+                          errorStyle: TextStyle(
+                            color: Colors.red,
+                            fontSize: 14
                           )
                         ),
                         style: TextStyle(
@@ -69,7 +73,7 @@ class PageState extends StateMVC<LoginPage>{
                           fontSize: 18
                         ),
                         validator: (value){
-                          EmailValidator.validate(value!) ? null : "Invalid Email ID";
+                          return EmailValidator.validate(value!) ? null : "Invalid Email ID";
                         },
                       ),
                       TextFormField(
@@ -90,11 +94,15 @@ class PageState extends StateMVC<LoginPage>{
                           ),
                           enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: primaryTextColor.withOpacity(0.1))
+                          ),
+                          errorStyle: TextStyle(
+                              color: Colors.red,
+                              fontSize: 14
                           )
                         ),
                         obscureText: true,
                         validator: (value){
-                          value!.length == 0 ? "Password is Required" : null;
+                          return value!.length == 0 ? "Password is Required" : null;
                         },
                         style: TextStyle(
                             color: primaryTextColor.withOpacity(1),
