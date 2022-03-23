@@ -12,7 +12,7 @@ class NoRecordsFound extends StatelessWidget{
       title ?? "No Results",
       style: TextStyle(
         color: primaryTextColor.withOpacity(0.9),
-        fontSize: 16,
+        fontSize: 14,
       ),
     );
   }

@@ -65,7 +65,7 @@ Future<dynamic> patchData(id, postData) async{
   return data;
 }
 
-Future<dynamic> invalidateMovieMovieRecom({String? movieId, String? movieId2}) async{
+Future<bool> invalidateMovieMovieRecom({String? movieId, String? movieId2}) async{
   var endpoint = API.movie_movie + API.toggle_validation;
   var data = await RestService.request(
     endpoint: endpoint,
@@ -76,10 +76,10 @@ Future<dynamic> invalidateMovieMovieRecom({String? movieId, String? movieId2}) a
     method: 'POST'
   );
 
-  return data;
+  return data['success'];
 }
 
-Future<dynamic> invalidateMovieTvRecom({String? movieId, String? tvId}) async{
+Future<bool> invalidateMovieTvRecom({String? movieId, String? tvId}) async{
   var endpoint = API.movie_tv + API.toggle_validation;
   var data = await RestService.request(
       endpoint: endpoint,
@@ -90,7 +90,7 @@ Future<dynamic> invalidateMovieTvRecom({String? movieId, String? tvId}) async{
       method: 'POST'
   );
 
-  return data;
+  return data['success'];
 }
 
 Future<dynamic> likeMovie(String? movieId) async{

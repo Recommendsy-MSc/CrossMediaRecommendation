@@ -53,10 +53,9 @@ class PageState extends StateMVC<TvScreen>{
         physics: AlwaysScrollableScrollPhysics(),
         itemCount: con!.defaultListData.length,
         itemBuilder: (context, index){
-          print(con!.defaultListData[index]['data']['list_header']);
-          print("VISIBILI: " + (!(con!.defaultListData[index]['data']['result'] == 0)).toString());
+
           return Visibility(
-            visible: !(con!.defaultListData[index]['data']['result'] == 0),
+            visible: !(con!.defaultListData[index]['data']['result'].length == 0),
             child: Column(
               children: [
                 MyList(data: con!.defaultListData[index],),
@@ -68,16 +67,7 @@ class PageState extends StateMVC<TvScreen>{
       ) : Container(
           child: Text("NO Available")
       ) : Center(child: Loading(color: primaryTextColor,)),
-      // child: con!.defaultListLoaded ? Column(
-      //   children: con!.defaultListData.map((element) {
-      //     return Column(
-      //       children: [
-      //         MyList(data: element,),
-      //         CustomSpacer(height: 30,),
-      //       ],
-      //     );
-      //   }).toList()
-      // ) : CircularProgressIndicator()
+
     );
   }
 

@@ -53,7 +53,7 @@ Future<dynamic> getRecommendations({String? id, valid = 'True'}) async{
   return data;
 }
 
-Future<dynamic> invalidateTvTvRecom({String? tvId, String? tvId2}) async{
+Future<bool> invalidateTvTvRecom({String? tvId, String? tvId2}) async{
   var endpoint = API.tv_tv + API.toggle_validation;
   var data = await RestService.request(
       endpoint: endpoint,
@@ -64,7 +64,7 @@ Future<dynamic> invalidateTvTvRecom({String? tvId, String? tvId2}) async{
       method: 'POST'
   );
 
-  return data;
+  return data['success'];
 }
 
 Future<dynamic> getTvRecomForUser({limit, genre}) async{

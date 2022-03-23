@@ -170,6 +170,7 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
                     child: con!.currentReports == 0 ?
 
                     con!.recomList.isNotEmpty
+                        
                         ? ListView.builder(
                           itemCount: con!.recomList.length,
                           itemBuilder: (context, index){

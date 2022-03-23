@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cross_media_recommendation/controllers/item_tile_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
+import 'package:cross_media_recommendation/helper/FToastHelper.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/models/basic_movie_model.dart';
 import 'package:cross_media_recommendation/models/basic_title_model.dart';
@@ -30,6 +31,8 @@ class PageState extends StateMVC<ItemTile>{
   void initState(){
     super.initState();
     con!.basicTitleModel = widget.titleModel;
+    print("Tile");
+    print(widget.titleModel.toMap().toString());
   }
 
   @override
@@ -44,7 +47,7 @@ class PageState extends StateMVC<ItemTile>{
           children: [
             InkWell(
               onTap: (){
-                // gr.currentTitle = con!.basicTitleModel;
+                gr.currentTitle = con!.basicTitleModel;
                 // gr.bodyMainController!.switchPage(2, data: con!.basicTitleModel);
                 Navigator.of(context).pushNamed('/TitleDescription', arguments: con!.basicTitleModel);
               },
@@ -86,9 +89,16 @@ class PageState extends StateMVC<ItemTile>{
                     ? Tooltip(
                       message: "Report inaccurate Recommendation",
                       child: InkWell(
-                          onTap: (){
+                          onTap: () async {
                             // print"inaccurate recomm");
-                            con!.reportInaccurateRecommendation();
+                            con!.reportInaccurateRecommendation().then((value){
+                              if(value){
+                                CustomToast(msg: "Recommendation reported as Inaccurate", context: context).showToast();
+                              }else{
+                                CustomToast(msg: "An Error Occured!", context: context).showToast();
+                              }
+                            });
+
                           },
                             child: Icon(Icons.remove_circle_outline, color: primaryTextColor.withOpacity(0.7),)
                         ),

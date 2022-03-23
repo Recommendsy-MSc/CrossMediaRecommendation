@@ -12,7 +12,7 @@ import 'package:cross_media_recommendation/repositories/user_repo.dart' as ur;
 import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
 
 class TopNavSearchPage extends StatefulWidget{
-  TopNavSearchPage({Key? key}) : super(key: key);
+  TopNavSearchPage({Key? key,}) : super(key: key);
 
   @override
   PageState createState () => PageState();

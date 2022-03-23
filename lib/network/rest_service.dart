@@ -55,16 +55,16 @@ class RestService{
         );
 
         var res = response.data;
-        // printresponse.requestOptions.method);
-        // printresponse.requestOptions.baseUrl + response.requestOptions.path);
-        // printresponse.requestOptions.queryParameters);
-        // printresponse.requestOptions.data.toString());
-        // printres);
+        print(response.requestOptions.method);
+        print(response.requestOptions.baseUrl + response.requestOptions.path);
+        print(response.requestOptions.queryParameters);
+        print(response.requestOptions.data.toString());
+        print(res);
         return res;
 
       }catch(e){
         CustomTrace(StackTrace.current, message: e.toString());
-        // print"Error: " + e.toString());
+        print("Error: " + e.toString());
     }
 
     }
@@ -93,16 +93,16 @@ class AppInterceptors extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    // printresponse.headers);
+    print(response.headers);
     super.onResponse(response, handler);
   }
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    // print'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
-    // printerr.requestOptions.uri);
-    // printerr.requestOptions.queryParameters);
-    // printerr.requestOptions.data);
+    print('ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}');
+    print(err.requestOptions.uri);
+    print(err.requestOptions.queryParameters);
+    print(err.requestOptions.data);
     super.onError(err, handler);
   }
 

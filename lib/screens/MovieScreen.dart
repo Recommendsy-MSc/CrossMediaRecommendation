@@ -48,10 +48,8 @@ class PageState extends StateMVC<MovieScreen>{
         physics: AlwaysScrollableScrollPhysics(),
         itemCount: con!.defaultListData.length,
         itemBuilder: (context, index){
-          print(con!.defaultListData[index]['data']['list_header']);
-          print("VISIBILI: " + (!(con!.defaultListData[index]['data']['result'] == 0)).toString());
           return Visibility(
-            visible: !(con!.defaultListData[index]['data']['result'] == 0),
+            visible: !(con!.defaultListData[index]['data']['result'].length == 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

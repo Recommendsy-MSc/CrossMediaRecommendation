@@ -18,6 +18,12 @@ class PageState extends StateMVC<SearchBar>{
   PageState() : super(SearchBarController()){
     con = controller as SearchBarController;
   }
+
+  @override
+  void initState(){
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

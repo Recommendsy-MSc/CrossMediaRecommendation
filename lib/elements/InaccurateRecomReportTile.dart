@@ -1,4 +1,5 @@
 import 'package:cross_media_recommendation/controllers/inaccurate_recom_controller.dart';
+import 'package:cross_media_recommendation/controllers/reports_page_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -7,9 +8,9 @@ import '../models/reports_models/inaccurate_recom_model.dart';
 import 'CustomSpacer.dart';
 
 class InaccurateRecomReportTile extends StatefulWidget{
-  InaccurateRecomModel? object;
   Function? reloadCallback;
-  InaccurateRecomReportTile({Key? key, required this.object, this.reloadCallback}) : super(key: key);
+  InaccurateRecomModel? object;
+  InaccurateRecomReportTile({Key? key,required this.object, this.reloadCallback}) : super(key: key);
   @override
   PageState createState() => PageState();
 }
@@ -93,18 +94,6 @@ class PageState extends StateMVC<InaccurateRecomReportTile>{
               // decoration: testDec,
               child: Row(
                 children: [
-                  // Container(
-                  //   // decoration: testDec,
-                  //   child: Text(
-                  //     widget.object!.createdDate!.substring(0, 10),
-                  //     style: TextStyle(
-                  //         color: primaryTextColor.withOpacity(0.7),
-                  //         fontSize: 14,
-                  //         letterSpacing: 1.01
-                  //     ),
-                  //   ),
-                  // ),
-                  // CustomSpacer(width: 150,),
                   Tooltip(
                     message: "Number of Reports",
                     child: Container(
@@ -123,16 +112,16 @@ class PageState extends StateMVC<InaccurateRecomReportTile>{
                   Tooltip(
                     message: "Remove from Recommendations",
                     child: InkWell(
-                      onTap: () async{
-                        await con!.markAsDone();
-                        widget.reloadCallback!();
+                      onTap: (){
+                        con!.markAsDone();
+                        // widget.reloadCallback!();
                       },
                       child: Container(
                         // decoration: testDec,
                         child: Text(
-                          'Remove',
+                          con!.model!.active! ? 'Remove' : "Completed",
                           style: TextStyle(
-                              color: accentColor,
+                              color: con!.model!.active! ? accentColor : Colors.green,
                               fontSize: 14,
                               letterSpacing: 1.01
                           ),

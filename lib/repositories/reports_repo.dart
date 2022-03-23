@@ -30,7 +30,7 @@ Future<dynamic> reportInaccurateDataForTv(String id, Map<String, dynamic> data) 
   return resp['success'];
 }
 
-Future<dynamic> reportInaccurateDataForMovie(String id, Map<String, dynamic> data) async{
+Future<bool> reportInaccurateDataForMovie(String id, Map<String, dynamic> data) async{
   var endpoint = API.movies + '/' + id + API.inaccurate_data;
   var resp = await RestService.request(
       endpoint: endpoint,
@@ -41,7 +41,7 @@ Future<dynamic> reportInaccurateDataForMovie(String id, Map<String, dynamic> dat
   return resp['success'];
 }
 
-Future<dynamic> reportInaccurateRecommendationForMovie(String id, Map<String, dynamic> data) async{
+Future<bool> reportInaccurateRecommendationForMovie(String id, Map<String, dynamic> data) async{
   var endpoint = API.movies + '/' + id + API.inaccurate_recom;
   var resp = await RestService.request(
     endpoint: endpoint,
@@ -52,7 +52,7 @@ Future<dynamic> reportInaccurateRecommendationForMovie(String id, Map<String, dy
   return resp['success'];
 }
 
-Future<dynamic> reportInaccurateRecommendationForTv(String id, Map<String, dynamic> data) async{
+Future<bool> reportInaccurateRecommendationForTv(String id, Map<String, dynamic> data) async{
   var endpoint = API.tv + '/' + id + API.inaccurate_recom;
   var resp = await RestService.request(
       endpoint: endpoint,
@@ -129,7 +129,7 @@ Future<dynamic> markInaccurateRecomAsCompleted(id) async{
     }
   );
 
-  return resp;
+  return resp['success'];
 }
 
 // fetch missing title for both movies and tv

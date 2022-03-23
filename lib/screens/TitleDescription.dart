@@ -1,5 +1,6 @@
 import 'package:cross_media_recommendation/controllers/title_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
+import 'package:cross_media_recommendation/elements/Loader.dart';
 import 'package:cross_media_recommendation/elements/MyList.dart';
 import 'package:cross_media_recommendation/elements/TitleDetails.dart';
 import 'package:cross_media_recommendation/elements/TopNavHomePage.dart';
@@ -29,6 +30,8 @@ class PageState extends StateMVC<TitleDescription>{
   @override
   void initState(){
     super.initState();
+    print("DESC");
+    print(widget.titleModel.toMap().toString());
     con!.fetchTitleDetails(widget.titleModel);
     con!.fetchRecommendations(widget.titleModel);
   }
@@ -46,8 +49,12 @@ class PageState extends StateMVC<TitleDescription>{
       body: con!.titleLoaded ? Container(
         height: double.infinity,
         // decoration: testDec,
-        child: Stack(
+        child: Column(
           children: [
+            Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: TopNavSearchPage()
+            ),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -58,7 +65,7 @@ class PageState extends StateMVC<TitleDescription>{
                         // maxHeight: MediaQuery.of(context).size.width * bodyMainWidthRatio * 720/1280 - 80,
 
                         //for laptop
-                        maxHeight: MediaQuery.of(context).size.height * 0.9,
+                        maxHeight: MediaQuery.of(context).size.height - 80,
 
                         //for ipad
                         // maxHeight: MediaQuery.of(context).size.width * 720/1280
@@ -91,18 +98,15 @@ class PageState extends StateMVC<TitleDescription>{
                           );
                         }).toList(),
                       ),
-                    ) : Text("Loading")
+                    ) : Loading(color: primaryTextColor,)
                   ],
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: TopNavSearchPage()
-            ),
+
           ],
         ),
-      ) : Text("Loading"),
+      ) : Loading(color: primaryTextColor,),
     );
   }
 }

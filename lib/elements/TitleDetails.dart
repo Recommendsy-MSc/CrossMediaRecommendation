@@ -4,6 +4,7 @@ import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/GenreDisplay.dart';
 import 'package:cross_media_recommendation/elements/ReportDialog.dart';
 import 'package:cross_media_recommendation/elements/ReportDialogDef.dart';
+import 'package:cross_media_recommendation/helper/FToastHelper.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/models/title_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,13 +44,6 @@ class PageState extends StateMVC<TitleDetails>{
             width: widget.width,
             child: Row(
               children: [
-                // Container(
-                //   child: Image.network(
-                //     tmdb_image_url + poster_size_342 + widget.titleModel.poster_path!,
-                //     width: 250,
-                //     height: 513*250/342,
-                //   ),
-                // ),
                 CachedNetworkImage(
                   imageUrl: tmdb_image_url + poster_size_342 + con!.titleModel!.poster_path!,
                   width: 250,
@@ -179,7 +173,11 @@ class PageState extends StateMVC<TitleDetails>{
                     //     },
                     // );
                     ReportDialogDef(data: widget.titleModel, name: "Report Title").show(context).then((value){
-
+                        if(value == true){
+                          CustomToast(context: context, msg: "Reported!", ).showToast();
+                        }else{
+                          CustomToast(context: context, msg: "An Error Occured!", ).showToast();
+                        }
                     });
                   },
                   child: Icon(

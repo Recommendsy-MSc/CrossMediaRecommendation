@@ -28,6 +28,8 @@ class ReportsPageController extends ControllerMVC{
   bool showSuggestedPreview = false;
   SuggestedTitleModel? previewModel;
 
+
+
   int currentReports = 0;
   Future<void> logoutUser() async{
     await ur.logout();
@@ -44,12 +46,7 @@ class ReportsPageController extends ControllerMVC{
     // // printcurrentReports);
     currentReports = index;
     setState(() { });
-    showDialog(
-        context: state!.context,
-        builder: (context){
-          return Loading(color: primaryTextColor,);
-        }
-    );
+    gr.showLoader(state!.context);
     switch(index){
       case 0:
         await fetchInaccurateRecommendationsReports();
@@ -62,13 +59,7 @@ class ReportsPageController extends ControllerMVC{
         await fetchMissingTitleReports();
         break;
     }
-    Navigator.of(state!.context).pop();
-    // showDialog(
-    //     context: state!.context,
-    //     builder: (context){
-    //       return Loading(color: primaryTextColor,);
-    //     }
-    // );
+    gr.hideLoader(state!.context);
 
     setState(() {
       // print"setting state");

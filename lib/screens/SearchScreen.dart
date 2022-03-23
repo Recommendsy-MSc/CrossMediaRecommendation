@@ -1,5 +1,6 @@
 import 'package:cross_media_recommendation/controllers/search_bar_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
+import 'package:cross_media_recommendation/elements/Loader.dart';
 import 'package:cross_media_recommendation/elements/TopNavSearchPage.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,14 +17,16 @@ class SearchScreen extends StatefulWidget{
   PageState createState() => PageState();
 }
 
-class PageState extends State<SearchScreen>{
+class PageState extends StateMVC<SearchScreen>{
 
 
 
   @override
   void initState(){
     super.initState();
-
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+      widget.searchBarController.fetchSearchResults();
+    });
   }
 
   @override
@@ -48,19 +51,34 @@ class PageState extends State<SearchScreen>{
                   ),
                   CustomSpacer(height: 20,),
                   Expanded(
-                    child: ListView.builder(
-                      itemCount: widget.searchBarController.search_results_data!.keys.length,
-                      itemBuilder: (context, index){
-                        return Column(
-                          children: [
-                            // element here is the key value for search_results_data. key value will
-                            // probably be 'movies', 'tv', etc.
-                            MyList(data: widget.searchBarController.search_results_data![widget.searchBarController.search_results_data!.keys.elementAt(index)],),
-                            CustomSpacer(height: 30,),
-                          ],
-                        );
+                    child: FutureBuilder(
+                      future: widget.searchBarController.fetchSearchResults(),
+                      builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot){
+                        if(snapshot.connectionState == ConnectionState.waiting){
+                          return Loading(color: primaryTextColor,);
+                        }else if(snapshot.hasData){
+                          print("Snapshot");
+                          print(snapshot);
+                          return ListView.builder(
+                            itemCount: snapshot.data.keys.length,
+                            itemBuilder: (context, index){
+                              return Column(
+                                children: [
+                                  // element here is the key value for search_results_data. key value will
+                                  // probably be 'movies', 'tv', etc.
+                                  MyList(data: snapshot.data[snapshot.data.keys.elementAt(index)],),
+                                  CustomSpacer(height: 30,),
+                                ],
+                              );
+                            },
+                          );
+                        }else{
+                          return Container(
+                            child: Text("Eror")
+                          );
+                        }
                       },
-                    ),
+                    )
                   ),
                 ],
               ),

@@ -6,21 +6,28 @@ import 'package:cross_media_recommendation/repositories/reports_repo.dart' as rr
 
 class InaccurateRecomController extends ControllerMVC{
   InaccurateRecomModel? model;
-  Future<void> markAsDone() async{
+  Future<bool> markAsDone() async{
+    bool success = false;
     if(model!.type == 0){
       if(model!.recommendedType == 0){
-        await mr.invalidateMovieMovieRecom(movieId: model!.title, movieId2: model!.recommendedTitle);
+        success = await mr.invalidateMovieMovieRecom(movieId: model!.title, movieId2: model!.recommendedTitle);
       }else if(model!.recommendedType == 1){
-        await mr.invalidateMovieTvRecom(movieId: model!.title, tvId: model!.recommendedTitle);
+        success = await mr.invalidateMovieTvRecom(movieId: model!.title, tvId: model!.recommendedTitle);
       }
     }else if(model!.type == 1){
       if(model!.recommendedType == 0){
-        await mr.invalidateMovieTvRecom(movieId: model!.title, tvId: model!.recommendedTitle);
+        success = await mr.invalidateMovieTvRecom(movieId: model!.title, tvId: model!.recommendedTitle);
       }else if(model!.recommendedType == 1){
-        await tr.invalidateTvTvRecom(tvId: model!.title, tvId2: model!.recommendedTitle);
+        success = await tr.invalidateTvTvRecom(tvId: model!.title, tvId2: model!.recommendedTitle);
       }
     }
-    await rr.markInaccurateRecomAsCompleted(model!.id);
-
+    if(success){
+      success = await rr.markInaccurateRecomAsCompleted(model!.id);
+      if(success){
+        model!.active = false;
+        setState(() { });
+      }
+    }
+    return success;
   }
 }

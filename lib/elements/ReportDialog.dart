@@ -1,6 +1,7 @@
 import 'package:cross_media_recommendation/controllers/report_dialog_controller.dart';
 import 'package:cross_media_recommendation/elements/ButtonComponent.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
+import 'package:cross_media_recommendation/helper/FToastHelper.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -135,8 +136,9 @@ class PageState extends StateMVC<ReportDialog>{
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ButtonComponent(title: "Submit", onClick: () async{
-              await con!.reportInaccurateData();
-              Navigator.of(context).pop();
+
+              Navigator.of(context).pop(await con!.reportInaccurateData());
+
             }),
             ButtonComponent(title: "Cancel", onClick: (){
               Navigator.of(context).pop();

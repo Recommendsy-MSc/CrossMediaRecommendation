@@ -3,6 +3,7 @@ import 'package:cross_media_recommendation/controllers/list_controller.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/ItemList.dart';
 import 'package:cross_media_recommendation/elements/ListScrollButton.dart';
+import 'package:cross_media_recommendation/elements/NoRecordFound.dart';
 import 'package:cross_media_recommendation/elements/heading_element.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/screens/BodyMain.dart';
@@ -48,12 +49,16 @@ class PageState extends StateMVC<MyList>{
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 HeadingElement(title: widget.data['data']['list_header'],),
-                ListScrollButton(nextPageCB: con!.nextPage, prevPageCB: con!.prevPage,),
+                widget.data['data']['result'].length != 0
+                    ? ListScrollButton(nextPageCB: con!.nextPage, prevPageCB: con!.prevPage,)
+                    : Container()
               ],
             ),
           ),
           CustomSpacer(height: 20,),
-          ItemList(scrollController: con!.scrollController, listData: widget.data['data']['result'], showReportButton: widget.showReportButton,)
+          widget.data['data']['result'].length != 0
+              ? ItemList(scrollController: con!.scrollController, listData: widget.data['data']['result'], showReportButton: widget.showReportButton,)
+              : Center(child: NoRecordsFound(title: "No Titles Available",))
 
         ],
       ),
