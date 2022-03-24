@@ -100,5 +100,24 @@
       loadMainDartJs();
     }
   </script>
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB2Vh7IY44mzNtqr1ZWqE69qKxbpouiTJs",
+      authDomain: "crossmr-fa129.firebaseapp.com",
+      projectId: "crossmr-fa129",
+      storageBucket: "crossmr-fa129.appspot.com",
+      messagingSenderId: "642751109396",
+      appId: "1:642751109396:web:201b7423e92049ede08a01",
+      measurementId: "G-C2HLFD8PBW"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
 </body>
 </html>
