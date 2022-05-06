@@ -12,11 +12,11 @@ class MyFirebase{
   static Future<void> initializeFirebase() async{
     await Firebase.initializeApp(
       options: FirebaseOptions(
-        apiKey: "AIzaSyB2Vh7IY44mzNtqr1ZWqE69qKxbpouiTJs",
-        appId: "1:642751109396:web:201b7423e92049ede08a01",
-        messagingSenderId: "642751109396",
-        projectId: "crossmr-fa129",
-        authDomain: "crossmr-fa129.firebaseapp.com",
+        apiKey: "",
+        appId: "",
+        messagingSenderId: "",
+        projectId: "",
+        authDomain: "",
       )
     );
     // print"firebase initializer");
