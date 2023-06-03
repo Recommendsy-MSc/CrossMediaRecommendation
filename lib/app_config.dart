@@ -34,7 +34,7 @@ class AppConfig{
 class _Config{
   static const version = '1.0.0';
   static const api = 'app';
-  static const baseUrl = "http://172.16.1.67:8000/";
+  static const baseUrl = "http://172.16.1.160:9999/";
   static const stagingBaseUrl = "";
   static const productionBaseUrl = 'https://recommendsy.herokuapp.com/';
 
@@ -45,7 +45,7 @@ class _Config{
 
   static Config staging = Config(
     environment: 'staging',
-    baseUrl: 'http://127.0.0.1:8000/$api',
+    baseUrl: 'http://204.83.252.194:9999/$api',
   );
 
   static Config production = Config(

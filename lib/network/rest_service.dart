@@ -1,7 +1,6 @@
 import 'package:cross_media_recommendation/app_config.dart';
 import 'package:cross_media_recommendation/helper/custom_trace.dart';
 import 'package:dio/dio.dart';
-import 'dart:convert';
 import 'package:cross_media_recommendation/repositories/user_repo.dart' as userRepo;
 
 class RestService{
@@ -64,6 +63,9 @@ class RestService{
 
       }catch(e){
         CustomTrace(StackTrace.current, message: e.toString());
+        // await FirebaseFirestore.instance.collection('debug').add({
+        //   'error': e.toString()
+        // });
         print("Error: " + e.toString());
     }
 
@@ -93,7 +95,7 @@ class AppInterceptors extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    print(response.headers);
+    // print(response.headers);
     super.onResponse(response, handler);
   }
 
@@ -103,6 +105,8 @@ class AppInterceptors extends Interceptor {
     print(err.requestOptions.uri);
     print(err.requestOptions.queryParameters);
     print(err.requestOptions.data);
+
+    // FirebaseFirestore.instance.collection('debug')
     super.onError(err, handler);
   }
 

@@ -27,7 +27,7 @@ class PageState extends StateMVC<SearchScreen>{
   @override
   void initState(){
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       con!.load(qp: widget.qp, barController: widget.searchBarController);
     });
   }

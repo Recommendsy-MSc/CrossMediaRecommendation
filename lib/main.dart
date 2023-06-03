@@ -43,5 +43,5 @@ class MyApp extends StatelessWidget{
 }
 
 void setUpConfiguration() {
-  AppConfig.setEnvironment(Environment.PRODUCTION);
+  AppConfig.setEnvironment(Environment.STAGING);
 }

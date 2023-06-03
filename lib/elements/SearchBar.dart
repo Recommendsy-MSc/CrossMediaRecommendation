@@ -2,17 +2,16 @@ import 'package:cross_media_recommendation/controllers/search_bar_controller.dar
 import 'package:flutter/cupertino.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
-class SearchBar extends StatefulWidget{
-  SearchBar({Key? key,}): super(key: key);
+class SearchBarCustom extends StatefulWidget{
+  SearchBarCustom({Key? key,}): super(key: key);
 
   @override
   PageState createState () => PageState();
 }
 
-class PageState extends StateMVC<SearchBar>{
+class PageState extends StateMVC<SearchBarCustom>{
   SearchBarController? con;
 
   PageState() : super(SearchBarController()){

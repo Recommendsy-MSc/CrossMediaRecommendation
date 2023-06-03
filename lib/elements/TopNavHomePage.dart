@@ -1,5 +1,4 @@
 import 'package:cross_media_recommendation/controllers/body_main_controller.dart';
-import 'package:cross_media_recommendation/elements/AppTitle.dart';
 import 'package:cross_media_recommendation/elements/ButtonComponent.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/SearchBar.dart';
@@ -71,7 +70,7 @@ class PageState extends State<TopNavHomePage>{
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                SearchBar(),
+                SearchBarCustom(),
                 widget.bodyMainController.showSidePane ? CustomSpacer(width: MediaQuery.of(context).size.width * 0.2,) : CustomSpacer(width: 50,),
                 ur.loggedIn && !ur.isGuest? InkWell(
                   onTap: (){

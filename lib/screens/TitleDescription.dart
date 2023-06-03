@@ -3,14 +3,12 @@ import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
 import 'package:cross_media_recommendation/elements/Loader.dart';
 import 'package:cross_media_recommendation/elements/MyList.dart';
 import 'package:cross_media_recommendation/elements/TitleDetails.dart';
-import 'package:cross_media_recommendation/elements/TopNavHomePage.dart';
 import 'package:cross_media_recommendation/elements/TopNavSearchPage.dart';
 import 'package:cross_media_recommendation/helper/constants.dart';
 import 'package:cross_media_recommendation/models/basic_title_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:cross_media_recommendation/repositories/global_var_repo.dart' as gr;
 
 
 class TitleDescription extends StatefulWidget{
@@ -32,7 +30,7 @@ class PageState extends StateMVC<TitleDescription>{
   void initState(){
     super.initState();
     // print(widget.titleModel!.toMap().toString());
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       con!.loadData(model: widget.titleModel, qp: widget.args!);
     });
 

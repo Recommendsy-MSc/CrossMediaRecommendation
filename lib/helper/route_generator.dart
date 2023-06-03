@@ -3,16 +3,14 @@ import 'package:cross_media_recommendation/screens/AdminSuggestedTitle.dart';
 import 'package:cross_media_recommendation/screens/EditableTitlePage.dart';
 import 'package:cross_media_recommendation/screens/LoginPage.dart';
 import 'package:cross_media_recommendation/screens/ReportsPage.dart';
-import 'package:cross_media_recommendation/screens/TitleDescription.dart';
 import 'package:cross_media_recommendation/screens/TitlePage.dart';
 import 'package:cross_media_recommendation/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 import '../controllers/search_bar_controller.dart';
-import '../elements/SearchResults.dart';
 import '../models/basic_title_model.dart';
-import '../models/title_model.dart';
 import '../screens/SearchScreen.dart';
+import '../screens/TitleDescription.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {

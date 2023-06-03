@@ -2,7 +2,6 @@ import 'package:cross_media_recommendation/controllers/reports_page_controller.d
 import 'package:cross_media_recommendation/elements/AdminSidePane.dart';
 import 'package:cross_media_recommendation/elements/ButtonComponent.dart';
 import 'package:cross_media_recommendation/elements/CustomSpacer.dart';
-import 'package:cross_media_recommendation/elements/BrokenLinkReportTile.dart';
 import 'package:cross_media_recommendation/elements/Loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +31,7 @@ class PageState extends StateMVC<ReportPage> with TickerProviderStateMixin{
   void initState(){
     super.initState();
     con!.currentReports = widget.currentReports;
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       con!.checkLogin();
     });
   }
